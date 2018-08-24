@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>参与的行业答题</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/common-css.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/userInfo/industry.css"/>
+	</head>
+
+	<body>
+		
+		<header class="mui-bar mui-bar-nav cblue">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">参与的行业答题</h1>
+		</header>
+		
+		<div class="mui-content">
+			<div class="mui-scroll-wrapper">
+			    <div class="mui-scroll">
+			        <div>
+			        	<!--<div class="box on">
+			        		<div>
+			        			<a class="title">的撒大祭祀啊大家</a>
+			        			<a class="grade">1111</a>
+			        			<a></a>
+			        		</div>
+			        		<div class="box-bottom">
+			        			时间：<a>2018/07/17---2018/07/17</a>
+			        			<a class="lable">dhauis</a>
+			        		</div>
+			        	</div>
+			        	<div class="box off">
+			        		<div>
+			        			<a class="title">的撒大祭祀啊大家</a>
+			        			<a class="grade">2222</a>
+			        			<a></a>
+			        		</div>
+			        		<div class="box-bottom">
+			        			时间：<a></a>
+			        			<a class="lable">31232</a>
+			        		</div>
+			        	</div>-->
+			        </div>
+			    </div>
+			</div>
+		</div>
+		
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/common.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			
+			mui.plusReady(function(){
+				plus.nativeUI.showWaiting();
+				var last = plus.webview.currentWebview();
+				var token = last.token;
+				
+				var box = document.querySelector('.mui-scroll>div');
+				
+				mui.ajax(url+'/report/history/4',{
+					data:{
+						api_token: token
+					},
+					dataType:'json',
+					type:'get',
+					timeout:10000,          
+					success:function(data){
+						if(data.status==0){
+							showList(data.data)
+						}else{
+							plus.nativeUI.toast('数据请求失败 ！')
+						}
+						plus.nativeUI.closeWaiting();
+					},
+					error:function(xhr,type,errorThrown){
+				    	plus.nativeUI.closeWaiting();
+				        plus.nativeUI.toast('服务器连接超时，请稍后再试');
+					}
+				});
+				
+				
+				function showList(data){
+					if(data.length==0){
+						box.innerHTML = '<a class="tip">未查询到数据</a>';
+						plus.nativeUI.closeWaiting();
+						return false;
+					}
+					box.innerHTML = '';
+					var html='';
+					var len=data.length;
+					var time=new Date().getTime();
+					for(var i=0;i<len;i++){
+						var name=data[i].name,
+							mark=data[i].mark,
+							sTime=data[i].start_time==null?'0':data[i].start_time,
+							eTime=data[i].expire_time==null?'0':data[i].expire_time,
+							score=data[i].max_get_score;
+							
+						var SsTime = sTime.substr(0,10).replace(/-/g,'/'),
+							SeTime = eTime.substr(0,10).replace(/-/g,'/');
+							
+						var neTime = new Date(eTime).getTime();
+						
+						if(time<neTime){
+							html+=`<div class="box on">
+						        		<div>
+						        			<a class="title">${name}</a>
+						        			<a class="grade">${score}</a>
+						        			<a></a>
+						        		</div>
+						        		<div class="box-bottom">
+						        			时间：<a>${SsTime}---${SeTime}</a>
+						        			<a class="lable">${mark}</a>
+						        		</div>
+						        	</div>`;
+						}else{
+							html+=`<div class="box off">
+						        		<div>
+						        			<a class="title">${name}</a>
+						        			<a class="grade">${score}</a>
+						        			<a></a>
+						        		</div>
+						        		<div class="box-bottom">
+						        			时间：<a>${SsTime}---${SeTime}</a>
+						        			<a class="lable">${mark}</a>
+						        		</div>
+						        	</div>`;
+						}
+						
+					}
+					
+					box.innerHTML = html;
+					
+					var boxs = document.querySelectorAll('.box'),
+					 	boxT = document.querySelectorAll('.box-bottom'),
+						len = boxs.length;
+					for (let i=0;i<len;i++) {
+						boxs[i].style.width = width * 0.48 + 'px';
+						boxs[i].style.height = boxs[0].clientWidth * 0.70 + 'px';
+						boxT[i].style.lineHeight = boxT[0].clientHeight + 'px';
+					}
+					
+					plus.nativeUI.closeWaiting();
+				}
+				
+			})
+			
+			mui('.mui-scroll-wrapper').scroll({
+				deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+			});
+		</script>
+	</body>
+
+</html>

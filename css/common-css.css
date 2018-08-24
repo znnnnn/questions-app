@@ -1,0 +1,89 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+html,
+body {
+	background-color: #fdfaff;
+	height: 100%;
+}
+
+.mui-content {
+	height: 100%;
+}
+
+ul,li {
+	list-style: none;
+}
+a:active {
+	color: #FFFFFF;
+}
+a.mui-active {
+	background-color: #FFFFFF!important;
+}
+a.mui-navigate-right.mui-active {
+	background-color: #EEEEEE!important;
+}
+
+
+header.cblue {
+	background-color: #31a9b6!important;
+}
+header.cblue a,
+header.cblue h1 {
+	color: #FFFFFF!important;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #FFFFFF;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #FFFFFF;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #FFFFFF;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+   color:    #FFFFFF;
+}
+
+.mui-icon-clear {
+	right: 10px!important;
+	color: #FFFFFF!important;
+}
+/*获取验证码*/
+.mui-btn-primary:enabled:active {
+	background-color: #929292!important;
+}
+#getCode {
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	width: 100px;
+	height: 30px;
+	line-height: 30px;
+	margin-top: -15px;
+	color: #FFFFFF;
+	text-align: center;
+	font-size: 15px;
+}
+#getCode:before {
+	content: '';
+	display: block;
+	position: absolute;
+	left: -10px;
+	top: 0;
+	width: 1px;
+	height: 30px;
+	background-color: #FFFFFF;
+}
+
+a.tip {
+	display: block;
+	color: #CCCCCC;
+	font-size: 200%;
+	padding-top: 50px;
+	text-align: center;
+}

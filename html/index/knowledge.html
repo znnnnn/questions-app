@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/common-css.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/index/index-common.css"/>
+		<link rel="stylesheet" type="text/css" href="../../fonts/iconfont.css"/>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title"></h1>
+		</header>
+		
+		<div class="mui-content">
+			<div class="knowledge-category list">
+				<ul>
+					<!--<li class="active"><a>个人信息安全</a></li>
+					<li><a>防电信诈骗</a></li>
+					<li><a>网络安全法</a></li>-->
+				</ul>
+			</div>
+		</div>
+		
+		<div class="mui-scroll-wrapper levels">
+			<div class="mui-scroll">
+				<ul>
+					<li>
+						<i class="iconfont icon-jiangli- active"></i>
+						<i class="iconfont icon-jiangli-"></i>
+						<i class="iconfont icon-jiangli-"></i>
+					</li>
+					<li>
+						<a>第一关</a>
+						<a>1000</a>
+					</li>
+				</ul>
+				<ul class="lock">
+					<li>
+						<i class="iconfont icon-jiangli- active"></i>
+						<i class="iconfont icon-jiangli-"></i>
+						<i class="iconfont icon-jiangli-"></i>
+					</li>
+					<li>
+						<a>第二关</a>
+						<a>1000</a>
+					</li>
+				</ul>
+				<ul class="lock">
+					<li>
+						<i class="iconfont icon-jiangli- active"></i>
+						<i class="iconfont icon-jiangli-"></i>
+						<i class="iconfont icon-jiangli-"></i>
+					</li>
+					<li>
+						<a>第三关</a>
+						<a>1000</a>
+					</li>
+				</ul>
+				<ul class="lock">
+					<li>
+						<i class="iconfont icon-jiangli- active"></i>
+						<i class="iconfont icon-jiangli-"></i>
+						<i class="iconfont icon-jiangli-"></i>
+					</li>
+					<li>
+						<a>第四关</a>
+						<a>1000</a>
+					</li>
+				</ul>
+				<ul class="lock">
+					<li>
+						<i class="iconfont icon-jiangli- active"></i>
+						<i class="iconfont icon-jiangli-"></i>
+						<i class="iconfont icon-jiangli-"></i>
+					</li>
+					<li>
+						<a>第五关</a>
+						<a>1000</a>
+					</li>
+				</ul>
+				<ul class="lock">
+					<li>
+						<i class="iconfont icon-jiangli- active"></i>
+						<i class="iconfont icon-jiangli-"></i>
+						<i class="iconfont icon-jiangli-"></i>
+					</li>
+					<li>
+						<a>第六关</a>
+						<a>1000</a>
+					</li>
+				</ul>
+				<ul class="lock">
+					<li>
+						<i class="iconfont icon-jiangli- active"></i>
+						<i class="iconfont icon-jiangli-"></i>
+						<i class="iconfont icon-jiangli-"></i>
+					</li>
+					<li>
+						<a>第一关</a>
+						<a>1000</a>
+					</li>
+				</ul>
+				<ul class="lock">
+					<li>
+						<i class="iconfont icon-jiangli- active"></i>
+						<i class="iconfont icon-jiangli-"></i>
+						<i class="iconfont icon-jiangli-"></i>
+					</li>
+					<li>
+						<a>第一关</a>
+						<a>1000</a>
+					</li>
+				</ul>
+				<ul class="lock">
+					<li>
+						<i class="iconfont icon-jiangli- active"></i>
+						<i class="iconfont icon-jiangli-"></i>
+						<i class="iconfont icon-jiangli-"></i>
+					</li>
+					<li>
+						<a>第一关</a>
+						<a>1000</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/common.js"></script>
+		<script src="../../js/index/index-common.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			
+			var a = document.querySelector('.mui-content');
+			
+			
+			mui.plusReady(function(){
+				var last = plus.webview.currentWebview();
+				var title = document.querySelector('.mui-title');
+				var txt = last.title;
+				
+				title.innerText = txt;
+				
+				
+			})
+			
+			mui('.mui-scroll-wrapper').scroll({
+				deceleration: 0.0005, //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+				indicators: false,
+				startY: 0,
+			});
+			
+			var headerList = ['个人信息安全','防电信诈骗','网络安全法'];
+			var showheadlist = new showList(headerList);
+			
+		</script>
+	</body>
+
+</html>

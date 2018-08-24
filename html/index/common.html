@@ -1,0 +1,159 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>关卡模板</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/common-css.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/index/index-common.css"/>
+		<link rel="stylesheet" type="text/css" href="../../fonts/iconfont.css"/>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title"></h1>
+		</header>
+		
+		<div class="mui-content mui-hidden">
+			<div class="knowledge-category list">
+				<ul>
+					<!--<li class="active"><a>个人信息安全</a></li>
+					<li><a>防电信诈骗</a></li>
+					<li><a>网络安全法</a></li>-->
+				</ul>
+				
+			</div>
+		</div>
+		
+		<div class="mui-scroll-wrapper levels mui-hidden">
+			<div class="mui-scroll">
+				<!--<ul>
+					<li>
+						<i class="iconfont icon-xunzhang active"></i>
+						<i class="iconfont icon-xunzhang"></i>
+						<i class="iconfont icon-xunzhang"></i>
+					</li>
+					<li>
+						<a>第一关</a>
+						<a>1000</a>
+					</li>
+				</ul>
+				<ul class="lock">
+					<li>
+						<i class="iconfont icon-xunzhang active"></i>
+						<i class="iconfont icon-xunzhang"></i>
+						<i class="iconfont icon-xunzhang"></i>
+					</li>
+					<li>
+						<a>第二关</a>
+						<a>1000</a>
+					</li>
+				</ul> -->
+			</div>
+		</div>
+		
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/common.js"></script>
+		<script src="../../js/index/index-common.js"></script>
+		<script type="text/javascript">
+			mui.init({
+			    beforeback: function() {
+			　　　　 //获得父页面的webview
+			        var list = plus.webview.currentWebview().opener();
+			        mui.fire(list, 'getList');
+			        return true;
+			    }
+			});
+			
+			var headerList = [];
+			var last = null,
+				index = null,
+				preId = null,
+				cateId = null,
+				txt = null,
+				token = null,
+				getData = null;
+			
+			mui.plusReady(function(){
+				last = plus.webview.currentWebview();
+				var title = document.querySelector('.mui-title');
+				
+				cateId = last.cateId;
+				txt = last.title;
+				token = last.token; 
+				index=last.index;
+				
+				
+				title.innerText = txt;
+				//获取二级子类
+				mui.ajax(url+'/cate/'+ cateId +'/childs',{
+					data:{
+						api_token: token
+					},
+					dataType:'json',
+					type:'get',
+					timeout:10000,
+					success:function(data){
+						getData = data.data;
+						plus.nativeUI.closeWaiting();
+						if(data.status==0){
+							childs(data.data,token)
+						}else{
+							plus.nativeUI.toast('数据请求失败 ！')
+						}
+					},
+					error:function(xhr,type,errorThrown){
+				    	plus.nativeUI.closeWaiting();
+				        plus.nativeUI.toast('服务器连接超时，请稍后再试');
+					}
+				});
+				
+				
+				
+			})
+			window.addEventListener('reflash', function(e){//执行刷新
+			    GetLevels(preId,token);
+			});
+			
+			var childs = function(data,token){
+				var ul = document.querySelector('.knowledge-category ul');
+				var html = '';
+				var len = data.length;
+				
+				if(len==0){
+					document.querySelector('.mui-scroll-wrapper').innerHTML = '<a class="tip">暂无数据</a>';
+					document.querySelector('.mui-scroll-wrapper').classList.remove('mui-hidden');
+					return false;
+				}
+				
+				for (var i=0;i<len;i++) {
+					var id = data[i].id,
+						name = data[i].name;
+						
+					if(i==0){
+						html+='<li class="active" data-id="'+ id +'"><a>'+ name +'</a></li>';
+					}else{
+						html+='<li data-id="'+ id +'"><a>'+ name +'</a></li>';
+					}
+				}
+				ul.innerHTML = html;
+				showlist(token);
+				GetLevels(data[0].id,token);
+			}
+			
+			
+			mui('.mui-scroll-wrapper').scroll({
+				deceleration: 0.0005, //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+				indicators: false,
+				startY: 0,
+			});
+			
+			
+			
+		</script>
+	</body>
+
+</html>

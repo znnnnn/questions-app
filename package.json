@@ -1,0 +1,26 @@
+{
+  "name": "questions",
+  "version": "0.0.1",
+  "description": "有奖答题app",
+  "main": "main.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel index.html --no-cache"
+  },
+  "author": "pioneStudio",
+  "license": "MIT",
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^2.2.0",
+    "parcel-bundler": "^1.9.7",
+    "vue": "^2.5.17",
+    "vue-template-compiler": "^2.5.17"
+  },
+  "alias": {
+    "vue": "./node_modules/vue/dist/vue.common.js"
+  },
+  "dependencies": {
+    "css": "^2.2.3",
+    "vue-hot-reload-api": "^2.3.0",
+    "vue-router": "^3.0.1"
+  }
+}

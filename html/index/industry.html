@@ -1,0 +1,190 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>行业类</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/mui.picker.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/common-css.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/index/index-common.css"/>
+	</head>
+
+	<body class="industry">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title"></h1>
+			<a class="mui-pull-right btn">确定</a>
+		</header>
+		
+		
+		<div class="mui-content">
+			<div class="knowledge-category list">
+				<ul>
+					<li class="choose"><a>选择行业</a></li>
+				</ul>
+			</div>
+		</div>
+		
+		
+		<div class="mui-scroll-wrapper box">
+			<div class="mui-scroll">
+				<div class="choose">
+					<div class="choose-list">
+					</div>
+				</div>
+				<!--<ul class="process">
+					<li>
+						<a class="title">医疗行业大苏打的</a>
+					</li>
+					<li>
+						<a class="time">时间dsadsadasd</a>
+						<a class="lable">行业标签</a>
+					</li>
+				</ul>
+				<ul class="nostart">
+					<li>
+						<a class="title">医疗行业大苏打的</a>
+					</li>
+					<li>
+						<a class="time">时间dsadsadasd</a>
+						<a class="lable">行业标签</a>
+					</li>
+				</ul>
+				<ul class="lock">
+					<li>
+						<a class="title">医疗行业大苏打的</a>
+					</li>
+					<li>
+						<a class="time">时间dsadsadasd</a>
+						<a class="lable">行业标签</a>
+					</li>
+				</ul>-->
+			</div>
+		</div>
+		
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/mui.picker.min.js"></script>
+		<script src="../../js/common.js"></script>
+		<script src="../../js/index/index-common.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			var headerList = [];
+			var last = null,
+				index = null,
+				preId = null,
+				cateId = null,
+				txt = null,
+				token = null,
+				getData = null,
+				userInd = null;
+			
+			
+			var Data=null;
+			mui.plusReady(function(){
+				
+				plus.nativeUI.showWaiting();
+				
+				last = plus.webview.currentWebview();
+				var title = document.querySelector('.mui-title');
+				var txt = last.title;
+				cateId = last.cateId;
+				txt = last.title;
+				token = last.token; 
+				index=last.index;
+				
+				title.innerText = txt;
+				var headerList = [];
+				//获取用户行业
+				mui.ajax(url+'/user/info',{
+					data:{
+						api_token: token
+					},
+					dataType:'json',
+					type:'get',
+					timeout:10000,
+					success:function(data){
+						if(data.status==0){
+							userInd = data.data.career.name;
+							headerList = ['全部','行业分类',data.data.career.name];
+//							var showheadlist = new showList(headerList);
+							
+							
+						}else{
+							plus.nativeUI.toast('数据请求失败 ！')
+						}
+					},
+					error:function(xhr,type,errorThrown){
+				    	plus.nativeUI.closeWaiting();
+				        plus.nativeUI.toast('服务器连接超时，请稍后再试');
+					}
+				});
+				
+				//获取全部关卡
+				mui.ajax(url+'/cate/'+ cateId +'/allgroups',{
+					data:{
+						api_token: token
+					},
+					dataType:'json',
+					type:'get',
+					timeout:10000,
+					success:function(data){
+						if(data.status==0){
+							Data=data.data;
+							showAllList(data.data); 
+						}else{
+							plus.nativeUI.toast('数据请求失败 ！')
+						}
+					},
+					error:function(xhr,type,errorThrown){
+				    	plus.nativeUI.closeWaiting();
+				        plus.nativeUI.toast('服务器连接超时，请稍后再试');
+					}
+				});
+				
+				
+				var List = [];
+				//获取行业分类
+				mui.ajax(url+'/career/list',{
+					data:{
+						api_token: token
+					},
+					dataType:'json',
+					type:'get',
+					timeout:10000,
+					success:function(data){
+						if(data.status==0){
+							var len = data.data.length;
+							for (var i=0;i<len;i++) {
+								List.push({
+									value: data.data[i].id,
+									text: data.data[i].name
+								})
+							}
+							showSelect(data.data);
+							selectInd(List);
+						}else{
+							plus.nativeUI.toast('数据请求失败 ！')
+						}
+					},
+					error:function(xhr,type,errorThrown){
+						plus.nativeUI.closeWaiting();
+					}
+				});
+				
+			})
+			
+			mui('.mui-scroll-wrapper').scroll({
+				deceleration: 0.0005, //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+				indicators: false,
+				startY: 0,
+			});
+			
+			
+			
+			
+		</script>
+	</body>
+
+</html>

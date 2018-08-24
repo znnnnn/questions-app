@@ -1,0 +1,258 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>答题页</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<!--<link rel="stylesheet" type="text/css" href="../../css/common-css.css"/>-->
+		<link rel="stylesheet" type="text/css" href="../../fonts/iconfont.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/index/index-common.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/index/answer.css"/>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title" id="timer"></h1>
+			<button id="submit" class="mui-btn mui-btn-link mui-pull-right">交卷</button>
+		</header>
+		 
+		
+		<div class="mui-content mui-hidden">
+			<div class="header">
+				<a class="desc"></a>
+				<a class="schedule"><span class="pre"></span><span class="totle"></span></a>
+			</div>
+			
+			<div class="answer-card mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<div id="answer-body" class="answer-body">
+						<a class="answer-title"></a> 
+						<!--<span>12.</span>计算机病毒的预防措施包括毒的的预防措施包括毒的的预防措施包括毒的预防措施包括毒的预防措施包括下列哪项-->
+						<ul class="answer-list">
+							<!--<li class="active"><i class="iconfont icon-A"></i><a>123123123123123123123</a></li>
+							<li><i class="iconfont icon-B"></i><a>123123123123123123123123123123123123123123123123</a></li>
+							<li><i class="iconfont icon-C"></i><a>123123123123123123123123123123123123123123123123</a></li>
+							<li><i class="iconfont icon-D"></i><a>123123123123123123123123123123123123123123123123</a></li>
+							<li class="active"><i class="iconfont icon-E"></i><a>123123123123123123123123123123123123123123123123</a></li>
+							<li class="active"><i class="iconfont icon-F"></i><a>123123123123123123123123123123123123123123123123</a></li>
+							<li class="active"><i class="iconfont icon-G"></i><a>123123123123123123123123123123123123123123123123</a></li>-->
+						</ul>
+					</div>
+					<div class="answer-btns mui-row">
+						<div class="mui-col-sm-4 last">上一题</div>
+						<div class="mui-col-sm-7 next">下一题</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		
+		
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../js/common.js" ></script>
+		<script src="../../js/index/answer.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			
+			
+			var timer = null;
+			
+			mui.plusReady(function(){
+				var timer = document.querySelector('#timer');
+				timer.innerText = '00:00:00';
+				//答题倒计时
+				var time = 0;
+				var a = setInterval(jishi, 1000); //1000毫秒
+				var isCanCancerOrder = false;
+				 
+				function jishi() {
+					time++;
+					timer.innerText = calTime(time);
+				}
+				 
+				var	spit = ":";
+				var	hour = "00";
+				var	second = "00";
+				var	min = "00";
+				var	result = "";
+				
+				function calTime(time) {
+				 
+					if(time % 60 != 0) { //秒
+						if(time % 60 > 9) {
+							second = time % 60;
+						} else {
+							second = "0" + time % 60;
+						}
+					}
+					 
+					if(parseInt(time / 60) != 0) { //分
+						if(parseInt(time / 60) > 9) {
+							min = parseInt(time / 60);
+						} else {
+							min = "0" + parseInt(time / 60);
+						}
+					}
+					 
+					if(parseInt(time / 3600) != 0) { //时
+						if(parseInt(time / 3600) > 9) {
+							hour = parseInt(time / 3600);
+						} else {
+							hour = "0" + parseInt(time / 3600);
+						}
+					}
+					 
+					result = hour + spit + min + spit + second;
+					 
+					return result;
+				}
+				
+				plus.nativeUI.showWaiting();
+				var last = plus.webview.currentWebview();
+				
+				var cateId = last.cateId,
+					groupId = last.groupId,
+					token = last.token;
+				 
+				var ary = {
+					cateId: cateId,
+					groupId: groupId,
+					token: token
+				}
+				
+				var content = document.querySelector('.mui-content');
+				var status = [];
+				mui.ajax(url+'/'+ cateId +'/'+ groupId +'/questions',{
+					data:{
+						api_token: token
+					},
+					dataType:'json',
+					type:'get',
+					timeout:10000,            
+					success:function(data){
+						if(data.status==0){
+							answer(data.data,ary,status);
+							content.classList.remove('mui-hidden');
+						}else{
+							plus.nativeUI.toast('数据请求失败 ！')
+						}
+						plus.nativeUI.closeWaiting();
+					},
+					error:function(xhr,type,errorThrown){
+				    	plus.nativeUI.closeWaiting();
+				        plus.nativeUI.toast('服务器连接超时，请稍后再试');
+					}
+				});
+				
+				mui('.mui-bar-nav').on('click','#submit',function(){
+					
+					if(status==''){
+						return false;
+					}
+
+					var len = status.length;
+					var tol = 0;
+					for(var i=0;i<len;i++){
+						tol+=parseInt(status[i].num);
+					}
+					mui.ajax(url+'/question/submitone',{
+						data:{
+							group_id: groupId,
+							sort_id: status[pre-1].sort_id, 
+							api_token: token,
+							answer: status[pre-1].answer.join('|')
+						},
+						dataType:'json',
+						type:'post',
+						timeout:10000,
+						success:function(data){
+							subAll(tol,len);
+						},
+						error:function(xhr,type,errorThrown){
+					    	plus.nativeUI.closeWaiting();
+					        plus.nativeUI.toast('服务器连接超时，请稍后再试');
+						}
+					});
+					
+					
+				});
+				
+				var subAll = function(tol,len){
+					clearInterval(a);
+					
+					if(tol==len){
+						mui.confirm('已完成所有题目确认交卷吗？','交卷提示',['取消','确定'],function(e){
+							if(e.index==1){
+								showMsg()
+							}else{
+								a = setInterval(jishi, 1000);
+							}
+						},'div');
+					}else{
+						mui.confirm('未完成所有题目，确认交卷吗？','交卷提示',['取消','确定'],function(e){
+							if(e.index==1){
+								showMsg()
+							}else{
+								a = setInterval(jishi, 1000);
+							}
+						},'div');
+						
+					}
+					var last = plus.webview.currentWebview().opener();
+					
+				}
+				function showMsg(){
+					var time = hour + spit + min + spit + second;
+					mui.ajax(url+'/report/'+ cateId +'/submit/'+ groupId,{
+						data:{
+							api_token: token,
+						},
+						dataType:'json',
+						type:'get',
+						timeout:10000,
+						success:function(data){
+							var score = 0;
+							score=(data.data.get_score==undefined?0:data.data.get_score);
+							if(data.data.is_pass==0||data.data.is_pass==undefined||data.data.is_pass==null){
+								mui.confirm('未很遗憾！成绩不及格(80%)\n分数'+ score +'\n用时'+time,'最终成绩',['再答一次','确定'],function(e){
+									if(e.index==1){
+										mui.fire(last,'reflash')
+										mui.back();
+									}else{
+										location.reload();
+									}
+								},'div');
+							}else{
+								mui.confirm('恭喜你成绩及格(80%)\n分数'+ score +'\n用时'+time,'最终成绩',['立即重做','确定'],function(e){
+									if(e.index==1){
+										mui.fire(last,'reflash')
+										mui.back();
+									}else{
+										location.reload();
+									}
+								},'div');
+							}
+						},
+						error:function(xhr,type,errorThrown){
+					    	plus.nativeUI.closeWaiting();
+					        plus.nativeUI.toast('服务器连接超时，请稍后再试');
+						}
+					});	
+				}
+				
+			});
+			
+			mui.back = function(){
+			  	mui.currentWebview.close();
+			}
+			
+			mui('.mui-scroll-wrapper').scroll({
+				deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+			});
+		</script>
+	</body>
+
+</html>

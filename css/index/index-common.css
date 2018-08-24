@@ -1,0 +1,253 @@
+:root {
+	--h: 85px;
+}
+
+/*覆盖mui默认样式*/
+.mui-scroll-wrapper {
+	top: 95px;
+}
+
+a.tip {
+	display: block;
+	font-size: 300%;
+	color: #CCCCCC;
+	margin-top: 20%;
+	text-align: center;
+}
+
+header {
+	background-color: #0097a8!important;
+}
+header a,
+header h1 {
+	color: #FFFFFF!important;
+}
+
+
+
+
+div.list ul {
+	width: 100%;
+	overflow: hidden;
+	/*background-color: #efefef;*/
+}
+div.list ul li {
+	float: left;
+	width: 100%;
+	text-align: center;
+	padding: 15px 0;
+	position: relative;
+}
+div.list ul li:after {
+	content: '';
+	display: block;
+	position: absolute;
+	width: 1px;
+	height: 18px;
+	background-color: #939393;
+	right: 0;
+	top: 50%;
+	margin-top: -9px;
+}
+div.list ul li:last-child:after {
+	height: 0;
+}
+div.list ul li a {
+	color: #0097a8;
+	font-size: 15px;
+}
+div.list ul li.active a {
+	color: #ffb724;
+}
+
+div.levels ul,
+.industry .mui-scroll-wrapper ul {
+	position: relative;
+	background-color: #FFFFFF;
+	height: var(--h);
+	overflow: hidden;
+	margin-bottom: 5px;
+	border-top: 1px solid #d4d4d4;
+	border-bottom: 1px solid #d4d4d4;
+}
+div.levels ul li {
+	float: left;
+	height: 100%;
+}
+div.levels ul li:first-child {
+	/*width: 42%;*/
+	position: absolute;
+	padding-left: 25px;
+	line-height: var(--h);
+}
+div.levels ul li:last-child {
+	width: 100%;
+	padding-top: 15px;
+}
+/*div.levels ul li i {
+	font-size: 16px;
+	margin-right: -2px;
+}*/
+div.levels ul li i.active {
+	color: #ffb724;
+}
+div.levels ul li a {
+	display: block;
+	font-size: 18px;
+	color: #000000;
+	/*width: 60px;*/
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+div.levels ul:before,
+div.levels ul:after,
+.industry .mui-scroll-wrapper ul:before,
+.industry .mui-scroll-wrapper ul:after {
+	content: '';
+	display: block;
+	position: absolute;
+}
+div.levels ul:before,
+.industry .mui-scroll-wrapper ul:before {
+	width: 10px;
+	height: 100%;
+	background-color: #ffb724;
+	top: 0;
+	left: 0;
+}
+.industry .mui-scroll-wrapper ul:before {
+	background-color: #9d5ac7;
+}
+div.levels ul:after {
+	width: 25px;
+	height: 25px;
+	right: 40px;
+	top: 50%;
+	margin-top: -12px;
+	background: url(../../images/index/unlock.png)no-repeat;
+	background-size: 100% 100%;
+	
+}
+div.levels ul.lock:before,
+.industry .mui-scroll-wrapper ul.lock:before {
+	height: 26px;
+	top: 50%;
+	margin-top: -13px;
+}
+div.levels ul.lock:after {
+	display: none;
+}
+div.levels ul.lock {
+	background-color: #777777;
+}
+div.levels ul.lock i,
+div.levels ul.lock a {
+	color: #FFFFFF;
+	position: relative;
+}
+div.levels ul.lock a:first-child:after {
+	content: '';
+	display: block;
+	position: absolute;
+	width: 22px;
+	left: 50%;
+	top: 27px;
+	margin-left: -11px;
+	height: 25px;
+	background: url(../../images/index/lock.png) no-repeat;
+	background-size: 100% 100%;
+}
+div.levels ul.lock a:last-child {
+	display: none;
+}
+
+.industry .mui-bar .btn {
+	height: 44px;
+	line-height: 44px;
+}
+.industry .mui-scroll-wrapper ul.process:after {
+	background-image: url(../../images/index/on.png);
+}
+.industry .mui-scroll-wrapper ul.nostart:after {
+	background-image: url(../../images/index/nostart.png);
+}
+.industry .mui-scroll-wrapper ul.lock:after {
+	background-image: url(../../images/index/off.png);
+}
+.industry .mui-scroll-wrapper ul:after {
+	background-size: 100% 100%;
+	width: 55px;
+	height: 40px;
+	right: 0;
+	top: 0;
+}
+.industry .mui-scroll-wrapper ul.lock {
+	background-color: #777777;
+}
+.industry .mui-scroll-wrapper ul.lock a {
+	color: #FFFFFF!important;
+}
+.industry .mui-scroll-wrapper ul li {
+	padding-left: 20px;
+	padding-top: 15px;
+}
+.industry .mui-scroll-wrapper ul li a.title {
+	color: #000000;
+}
+.industry .mui-scroll-wrapper ul li a.time {
+	font-size: 80%;
+	color: #999999;
+}
+.industry .mui-scroll-wrapper ul li a.lable {
+	font-size: 10px;
+	position: absolute;
+	display: block;
+	box-sizing: content-box;
+	right: 10px;
+	bottom: 5px;
+	height: 13px;
+	line-height: 15px;
+	padding: 0 5px;
+	background-color: #f1f1f1;
+	color: #999999!important;
+	border-radius: 10px;
+	border: 1px solid #999999;
+}
+.industry .mui-scroll-wrapper ul.lock li a.lable {
+	border: 1px solid #f1f1f1;
+}
+
+.industry li.choose a {
+	font-size: 22px!important;	
+}
+.industry div.choose {
+	padding: 40px 20px 0;
+	height: 100%;
+	text-align: center;
+}
+.industry div.choose-list a {
+	display: block;
+	position: relative;
+	font-size: 18px!important;	
+	color: #CCCCCC;
+	padding: 2px 0;
+	margin: 5px;
+}
+.industry div.choose-list a.active {
+	color: #000000;
+	padding: 5px 0;
+	border-top: 1px solid #CCCCCC;
+	border-bottom: 1px solid #CCCCCC;
+}
+.industry div.choose-list a.active:before {
+	content: '';
+	display: block;
+	position: absolute;
+	width: 15px;
+	height: 10px;
+	left: 5px;
+	top: 50%;
+	margin-top: -5px;
+	background-color: #0097a9;
+}

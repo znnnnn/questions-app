@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html class="ui-page-login">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>登录页</title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/common-css.css"/>
+		<link href="css/style.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<!--<form class="mui-input-group mui-hidden">
+				<ul class="mui-table-view mui-table-view-chevron">
+					<li class="mui-table-view-cell">
+						自动登录
+						<div id="autoLogin" class="mui-switch">
+							<div class="mui-switch-handle"></div>
+						</div>
+					</li>
+				</ul>
+			</form>-->
+			
+			<header class="mui-title">
+				<a>网络安全答题平台</a>
+			</header>
+			
+			<div class="login-form">
+				<form id='login-form' class="mui-input-group">
+					<div class="mui-input-row">
+						<label class="phone"></label>
+						<input id='account' type="text" class="mui-input-clear mui-input" placeholder="请输入手机号" maxlength="11">
+					</div>
+					<div class="mui-input-row" id="pwdBox">
+						<label class="pwd"></label>
+						<input id='password' type="password" class="mui-input-clear mui-input" placeholder="请输入6-14位密码" maxlength="14">
+					</div>
+					<div class="mui-input-row mui-hidden">
+						<label class="pwd"></label>
+						<input id='code' type="text" class="mui-input-clear mui-input" placeholder="请输入验证码" maxlength="6">
+						<div id="getCode"></div>
+					</div>
+				</form>
+				<div class="mui-content-padded">
+					<button id='login' class="mui-btn mui-btn-block mui-btn-primary">立即登录</button>
+					
+					<div class="link-area">
+						<a id="change">用短信验证码登录</a> 
+						<a id='reg'>新用户注册</a> 
+						<a id='forgetPassword'>忘记密码</a>
+					</div>
+				</div>
+				
+				
+				
+			</div>
+			<div class="mui-content-padded oauth-area mui-hidden">
+			</div>
+			<div class="service">
+				登录即代表阅读并同意<a>服务条款</a>
+			</div>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script src="js/mui.enterfocus.js"></script>
+		<script src="js/common.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/login.js"></script>
+		<script>
+			var toMain = null;
+			(function($, doc) {
+				$.init({
+					statusBarBackground: '#f7f7f7'
+				});
+				
+				var ws = null;
+				
+				$.plusReady(function() {
+					
+					var loginButton = document.getElementById('login'),
+						accountBox = document.getElementById('account'),
+						passwordBox = document.getElementById('password'),
+						codeBox = document.getElementById('code'),
+//						autoLoginButton = doc.getElementById("autoLogin"),
+						regButton = document.getElementById('reg'),
+						forgetButton = document.getElementById('forgetPassword');
+						pwdBox = document.getElementById('pwdBox');
+
+
+					ws = plus.display.resolutionHeight;
+					plus.screen.lockOrientation("portrait-primary");
+					var settings = app.getSettings();
+					var state = app.getState();
+					var mainPage = plus.webview.getWebviewById("main");
+					var main_loaded_flag = false;
+					
+					
+					settings.autoLogin = true;
+					app.setSettings(settings);
+					
+					if(!mainPage){
+						mainPage = $.preload({
+							"id": 'main',
+							"url": 'main.html'
+						});
+					}else{
+						main_loaded_flag = true;
+					}
+					
+					mainPage.addEventListener("loaded",function () {
+						main_loaded_flag = true;
+					});
+					toMain = function() {
+						var index = plus.webview.getWebviewById('index');
+						var rank = plus.webview.getWebviewById('ranking');
+						var userInfo = plus.webview.getWebviewById('userInfo');
+						//使用定时器的原因：
+						//可能执行太快，main页面loaded事件尚未触发就执行自定义事件，此时必然会失败
+						var id = setInterval(function () {
+							if(main_loaded_flag){
+								clearInterval(id);
+								mainPage.show("fade-in");
+								$.fire(index,'getList',{
+									token: token
+								});
+								
+		                    	$.fire(userInfo,'getToken',{
+		                    		token: token
+		                    	});
+		                    	
+		                    	$.fire(rank,'loadRank',{
+		                    		token: token
+		                    	});
+		                    	$.fire(mainPage,'reload');
+							}
+						},20);
+					};
+					
+					
+					// close splash
+					setTimeout(function() {
+						//关闭 splash
+						plus.navigator.closeSplashscreen();
+					}, 600);
+					//检查 "登录状态/锁屏状态" 结束
+						
+					var getcode = new getCode('#account','#getCode');
+					
+					//登录请求
+					loginButton.addEventListener('tap', function(event) {
+						var state = app.getState();
+						var main = plus.webview.getWebviewById('main');
+						var loginInfo = {
+							account: accountBox.value,
+							password: passwordBox.value,
+							code: codeBox.value,
+							token: state.token
+						};
+						var sw = true;
+						var api = null;
+						app.login(loginInfo, function(err) {
+							if (err) {
+								plus.nativeUI.toast(err);
+								return; 
+							}
+						});
+					});
+					
+//					$.enterfocus('#login-form input', function() {
+//						$.trigger(loginButton, 'tap');
+//					});
+//					autoLoginButton.classList[settings.autoLogin ? 'add' : 'remove']('mui-active')
+//					autoLoginButton.addEventListener('toggle', function(event) {
+//						setTimeout(function() {
+//							var isActive = event.detail.isActive;
+//							settings.autoLogin = isActive;
+//							settings.autoLogin = true;
+//							app.setSettings(settings);
+//						}, 50);
+//					}, false);
+					
+					
+					
+					//注册
+					regButton.addEventListener('tap', function(event) {
+						$.openWindow({
+							url: 'reg.html',
+							id: 'reg',
+							preload: true,
+							show: {
+								aniShow: 'fade-in',
+								duration: 300
+							},
+							styles: {
+								popGesture: 'hide'
+							},
+							waiting: {
+								autoShow: false
+							}
+						});
+					}, false);
+					
+					//忘记密码
+					forgetButton.addEventListener('tap', function(event) {
+						$.openWindow({
+							url: 'forget_password.html',
+							id: 'forget_password',
+							preload: true,
+							show: {
+								aniShow: 'fade-in',
+								duration: 300
+							},
+							styles: {
+								popGesture: 'hide'
+							},
+							waiting: {
+								autoShow: false
+							}
+						});
+					}, false);
+					
+					
+					//页面大小改变监听
+					var service = document.querySelector('.service'),
+						loginform = document.querySelector('.login-form'),
+						linkArea = document.querySelector('.link-area');
+					window.addEventListener('resize', function() {
+						
+						var bH = document.body.clientHeight;
+//						oauthArea.style.display = document.body.clientHeight > ws -1 ? 'block' : 'none';
+						service.style.display = document.body.clientHeight > ws -1 ? 'block' : 'none';
+						linkArea.style.display = document.body.clientHeight > ws -1 ? 'block' : 'none';
+						if(bH > ws -1){
+							loginform.classList.remove('active');
+						}else{
+							loginform.classList.add('active');
+						}
+						
+					}, false);
+					
+					
+					if (settings.autoLogin && state.token) { //自动登录
+						setTimeout(function(){
+							mui.trigger(loginButton,'tap');
+						},100);
+					} else {
+						app.setState(null);
+						//第三方登录
+						var authBtns = ['weixin']; //配置业务支持的第三方登录
+						var auths = {};
+						var oauthArea = doc.querySelector('.oauth-area'); 
+						plus.oauth.getServices(function(services) {
+							for (var i in services) {
+								var service = services[i];
+								auths[service.id] = service;
+								if (~authBtns.indexOf(service.id)) {
+									var isInstalled = app.isInstalled(service.id);
+									var btn = document.createElement('div');
+									//如果微信未安装，则为不启用状态
+									btn.setAttribute('class', 'oauth-btn' + (!isInstalled && service.id === 'weixin' ? (' disabled') : ''));
+									btn.authId = service.id;
+									btn.style.backgroundImage = 'url("images/' + service.id + '.png")'
+									oauthArea.appendChild(btn);
+								}
+							}
+							$(oauthArea).on('tap', '.oauth-btn', function() {
+								if (this.classList.contains('disabled')) {
+									plus.nativeUI.toast('您尚未安装微信客户端');
+									return;
+								}
+								var auth = auths[this.authId];
+								var waiting = plus.nativeUI.showWaiting();
+								auth.login(function() {
+									waiting.close();
+									plus.nativeUI.toast("登录认证成功");
+									auth.getUserInfo(function() {
+										plus.nativeUI.toast("获取用户信息成功");
+										var name = auth.userInfo.nickname || auth.userInfo.name;
+										app.createState(name, function() {
+											toMain();
+										});
+									}, function(e) {
+										plus.nativeUI.toast("获取用户信息失败：" + e.message);
+									});
+								}, function(e) {
+									waiting.close();
+									plus.nativeUI.toast("登录认证失败：" + e.message);
+								});
+							});
+						}, function(e) {
+							oauthArea.style.display = 'none';
+							plus.nativeUI.toast("获取登录认证失败：" + e.message);
+						});
+					}
+					
+					
+					var backButtonPress = 0;
+					$.back = function(event) {
+						backButtonPress++;
+						if (backButtonPress > 1) {
+							plus.runtime.quit();
+						} else {
+							plus.nativeUI.toast('再按一次退出应用');
+						}
+						setTimeout(function() {
+							backButtonPress = 0;
+						}, 1000);
+						return false;
+					};
+				});
+			}(mui, document));
+		</script>
+	</body>
+
+</html>

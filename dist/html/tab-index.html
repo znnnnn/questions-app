@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>首页</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+		<link href="/mui.min.c3ca42d4.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="/common-css.f8b3a7d9.css">
+		<link rel="stylesheet" type="text/css" href="/index.c34774b5.css">
+	<script src="/index.c34774b5.js"></script></head>
+
+	<body>
+		<div class="mui-content">
+			<header>
+				<img src="/poster.aafd705d.png">
+			</header>
+			
+			<div id="category" class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<!--<div class="category knowledge" data-cate='知识类(全民普法)' >
+						<ul>
+							<li class="infor">
+								<ul>
+									<li class="icon"><a><img src="../images/index/knowledge.png"/></a></li>
+									<li class="category"><a>知识类</a><a>(全民普法)</a></li>
+									<li class="score"><a><span class="grade">0</span>/<span class="sum">100</span></a></li>
+								</ul>
+							</li>
+						</ul>
+						
+						<div class="lable">
+							<a>个人信息安全</a>
+							<a>防电信诈骗</a>
+							<a>网络安全法</a>
+						</div>
+					</div>
+					<div class="category profession" data-cate='专业类(检测组)'>
+						<ul>
+							<li class="infor">
+								<ul>
+									<li class="icon"><a><img src="../images/index/profession.png"/></a></li>
+									<li class="category"><a>专业类</a><a>(检测组)</a></li>
+									<li class="score"><a><span class="grade">0</span>/<span class="sum">100</span></a></li>
+								</ul>
+							</li>
+						</ul>
+						
+						<div class="lable">
+							<a>等级保护制度</a>
+							<a>CISP题库</a>
+							<a>数据分析</a>
+						</div>
+					</div>
+					<div class="category competition" data-cate='竞赛类(安服组)'>
+						<ul>
+							<li class="infor">
+								<ul>
+									<li class="icon"><a><img src="../images/index/competition.png"/></a></li>
+									<li class="category"><a>竞赛类</a><a>(安服组)</a></li>
+									<li class="score"><a><span class="grade">0</span>/<span class="sum">100</span></a></li>
+								</ul>
+							</li>
+						</ul>
+						
+						<div class="lable">
+							<a>CTF</a>
+						</div>
+					</div>
+					<div class="category industry" data-cate='行业类'>
+						<ul>
+							<li class="infor">
+								<ul>
+									<li class="icon"><a><img src="../images/index/industry.png"/></a></li>
+									<li class="category"><a>行业类</a></li>
+									<li class="score"><a><span class="grade">0</span>/<span class="sum">10</span></a></li>
+								</ul>
+							</li>
+						</ul>
+						
+						<div class="lable">
+							
+						</div>
+					</div>-->
+				</div>
+			</div>
+			
+		</div>
+		<script src="/mui.min.699c9111.js"></script>
+		<script src="/common.c6a19303.js"></script>
+		<script src="/app.a36c3c20.js"></script>
+		<script src="/index.11595c8a.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			
+			var cates = ['knowledge','profession','competition','industry'];
+			var box = document.querySelector('.mui-scroll');
+			var token = null;
+			
+			
+			var num = 0;
+			
+			mui.plusReady(function(){
+				var statu = app.getState();
+					token = statu.token;
+				
+				var self = plus.webview.currentWebview();
+				if(token){
+					mui.fire(self,'getList',{
+						token: token
+					});
+				}
+			});
+			
+			
+			
+			mui('.mui-scroll-wrapper').scroll({
+				deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+			});
+			
+
+			
+			
+		</script>
+	</body>
+
+</html>

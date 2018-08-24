@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>积分兑换</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="/mui.min.c3ca42d4.css">
+		<link rel="stylesheet" type="text/css" href="/common-css.f8b3a7d9.css">
+		<style>
+			.mui-content {
+				text-align: center;
+			}
+			.tip {
+				display: block;
+				font-size: 350%;
+				margin-top: 50%;
+				color: #CCCCCC;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<a class="tip">暂未开放</a>
+			</div>
+		</div>
+		<script src="/mui.min.699c9111.js"></script>
+		<script>
+			mui.init();
+
+			mui.plusReady(function(){
+//				$.oldBack = mui.back;
+				var backButtonPress = 0;
+				mui.back = function(event) {
+					backButtonPress++;
+					if (backButtonPress > 1) {
+						plus.runtime.quit();
+					} else {
+						plus.nativeUI.toast('再按一次退出应用');
+					}
+					setTimeout(function() {
+						backButtonPress = 0;
+					}, 1000);
+					return false;
+				};
+			})
+
+		</script>
+	</body>
+
+</html>

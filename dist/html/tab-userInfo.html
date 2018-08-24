@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>我的信息</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link href="/mui.min.c3ca42d4.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="/mui.picker.min.c03061f3.css">
+		<link rel="stylesheet" type="text/css" href="/common-css.f8b3a7d9.css">
+		<link rel="stylesheet" type="text/css" href="/userInfo.e41a8f5d.css">
+		<!-- <link rel="stylesheet" type="text/css" href="../fonts/iconfont.css"/> -->
+	<script src="/userInfo.e41a8f5d.js"></script></head>
+
+	<body>
+		<div class="mui-content">
+			<header><a>个人中心</a></header>
+			<div class="userInfo">
+				<div>
+					<ul class="mui-table-view">
+					    <li class="mui-table-view-cell">
+					        <a><i class="iconfont icon-wo"></i>手机号码<span class="phone right"></span></a>
+					    </li>
+					    <li class="mui-table-view-cell">
+					        <a><i class="iconfont icon-jifen"></i>我的积分<span class="integral right"></span></a>
+					    </li>
+					    <li class="mui-table-view-cell li-item" data-hr="userInfo/newPwd.html">
+					        <a class="mui-navigate-right"><i class="iconfont icon-xing"></i>修改密码</a>
+					    </li>
+					</ul>
+					<ul class="mui-table-view">
+					    <li id="cheIns" class="mui-table-view-cell">
+					        <a class="mui-navigate-right"><i class="iconfont icon-qizhi"></i>所属行业<span class="industry right"></span></a>
+					    </li>
+					    <li class="mui-table-view-cell li-item" data-hr="userInfo/industry.html">
+					        <a class="mui-navigate-right"><i class="iconfont icon-plus-questionnaire"></i>参与的行业答题</a>
+					    </li>
+					</ul>
+					<ul class="mui-table-view">
+					    <li class="mui-table-view-cell li-item" data-hr="userInfo/feedback.html">
+					        <a class="mui-navigate-right"><i class="iconfont icon-htmal5icon27"></i>问题反馈</a>
+					    </li>
+					    <li class="mui-table-view-cell" id="exit">
+					        <a class="mui-navigate-right"><i class="iconfont icon-setup_icon"></i>退出登录</a>
+					    </li>
+					</ul>
+				</div>
+			</div>
+			
+		</div>
+		
+		
+		<script src="/mui.min.699c9111.js"></script>
+		<script src="/mui.picker.min.1c85e9fe.js"></script>
+		<script src="/app.a36c3c20.js"></script>
+		<script src="/userInfo.f489920f.js"></script>
+		<script src="/common.c6a19303.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			
+			var webMain = null,
+				webIndex = null,
+				webIntegral = null,
+				webRanking = null,
+				webUserInfo = null;
+			
+			
+			var token = null;
+			
+			mui.plusReady(function(){
+				var statu = app.getState();
+				token = statu.token;
+				
+				var self = plus.webview.currentWebview();
+				if(token){
+					mui.fire(self,'getToken');
+				}
+				
+				
+				webMain = plus.webview.getWebviewById('main');
+				webIndex = plus.webview.getWebviewById('index');
+				webIntegral = plus.webview.getWebviewById('ranking');
+				webRanking = plus.webview.getWebviewById('userInfo');
+				webUserInfo = plus.webview.getWebviewById('main');
+				
+				
+			})
+			
+			
+			
+			var backButtonPress = 0;
+			mui.back = function(event) {
+				backButtonPress++;
+				if (backButtonPress > 1) {
+					plus.runtime.quit();
+				} else {
+					plus.nativeUI.toast('再按一次退出应用');
+				}
+				setTimeout(function() {
+					backButtonPress = 0;
+				}, 1000);
+				return false;
+			};
+			
+			
+		</script>
+	</body>
+
+</html>

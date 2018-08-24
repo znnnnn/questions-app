@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html class="ui-page-login">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/common-css.css"/>
+		<link rel="stylesheet" type="text/css" href="css/reg-forgetPwd-common.css"/>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav cblue">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">注册</h1>
+		</header>
+		<div class="mui-content">
+			<form class="mui-input-group">
+				<div class="mui-input-row">
+					<label class="phone"></label>
+					<input id='phone' type="text" class="mui-input-clear mui-input" placeholder="请输入常用手机号" maxlength="11">
+				</div>
+				<div class="mui-input-row">
+					<label class="code"></label>
+					<input id='code' type="text" class="mui-input-clear mui-input" placeholder="请输入验证码" maxlength="6">
+					<div id="getCode"></div>
+				</div>
+				<div class="mui-input-row">
+					<label class="pwd"></label>
+					<input id='pwd' type="password" class="mui-input-clear mui-input" placeholder="请输入6-14位密码" maxlength="14">
+				</div>
+			</form>
+			<div class="mui-content-padded">
+				<button id='reg' class="mui-btn mui-btn-block mui-btn-primary">注册</button>
+			</div>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script src="js/common.js"></script>
+		<script src="js/app.js"></script>
+		<script>
+			(function($, doc) {
+				$.init();
+				
+				var getcode = new getCode('#phone','#getCode');
+				
+				$.plusReady(function() {
+					var settings = app.getSettings();
+					var regButton = doc.getElementById('reg');
+					var phone = doc.getElementById('phone');
+					var code = doc.getElementById('code');
+					var pwd = doc.getElementById('pwd');
+					
+					regButton.addEventListener('tap', function(event) {
+						var regInfo = {
+							account: phone.value,
+							code: code.value,
+							pwd: pwd.value
+						};
+						
+						
+						app.reg(regInfo, function(err) {
+							if (err) {
+								plus.nativeUI.toast(err);
+								return;
+							}
+							//若启动页不是登录页，则需通过如下方式打开登录页
+//							$.openWindow({
+//								url: 'login.html',
+//								id: 'login',
+//								show: {
+//									aniShow: 'pop-in'
+//								}
+//							});
+						});
+					});
+				});
+			}(mui, document));
+		</script>
+	</body>
+
+</html>

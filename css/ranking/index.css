@@ -1,0 +1,150 @@
+header {
+	height: 50px;
+	background-color: #0097a8;
+	text-align: center;
+}
+header a {
+	color: #FFFFFF;
+	line-height: 50px;
+	/*font-weight: bold;*/
+	letter-spacing: 2px;
+	font-weight: 700;
+}
+.mui-content {
+	height: 100%;
+}
+
+.category ul {
+	height: 60px;
+	background-color: #efefef;
+	border-bottom: 1px solid #d4d4d4;
+}
+.category ul li {
+	float: left;
+	width: 25%;
+	text-align: center;
+	position: relative;
+}
+.category ul li:after {
+	content: '';
+	display: block;
+	position: absolute;
+	right: 0;
+	top: 34%;
+	width: 1px;
+	height: 20px;
+	background-color: #939393;
+}
+.category ul li a {
+	line-height: 60px;
+	color: #010101;
+	font-weight: 500;
+}
+.category ul li a.active {
+	color: #0097a8;
+}
+
+.category ul li:last-child:after {
+	content: '';
+}
+
+/**/
+#rank {
+	height: 100%;
+	background-color: #ffffff;
+}
+#rank>div {
+	background-color: #ffffff;
+}
+
+#rank div.rank-info {
+	height: 55px;
+	line-height: 55px;
+	border-bottom: 1px solid #d4d4d4;
+}
+#rank .top-ten li:last-child .rank-info {
+	border: none;
+}
+
+#rank .user-rank-info .rank-info {
+	height: 65px;
+	line-height: 65px;
+}
+#rank .user-rank-info div:last-child {
+	height: 10px;
+	background-color: #efefef;
+}
+
+#rank div.rank-info a {
+	display: inline-block;
+	position: relative;
+	float: left;
+	text-align: center;
+	color: #000000;
+}
+#rank div.rank-info a:first-child {
+	width: 20%;
+}
+#rank div.rank-info a:nth-child(2) {
+	width: 60%;
+	text-align: left;
+	padding-left: 40px;
+}
+#rank div.rank-info a:nth-child(2) span {
+	display: block;
+	height: 25px;
+	margin-top: -6px;
+}
+#rank div.rank-info a:nth-child(2) span:last-child {
+	font-size: 12px;	
+	color: #6b6b6b;
+}
+
+#rank div.rank-info a:last-child {
+	width: 20%;
+	padding-right: 20px;
+	text-align: right;
+	color: #0097a8;
+	font-size: 20px;
+}
+
+#rank .top-ten li:first-child .rank-info a:first-child,
+#rank .top-ten li:nth-child(2) .rank-info a:first-child,
+#rank .top-ten li:nth-child(3) .rank-info a:first-child {
+	font-size: 0;
+}
+#rank .top-ten li:first-child .rank-info a:first-child:before,
+#rank .top-ten li:nth-child(2) .rank-info a:first-child:before,
+#rank .top-ten li:nth-child(3) .rank-info a:first-child:before {
+	content: '';
+	display: block;
+	position: absolute;
+	background-size: 100% 100%;
+}
+#rank .top-ten li:first-child .rank-info a:first-child:before {
+	width: 32px;
+	height: 32px;
+	left: 50%;
+	top: 50%;
+	margin-left: -16px;
+	margin-top: -16px;
+	background-image: url(../../images/ranking/1.png);
+}
+#rank .top-ten li:nth-child(2) .rank-info a:first-child:before {
+	width: 26px;
+	height: 26px;
+	left: 50%;
+	top: 50%;
+	margin-left: -13px;
+	margin-top: -13px;
+	background-image: url(../../images/ranking/2.png);
+}
+#rank .top-ten li:nth-child(3) .rank-info a:first-child:before {
+	width: 22px;
+	height: 22px;
+	left: 50%;
+	top: 50%;
+	margin-left: -11px;
+	margin-top: -11px;
+	background-image: url(../../images/ranking/3.png);
+}

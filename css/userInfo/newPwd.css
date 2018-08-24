@@ -1,0 +1,100 @@
+.area {
+	margin: 20px auto 0px auto;
+}
+.mui-content {
+	padding: 0 40px;
+	background: none;
+}
+.mui-input-group {
+	background-color: rgba(195,194,191,0.7);
+	color: #FFFFFF;
+	border-radius: 5px;
+}
+.mui-input-group:before,
+.mui-input-group:after {
+	height: 0!important;
+}
+.mui-input-group:first-child {
+	margin-top: 30px;
+}
+.mui-input-group label {
+	width: 22%;
+}
+.mui-input-row {
+	height: 50px!important;
+}
+.mui-input-row label {
+	padding: 25px 15px;
+	background-repeat: no-repeat;
+	background-size: 30%;
+	background-position: 65% 10px;
+}
+.mui-input-row label.phone {
+	background-image: url(../../images/phone.png);
+}
+.mui-input-row label.code {
+	background-image: url(../../images/code.png);
+}
+.mui-input-row label.pwd {
+	background-image: url(../../images/pwd.png);
+	background-position: 65% 13px;
+}
+.mui-input-row label~input,
+.mui-input-row label~select,
+.mui-input-row label~textarea {
+	width: 70%;
+	height: 50px!important;
+	float: left;
+}
+.mui-input-row:after {
+	left: 18px!important;
+	right: 18px!important;
+	background-color: #FFFFFF!important;
+}
+.mui-input-row:last-child:after {
+	height: 0!important;
+}
+.mui-checkbox input[type=checkbox],
+.mui-radio input[type=radio] {
+	top: 6px;
+}
+.mui-content-padded {
+	margin-top: 25px;
+}
+.mui-btn {
+	margin-top: 40px!important;
+	padding: 10px 15px;
+	border-radius: 50px;
+	background-color: #0097a8;
+	border: none;
+}
+.mui-btn-primary:enabled:active {
+	border: none;
+}
+.mui-input-row label~input, .mui-input-row label~select, .mui-input-row label~textarea{
+	margin-top: 1px;
+}
+
+/*发送*/
+#sendCode {
+	position: absolute!important;
+	width: 25%!important;
+	height: auto!important;
+	top: 8px;
+	bottom: 8px!important;
+	right: 15px!important;
+	color: #FFFFFF!important;
+	border-left: 1px solid #FFFFFF!important;
+	padding: 0 12px!important;
+}
+#sendCode:enabled:active {
+	color: #CCCCCC!important;
+	background: none!important;
+}
+
+
+/*清除按钮*/
+.mui-icon-clear {
+	top: 15px!important;
+	right: 30px!important;
+}

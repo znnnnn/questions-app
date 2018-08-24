@@ -1,0 +1,116 @@
+{
+  "forget_password.html": {
+    "href": "forget_password.html",
+    "resources": [
+      "css/common-css.css",
+      "css/reg-forgetPwd-common.css",
+      "images/phone.png",
+      "images/code.png",
+      "images/pwd.png",
+      "js/common.js"
+    ],
+    "priority": 0
+  },
+  "html/tab-index.html": {
+    "href": "html/tab-index.html",
+    "resources": [
+      "css/mui.min.css",
+      "fonts/mui.ttf",
+      "css/common-css.css",
+      "css/index/index.css",
+      "js/mui.min.js",
+      "js/common.js",
+      "js/app.js",
+      "js/index/index.js",
+      "images/index/poster.png"
+    ],
+    "priority": 1
+  },
+  "html/tab-integral.html": {
+    "href": "html/tab-integral.html",
+    "resources": [
+      "css/mui.min.css",
+      "fonts/mui.ttf",
+      "css/common-css.css",
+      "js/mui.min.js"
+    ],
+    "priority": 2
+  },
+  "html/tab-ranking.html": {
+    "href": "html/tab-ranking.html",
+    "resources": [
+      "js/mui.min.js",
+      "js/app.js",
+      "js/common.js",
+      "js/ranking/index.js",
+      "css/mui.min.css",
+      "fonts/mui.ttf",
+      "css/common-css.css",
+      "css/ranking/index.css",
+      "images/ranking/1.png",
+      "images/ranking/2.png",
+      "images/ranking/3.png"
+    ],
+    "priority": 3
+  },
+  "html/tab-userInfo.html": {
+    "href": "html/tab-userInfo.html",
+    "resources": [
+      "css/mui.min.css",
+      "fonts/mui.ttf",
+      "css/mui.picker.min.css",
+      "css/common-css.css",
+      "css/userInfo/index.css",
+      "images/user/bg.png",
+      "fonts/iconfont.css",
+      "fonts/iconfont.ttf",
+      "fonts/iconfont.svg",
+      "js/mui.min.js",
+      "js/mui.picker.min.js",
+      "js/app.js",
+      "js/userInfo/index.js",
+      "js/common.js"
+    ],
+    "priority": 4
+  },
+  "main.html": {
+    "href": "main.html",
+    "resources": [
+      "css/common-css.css",
+      "css/main.css",
+      "fonts/iconfont.css",
+      "fonts/iconfont.ttf",
+      "fonts/iconfont.svg",
+      "css/mui.picker.min.css",
+      "js/common.js",
+      "js/mui.picker.min.js"
+    ],
+    "refer": [],
+    "priority": 1
+  },
+  "reg.html": {
+    "href": "reg.html",
+    "resources": [
+      "css/common-css.css",
+      "css/reg-forgetPwd-common.css",
+      "images/phone.png",
+      "images/code.png",
+      "images/pwd.png",
+      "js/common.js"
+    ],
+    "priority": 2
+  },
+  "login.html": {
+    "href": "login.html",
+    "resources": [
+      "css/common-css.css",
+      "images/login-bg.png",
+      "images/phone.png",
+      "images/pwd.png",
+      "js/common.js",
+      "js/login.js"
+    ],
+    "refer": [],
+    "priority": 0
+  }
+}

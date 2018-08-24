@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/common-css.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/reg-forgetPwd-common.css"/>
+		<style type="text/css">
+			header {
+				background-color: #0097a8!important;
+			}
+			header a,
+			header h1 {
+				color: #FFFFFF!important;
+			}
+		</style>
+	</head>
+
+	<body>
+		
+		<header class="mui-bar mui-bar-nav cblue">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">修改密码</h1>
+		</header>
+		<div class="mui-content">
+			<form class="mui-input-group">
+				
+				<div class="mui-input-row">
+					<label class="phone"></label>
+					<input id='account' type="text" class="mui-input-clear mui-input" maxlength="11" placeholder="请输入注册手机号">
+				</div>             	
+                
+				<div class="mui-input-row">
+					<label class="code"></label>
+					<input id='code' type="text" class="mui-input-clear mui-input" maxlength="6" placeholder="请输入验证码">
+					<div id="getCode"></div>
+				</div>
+				
+				<div class="mui-input-row">
+					<label class="pwd"></label>
+					<input id='newPwd' type="password" class="mui-input-clear mui-input" maxlength="14" placeholder="请输入6-14位新密码">
+				</div>
+			</form>
+			<div class="mui-content-padded">
+				<button id='sub' class="mui-btn mui-btn-block mui-btn-primary">确定</button>
+			</div>
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/common.js"></script>
+		<script src="../../js/app.js"></script>
+		<script type="text/javascript">
+			(function($, doc) {
+				$.init();
+				
+				var getcode = new getCode('#account','#getCode');
+				var token = null;
+				
+				$.plusReady(function() {
+					var state = app.getState(),
+						token = state.token;
+					var last = plus.webview.currentWebview();
+					var main = plus.webview.getWebviewById('main');
+//					token = last.token;
+					var sendButton = document.querySelector('#sub');
+					var account = document.querySelector('#account');
+					var code = document.querySelector('#code');
+					var newPwd = document.querySelector('#newPwd');
+					sendButton.addEventListener('tap', function() {
+						var regInfo = {
+							id: 'reset',
+							account: account.value,
+							code: code.value,
+							newPwd: newPwd.value,
+							token: token
+						};
+						app.forgetPassword(regInfo, function(err, info) {
+							plus.nativeUI.toast(err || info);
+							if(err==null){
+								setTimeout(function(){
+									
+									app.setState({});
+								},1500)
+							}
+						});
+					}, false);
+				});
+			}(mui, document));
+		</script>
+	</body>
+
+</html>

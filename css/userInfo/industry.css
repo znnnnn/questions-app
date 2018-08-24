@@ -1,0 +1,76 @@
+.mui-scroll-wrapper {
+	top: 44px;
+	padding-top: 20px;
+}
+
+.box {
+	position: relative;
+	/*width: 48%;*/
+	background-color: #CCCCCC;
+	margin-bottom: 10px;
+}
+.box:nth-child(odd) {
+	float: left;
+	
+}
+.box:nth-child(even) {
+	float: right;
+}
+.box div:first-child {
+	height: 80%;
+	font-size: 90%;
+	padding-top: 15%;
+}
+.box div:first-child a {
+	display: block;
+	text-align: center;
+	margin-bottom: 5%;
+	color: #FFFFFF;
+}
+.box div:first-child a.grade {
+	font-size: 125%;
+}
+.box div:last-child {
+	height: 20%;
+	background: #FFFFFF;
+	font-size: 55%;
+	padding-left: 5%;
+	color: #999999;
+}
+.box div:last-child a{
+	color: #999999;
+}
+.box a.lable {
+	position: absolute;
+	display: block;
+	right: 5px;
+	bottom: 8px;
+	background-color: #f1f1f1;
+	margin: 0;
+	height: 12px;
+	padding: 0 5px;
+	border: 1px solid #999999;
+	border-radius: 10px;
+	line-height: 12px;
+}
+.box.off {
+	background-color: #777777;
+}
+
+.box.on:after,
+.box.off:after {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 30%;
+	height: 30%;
+	background-size: 100% 100%;
+}
+.box.on:after {
+	background-image: url(../../images/index/on.png);
+}
+.box.off:after {
+	background-image: url(../../images/index/off.png);
+}
