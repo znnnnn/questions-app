@@ -10,7 +10,17 @@ const config = {
   output: {
     filename: 'bundle.[hash:8].js',
     path: path.resolve(__dirname, '../dist'),
-    publicPath: '/public/'
+    publicPath: '/dist/'
+  },
+  resolve: {
+    alias: {
+      common: require('path').resolve(__dirname, '../src/common'),
+      '@src': path.resolve('src'),
+      '@component': path.resolve('src/component'),
+      '@views': path.resolve('src/views'),
+      '@utils': path.resolve('src/utils'),
+      '@img': path.resolve('images/')
+    }
   },
   module: {
     rules: [{
@@ -38,18 +48,18 @@ const config = {
       ]
     },
     {
-      test: /\.(gif|jpg|jpeg|png|svg)$/,
-      use: [{
-        loader: 'url-loader',
-        options: {
-          limit: 1024,
-          name: 'resources/[path][name].[ext]'
-        }
-      }]
+      test: /\.(woff|woff2|eot|ttf)$/,
+      loader: 'url-loader?limit=100000'
     },
     {
-      test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-      loader: 'url-loader?limit=100000'
+      test: /\.(gif|jpg|jpeg|png|svg)$/,
+      use: [{
+        loader: 'url-loader?limit=8962&name=[name]_[hash].[ext]?[hash]=static/img/'
+        // options: {
+        //   limit: 1024,
+        //   name: 'resources/[path][name].[ext]'
+        // }
+      }]
     }
     ]
   },

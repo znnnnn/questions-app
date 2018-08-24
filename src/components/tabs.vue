@@ -20,7 +20,7 @@
   </nav>
 </template>
 
-<style>
+<style scoped>
 /* @import url("../../fonts/iconfont.css"); */
 
 .tab-item {
