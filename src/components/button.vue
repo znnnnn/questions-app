@@ -10,25 +10,25 @@
 
 <script>
 export default {
-    data(){
-        return {loading : false}
-    },
-    props: {
-        icon: {},
-        iconPosition: {
-            type: String,
-            default: "left",
-            validator(value) {
-                return value === "left" || value === "right";
-            }
-        },
-    },
-    methods: {
-        isLoading (){
-            this.$emit('click', this.loading= !this.loading)
-        }
+  data() {
+    return { loading: false }
+  },
+  props: {
+    icon: {},
+    iconPosition: {
+      type: String,
+      default: 'left',
+      validator(value) {
+        return value === 'left' || value === 'right'
+      }
     }
-};
+  },
+  methods: {
+    isLoading() {
+      this.$emit('click', this.loading = !this.loading)
+    }
+  }
+}
 </script>
 
 
