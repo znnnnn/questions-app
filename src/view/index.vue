@@ -1,7 +1,7 @@
 <template>
   <div class="mui-content">
 			<header>
-				<img src="~@src/assets/images/index/poster3.jpg">
+				<img src="~@img/index/poster.png">
 			</header>
 			<div id="category" class="mui-scroll-wrapper" data-scroll="1">
 				<div class="mui-scroll" style="transform: translate3d(0px, 0px, 0px) translateZ(0px); transition-duration: 0ms;">
