@@ -24,6 +24,7 @@
 @import url("../../css/main.css");
 @import url("../../css/common-css.css");
 @import url("../../css/mui.picker.min.css");
+/* @import url("../../fonts/iconfont.css"); */
 
 .tab-item {
   display: inline-block;
@@ -32,4 +33,3 @@
 }
 
 </style>
-

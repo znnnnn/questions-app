@@ -1,14 +1,16 @@
 import Vue from 'vue'
-// import App from './App' /* 引入App这个组件*/
+import App from './app.vue'
 import router from './router' /* 引入路由配置*/
-import Tabs from './components/tabs'
-Vue.config.productionTip = false
 
-Vue.component('button-tab', Tabs)
+import '../css/common-css.css'
+import '../css/main.css'
+import '../css/mui.picker.min.css'
+
+Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  router
-  //   render: h => h(App)
+  router,
+  render: h => h(App)
 })

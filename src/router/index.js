@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import homePage from '../view/index'
-import integral from '../view/integral'
-import ranking from '../view/ranking'
-import userinfo from '../view/userinfo'
+import homePage from '../view/index.vue'
+import integral from '../view/integral.vue'
+import ranking from '../view/ranking.vue'
+import userinfo from '../view/userinfo.vue'
 
 Vue.use(Router)
 
@@ -24,5 +24,6 @@ const routes = [{
 }]
 
 export default new Router({
-  routes
+  routes,
+  mode: 'history'
 })
