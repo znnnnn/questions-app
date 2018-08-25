@@ -10,13 +10,13 @@
           <li class="mui-table-view-cell">
             <a>
               <i class="iconfont icon-wo"></i>手机号码
-              <span class="phone right"></span>
+              <span class="phone right">{{item.phone}}</span>
             </a>
           </li>
           <li class="mui-table-view-cell">
             <a>
               <i class="iconfont icon-jifen"></i>我的积分
-              <span class="integral right"></span>
+              <span class="integral right">{{item.points}}</span>
             </a>
           </li>
           <router-link to="/userinfo/newPwd"
@@ -64,6 +64,26 @@
 export default {
   data() {
     return {
+      item: {
+        'id': 1,
+        // 手机号
+        'phone': '15305875280',
+        'name': null,
+        'career_id': 1,
+        // 积分
+        'points': 0,
+        'created_at': '2018-07-22 13:49:07',
+        'updated_at': '2018-07-23 11:14:31',
+        'deleted_at': null,
+        'career': {
+          'id': 1,
+          // 行业名称
+          'name': '医疗行业',
+          'mark': null,
+          'created_at': null,
+          'updated_at': null
+        }
+      },
       sheetVisible: false,
       fullHeight: document.documentElement.clientHeight,
       actions: [
@@ -107,7 +127,7 @@ export default {
 <style scoped>
 .mui-content {
   height: 100vh;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .li-item {
