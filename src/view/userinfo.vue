@@ -95,12 +95,11 @@ export default {
   },
   mounted() {
     const container = document.querySelector('.mui-content')
-    container.style.height = this.fullHeight + 'px'
-    const that = this
     window.onresize = () => {
       return (() => {
-        window.fullHeight = document.documentElement.clientHeight
-        that.fullHeight = window.fullHeight
+        console.log(document.documentElement.clientHeight)
+        container.style.height = document.documentElement.clientHeight + 'px'
+        // container.style.height = window.fullHeight
       })()
     }
   },
