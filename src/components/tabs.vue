@@ -47,6 +47,7 @@ export default {
 
 .mint-tab-item {
   color: #5c5c5c !important;
+  background-color: #efefef;
 }
 
 .router-link-exact-active .mint-tab-item{
