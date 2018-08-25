@@ -38,15 +38,19 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 .tab-item {
   display: inline-block;
   width: 25%;
   text-align: center;
 }
 
-.mint-tab-item .mint-tab-item-label{
+.mint-tab-item {
   color: #5c5c5c !important;
+}
+
+.router-link-exact-active .mint-tab-item{
+  color: #0097a8 !important;
 }
 
 .mint-tabbar {

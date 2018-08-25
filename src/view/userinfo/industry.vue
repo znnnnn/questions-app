@@ -47,6 +47,7 @@ export default {
     return {
       item: [
         {
+          // 这里为赖金威给的测试数据
           'id': 22,
           'user_id': 1,
           'group_id': 16,
