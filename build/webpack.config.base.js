@@ -16,7 +16,7 @@ const config = {
     alias: {
       common: require('path').resolve(__dirname, '../src/common'),
       '@src': path.resolve('src'),
-      '@component': path.resolve('src/component'),
+      '@components': path.resolve('src/components'),
       '@views': path.resolve('src/view'),
       '@utils': path.resolve('src/utils'),
       '@img': path.resolve('images/'),
