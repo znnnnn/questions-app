@@ -28,10 +28,13 @@
         <ul class="mui-table-view">
           <li id="cheIns"
               class="mui-table-view-cell">
-            <a class="mui-navigate-right">
+            <a class="mui-navigate-right" @click="sheetVisible = true">
               <i class="iconfont icon-qizhi"></i>所属行业
               <span class="industry right"></span>
             </a>
+            <mt-actionsheet :actions="actions"
+                            v-model="sheetVisible">
+            </mt-actionsheet>
           </li>
           <router-link to="/userinfo/industry"
                        class="mui-table-view-cell li-item">
@@ -60,7 +63,13 @@
 export default {
   data() {
     return {
-      fullHeight: document.documentElement.clientHeight
+      sheetVisible: false,
+      fullHeight: document.documentElement.clientHeight,
+      actions: [
+        { name: 1, method: function() { alert(1) } },
+        { name: 2, method: function() { alert(2) } },
+        { name: 3, method: function() { alert(3) } }
+      ]
     }
   },
   mounted() {
