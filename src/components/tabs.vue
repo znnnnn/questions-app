@@ -1,23 +1,30 @@
 <template>
-  <nav id="bar"
-       class="mui-bar mui-bar-tab">
-    <router-link to="/" class="tab-item">
-        <i class="mui-icon iconfont icon-shouye"></i>
-        <span class="mui-tab-label">首页</span>
-    </router-link>
-    <router-link to="/integral" class="tab-item">
-        <i class="mui-icon iconfont icon-jifen"></i>
-        <span class="mui-tab-label">积分兑换</span>
-    </router-link>
-    <router-link to="/ranking" class="tab-item">
-        <i class="mui-icon iconfont icon-paixing"></i>
-        <span class="mui-tab-label">排行榜</span>
-    </router-link>
-    <router-link to="/userInfo" class="tab-item">
-        <i class="mui-icon iconfont icon-wode"></i>
-        <span class="mui-tab-label">我</span>
-    </router-link>
-  </nav>
+
+  <div>
+    <mt-tabbar v-model="selected">
+      <router-link to="/" class="mint-tab-item">
+        <mt-tab-item id="首页">
+          <img slot="icon">
+          首页
+        </mt-tab-item>
+      </router-link>
+      <router-link to="/integral" class="mint-tab-item">
+      <mt-tab-item id="积分兑换">
+        <img slot="icon"> 积分兑换
+      </mt-tab-item>
+      </router-link>
+      <router-link to="/ranking" class="mint-tab-item">
+      <mt-tab-item id="排行榜">
+        <img slot="icon"> 排行榜
+      </mt-tab-item>
+      </router-link>
+      <router-link to="/userinfo" class="mint-tab-item">
+      <mt-tab-item id="我">
+        <img slot="icon"> 我
+      </mt-tab-item>
+      </router-link>
+    </mt-tabbar>
+  </div>
 </template>
 
 <style scoped>
@@ -26,7 +33,6 @@
 .tab-item {
   display: inline-block;
   width: 25%;
-  text-align: center
+  text-align: center;
 }
-
 </style>

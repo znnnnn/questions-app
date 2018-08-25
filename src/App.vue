@@ -10,6 +10,7 @@
 import Tabs from './components/tabs.vue'
 
 export default {
+  el: '#app',
   components: {
     Tabs
   },

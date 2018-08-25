@@ -1,12 +1,15 @@
 import Vue from 'vue'
 import App from './app.vue'
 import router from './router' /* 引入路由配置*/
+import MintUI from 'mint-ui'
 
-import '../css/mui.min.css'
+// import '../css/mui.min.css'
 import '../css/common-css.css'
 import '../css/main.css'
 import '../css/mui.picker.min.css'
+import 'mint-ui/lib/style.css'
 
+Vue.use(MintUI)
 // import mui from '../js/mui.min.js'
 
 // import '../js/mui.min.js'

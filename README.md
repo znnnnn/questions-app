@@ -7,6 +7,10 @@
 3. 支持设置手势密码，登录时可使用手势密码代替账号、密码；
 4. 支持评分、分享、拨打客服电话
 
+### UI组件库文档页面
+
+**https://mint-ui.github.io/docs/#/zh-cn2/tabbar**
+
 ### 调试方法
 
 本项目采用webpack打包，开发阶段使用webpack-dev-server进行开发
