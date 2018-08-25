@@ -1,5 +1,6 @@
 <template>
 	<div class="mui-content">
+		<router-view></router-view>
 		<header>
 			<img src="~@img/index/poster.png">
 		</header>
@@ -8,112 +9,120 @@
 		     data-scroll="1">
 			<div class="mui-scroll"
 			     style="transform: translate3d(0px, 0px, 0px) translateZ(0px); transition-duration: 0ms;">
-				<div class="category knowledge"
-				     data-cate="知识类(全民普法)">
-					<ul>
-						<li class="infor">
-							<ul>
-								<li class="icon">
-									<a><img src="../../images/index/knowledge.png"></a>
-								</li>
-								<li class="category">
-									<a>知识类</a>
-									<a>(全民普法)</a>
-								</li>
-								<li class="score">
-									<a>
-										<span class="grade">0</span>/
-										<span class="sum">100</span>
-									</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
-					<div class="lable">
-						<a>个人信息安全</a>
-						<a>防电信诈骗</a>
-						<a>网络安全法</a>
+				<router-link to="/answer/common">
+					<div class="category knowledge"
+					     data-cate="知识类(全民普法)">
+						<ul>
+							<li class="infor">
+								<ul>
+									<li class="icon">
+										<a><img src="../../images/index/knowledge.png"></a>
+									</li>
+									<li class="category">
+										<a>知识类</a>
+										<a>(全民普法)</a>
+									</li>
+									<li class="score">
+										<a>
+											<span class="grade">0</span>/
+											<span class="sum">100</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<div class="lable">
+							<a>个人信息安全</a>
+							<a>防电信诈骗</a>
+							<a>网络安全法</a>
+						</div>
 					</div>
-				</div>
-				<div class="category profession"
-				     data-cate="专业类(检测组)">
-					<ul>
-						<li class="infor">
-							<ul>
-								<li class="icon">
-									<a><img src="../../images/index/profession.png"></a>
-								</li>
-								<li class="category">
-									<a>专业类</a>
-									<a>(检测组)</a>
-								</li>
-								<li class="score">
-									<a>
-										<span class="grade">0</span>/
-										<span class="sum">100</span>
-									</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
+				</router-link>
+				<router-link to="/answer/common">
+					<div class="category profession"
+					     data-cate="专业类(检测组)">
+						<ul>
+							<li class="infor">
+								<ul>
+									<li class="icon">
+										<a><img src="../../images/index/profession.png"></a>
+									</li>
+									<li class="category">
+										<a>专业类</a>
+										<a>(检测组)</a>
+									</li>
+									<li class="score">
+										<a>
+											<span class="grade">0</span>/
+											<span class="sum">100</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
 
-					<div class="lable">
-						<a>等级保护制度</a>
-						<a>CISP题库</a>
-						<a>数据分析</a>
+						<div class="lable">
+							<a>等级保护制度</a>
+							<a>CISP题库</a>
+							<a>数据分析</a>
+						</div>
 					</div>
-				</div>
-				<div class="category competition"
-				     data-cate="竞赛类(安服组)">
-					<ul>
-						<li class="infor">
-							<ul>
-								<li class="icon">
-									<a><img src="../../images/index/competition.png"></a>
-								</li>
-								<li class="category">
-									<a>竞赛类</a>
-									<a>(安服组)</a>
-								</li>
-								<li class="score">
-									<a>
-										<span class="grade">0</span>/
-										<span class="sum">100</span>
-									</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
+				</router-link>
+				<router-link to="/answer/common">
+					<div class="category competition"
+					     data-cate="竞赛类(安服组)">
+						<ul>
+							<li class="infor">
+								<ul>
+									<li class="icon">
+										<a><img src="../../images/index/competition.png"></a>
+									</li>
+									<li class="category">
+										<a>竞赛类</a>
+										<a>(安服组)</a>
+									</li>
+									<li class="score">
+										<a>
+											<span class="grade">0</span>/
+											<span class="sum">100</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
 
-					<div class="lable">
-						<a>CTF</a>
+						<div class="lable">
+							<a>CTF</a>
+						</div>
 					</div>
-				</div>
-				<div class="category industry"
-				     data-cate="行业类">
-					<ul>
-						<li class="infor">
-							<ul>
-								<li class="icon">
-									<a><img src="../../images/index/industry.png"></a>
-								</li>
-								<li class="category">
-									<a>行业类</a>
-								</li>
-								<li class="score">
-									<a>
-										<span class="grade">0</span>/
-										<span class="sum">10</span>
-									</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
+				</router-link>
+				<router-link to="/answer/indexIndustry">
+					<div class="category industry"
+					     data-cate="行业类">
+						<ul>
+							<li class="infor">
+								<ul>
+									<li class="icon">
+										<a><img src="../../images/index/industry.png"></a>
+									</li>
+									<li class="category">
+										<a>行业类</a>
+									</li>
+									<li class="score">
+										<a>
+											<span class="grade">0</span>/
+											<span class="sum">10</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
 
-					<div class="lable">
+						<div class="lable">
 
+						</div>
 					</div>
-				</div>
+				</router-link>
 			</div>
 			<div class="mui-scrollbar mui-scrollbar-vertical">
 				<div class="mui-scrollbar-indicator"
@@ -130,44 +139,41 @@
 </style>
 
 <style scoped>
-
 header {
-	text-align: center;
-	position: relative;
+  text-align: center;
+  position: relative;
 }
 
 #category {
-	position: relative;
-	padding-top:0;
+  position: relative;
+  padding-top: 0;
 }
 
 #mui-scroll {
-	position: relative;
+  position: relative;
 }
 
 .mui-scroll {
-	position: relative;
+  position: relative;
 }
 
 .mui-content {
-	margin-bottom :69px
+  margin-bottom: 69px;
 }
 
 #category div.category {
-	padding: 13.5px
+  padding: 13.5px;
 }
 
 #category div.lable a {
-	font-size: 10px;
+  font-size: 10px;
 }
 
 @media screen and (min-width: 1200px) {
-header > img {
-	/* max-height: 500px;
+  header > img {
+    /* max-height: 500px;
 	max-width: auto; */
-	width: 500px;
+    width: 500px;
+  }
 }
-}
-
-
 </style>

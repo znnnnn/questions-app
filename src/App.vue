@@ -14,13 +14,6 @@ export default {
     Tabs
   },
   mounted() {
-    // (function($, doc) {
-    //   $.init()
-
-    //   mui('#bar').on('tap', 'a', function(e) {
-    //     console.log(111)
-    //   })
-    // }(mui, document))
   },
   methods: {
   }

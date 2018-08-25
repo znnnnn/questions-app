@@ -1,7 +1,7 @@
 header {
   width: 100%;
   position: absolute;
-  z-index: 999;
+  z-index: 50;
 }
 header img {
   width: 100%;
@@ -48,16 +48,16 @@ span {
   margin-bottom: 10px;
 }
 
-#category div.category:first-child {
+.knowledge {
   background-color: #ffb724;
 }
-#category div.category:nth-child(2) {
+.profession {
   background-color: #64a6da;
 }
-#category div.category:nth-child(3) {
+.competition  {
   background-color: #e73b37;
 }
-#category div.category:nth-child(4) {
+.industry {
   background-color: #9d5ac7;
 }
 
