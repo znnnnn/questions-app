@@ -1,10 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import homePage from '../view/index.vue'
-import integral from '../view/integral.vue'
-import ranking from '../view/ranking.vue'
-import userinfo from '../view/userinfo.vue'
+import homePage from '@views/index.vue'
+import integral from '@views/integral.vue'
+import ranking from '@views/ranking.vue'
+import userinfo from '@views/userinfo.vue'
+
+// 二级路由
+import industry from '@views/userinfo/industry.vue'
 
 Vue.use(Router)
 
@@ -20,7 +23,13 @@ const routes = [{
 },
 {
   path: '/userinfo',
-  component: userinfo
+  component: userinfo,
+  children: [
+    {
+      path: '/userinfo/industry',
+      component: industry
+    }
+  ]
 }]
 
 export default new Router({

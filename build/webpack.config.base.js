@@ -17,7 +17,7 @@ const config = {
       common: require('path').resolve(__dirname, '../src/common'),
       '@src': path.resolve('src'),
       '@component': path.resolve('src/component'),
-      '@views': path.resolve('src/views'),
+      '@views': path.resolve('src/view'),
       '@utils': path.resolve('src/utils'),
       '@img': path.resolve('images/'),
       '@css': path.resolve('css/')

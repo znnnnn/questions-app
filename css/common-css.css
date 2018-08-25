@@ -15,9 +15,9 @@ body {
 ul,li {
 	list-style: none;
 }
-a:active {
+/* a:active {
 	color: #FFFFFF;
-}
+} */
 a.mui-active {
 	background-color: #FFFFFF!important;
 }
