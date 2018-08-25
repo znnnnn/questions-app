@@ -19,16 +19,17 @@
               <span class="integral right"></span>
             </a>
           </li>
-          <li class="mui-table-view-cell li-item"
-              data-hr="userInfo/newPwd.html">
+          <router-link to="/userinfo/newPwd"
+                       class="mui-table-view-cell li-item">
             <a class="mui-navigate-right">
               <i class="iconfont icon-xing"></i>修改密码</a>
-          </li>
+          </router-link>
         </ul>
         <ul class="mui-table-view">
           <li id="cheIns"
               class="mui-table-view-cell">
-            <a class="mui-navigate-right" @click="sheetVisible = true">
+            <a class="mui-navigate-right"
+               @click="sheetVisible = true">
               <i class="iconfont icon-qizhi"></i>所属行业
               <span class="industry right"></span>
             </a>
@@ -43,11 +44,11 @@
           </router-link>
         </ul>
         <ul class="mui-table-view">
-          <li class="mui-table-view-cell li-item"
-              data-hr="userInfo/feedback.html">
+          <router-link to="/userinfo/feedback"
+                       class="mui-table-view-cell li-item">
             <a class="mui-navigate-right">
               <i class="iconfont icon-htmal5icon27"></i>问题反馈</a>
-          </li>
+          </router-link>
           <li class="mui-table-view-cell"
               id="exit">
             <a class="mui-navigate-right">
@@ -100,17 +101,34 @@ export default {
 
 
 <style scoped src="@css/userinfo/index.css">
-.mui-content {
-  height: 100vh;
-}
+
 </style>
 
 <style scoped>
+.mui-content {
+  height: 100vh;
+  overflow: hidden;
+}
+
 .li-item {
   display: list-item;
 }
 
 .mui-navigate-right {
   color: #000 !important;
+}
+</style>
+
+<style>
+/* 此处为子组件通用样式 */
+.container {
+  background-color: #efefef;
+  position: absolute;
+  height: 100%;
+  width:100%;
+}
+
+.mui-bar-nav.mui-bar .mui-icon {
+  margin-top:0;
 }
 </style>

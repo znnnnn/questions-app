@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="container">
     <header class="mui-bar mui-bar-nav cblue">
-      <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+      <router-link to="/userinfo" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></router-link>
       <h1 class="mui-title">修改密码</h1>
     </header>
     <div class="mui-content">
@@ -45,4 +45,11 @@
 
 <style scoped src="@css/userinfo/newPwd.css">
 
+</style>
+
+<style scoped>
+  /* 仅本组件可用的样式 */
+* {
+  z-index: 98; 
+}
 </style>

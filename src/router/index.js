@@ -9,6 +9,7 @@ import userinfo from '@views/userinfo.vue'
 // 二级路由
 import industry from '@views/userinfo/industry.vue'
 import newPwd from '@views/userinfo/newPwd.vue'
+import feedback from '@views/userinfo/feedback.vue'
 
 Vue.use(Router)
 
@@ -33,6 +34,10 @@ const routes = [{
     {
       path: '/userinfo/industry',
       component: industry
+    },
+    {
+      path: '/userinfo/feedback',
+      component: feedback
     }
   ]
 }]
