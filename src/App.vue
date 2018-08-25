@@ -10,7 +10,6 @@
 import Tabs from './components/tabs.vue'
 
 export default {
-  el: '#app',
   components: {
     Tabs
   },
@@ -29,6 +28,8 @@ export default {
 </script>
 
 <style lang="css">
-
+  #app {
+    height: 100%;
+  }
 </style>
 

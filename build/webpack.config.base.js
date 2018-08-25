@@ -19,7 +19,8 @@ const config = {
       '@component': path.resolve('src/component'),
       '@views': path.resolve('src/views'),
       '@utils': path.resolve('src/utils'),
-      '@img': path.resolve('images/')
+      '@img': path.resolve('images/'),
+      '@css': path.resolve('css/')
     }
   },
   module: {

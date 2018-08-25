@@ -27,6 +27,17 @@
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      selected: ''
+    }
+  }
+}
+</script>
+
+
 <style scoped>
 /* @import url("../../fonts/iconfont.css"); */
 

@@ -3,7 +3,7 @@ import App from './app.vue'
 import router from './router' /* 引入路由配置*/
 import MintUI from 'mint-ui'
 
-// import '../css/mui.min.css'
+import '../css/mui.min.css'
 import '../css/common-css.css'
 import '../css/main.css'
 import '../css/mui.picker.min.css'
