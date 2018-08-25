@@ -133,6 +133,20 @@
 	</div>
 </template>
 
+<script>
+
+// import req from '@src/utlis/request'
+/**
+ * 拼团详情
+ */
+
+export default {
+  mounted() {
+    // console.log(req.get('http://panmiaorong.top'))
+  }
+}
+</script>
+
 
 
 <style scoped src="@css/index/index.css">
