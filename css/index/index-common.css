@@ -29,11 +29,11 @@ header h1 {
 div.list ul {
 	width: 100%;
 	overflow: hidden;
+	height: 50px;
 	/*background-color: #efefef;*/
 }
 div.list ul li {
 	float: left;
-	width: 100%;
 	text-align: center;
 	padding: 15px 0;
 	position: relative;

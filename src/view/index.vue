@@ -24,8 +24,7 @@
 									</li>
 									<li class="score">
 										<a>
-											<span class="grade">0</span>/
-											<span class="sum">100</span>
+											<span class="grade">0</span>/<span class="sum">100</span>
 										</a>
 									</li>
 								</ul>
@@ -53,8 +52,7 @@
 									</li>
 									<li class="score">
 										<a>
-											<span class="grade">0</span>/
-											<span class="sum">100</span>
+											<span class="grade">0</span>/<span class="sum">100</span>
 										</a>
 									</li>
 								</ul>
@@ -83,8 +81,7 @@
 									</li>
 									<li class="score">
 										<a>
-											<span class="grade">0</span>/
-											<span class="sum">100</span>
+											<span class="grade">0</span>/<span class="sum">100</span>
 										</a>
 									</li>
 								</ul>
@@ -110,8 +107,7 @@
 									</li>
 									<li class="score">
 										<a>
-											<span class="grade">0</span>/
-											<span class="sum">10</span>
+											<span class="grade">0</span>/<span class="sum">10</span>
 										</a>
 									</li>
 								</ul>

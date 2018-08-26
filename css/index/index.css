@@ -21,8 +21,8 @@ span {
 }
 #category div.category {
   border-radius: 15px;
-  padding: 15px;
-  position: relative;
+  padding: 20px 15px;
+  position: relative; 
   cursor: pointer;
 }
 
@@ -74,22 +74,31 @@ span {
 #category li.infor li.icon {
   width: 14%;
 }
+#category li.infor li.icon a {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
 #category li.infor li.icon img {
-  width: 70%;
-  margin-top: 5px;
 }
 
 #category li.infor li.category a {
   display: block;
-  font-size: 100%;
-  font-weight: bolder;
+  font-size: 85%;
+  font-weight: 500;
 }
 #category li.infor li.category a:nth-child(1) {
   margin-top: 5px;
 }
 #category li.infor li.category a:nth-child(2) {
-  font-size: 75%;
+  font-size: 65%;
   margin-top: -3px;
+}
+
+#category div.industry li.category a {
+  margin: 0!important;
+  line-height: 50px;
 }
 
 #category li.infor li.score {
@@ -104,18 +113,22 @@ span {
   font-weight: bolder;
 }
 
-#category div.category:nth-child(2) li.icon img {
-  width: 80%;
-  margin: 4px 3px;
+#category div.knowledge li.icon img {
+  height: 65%;
+  
 }
 
-#category div.category:nth-child(3) li.icon img {
-  width: 80%;
+#category div.profession li.icon img {
+  height: 55%;
+  margin-left: 5px
 }
 
-#category div.category:nth-child(4) li.icon img {
-  width: 35%;
-  margin: 5px 10px;
+#category div.competition li.icon img {
+  height: 55%;
+}
+
+#category div.industry li.icon img {
+  height: 70%;
 }
 
 #category div.lable {
@@ -132,11 +145,12 @@ span {
   display: block;
   float: left;
   color: #999999;
-  height: 20px;
+  height: 15px;
+  line-height: 15px;
   background-color: #f1f1f1;
-  font-size: 60%;
+  font-size: 15px;
   margin-left: 2px;
-  padding: 0px 7px 0px;
+  padding: 0px 7px;
   border-radius: 12px;
   border: 1px solid #b4b4b4;
 }
