@@ -4,10 +4,12 @@
       <div class="rank-info">
         <a>我</a>
         <a>
-          <span>{{items.my.phone}}</span>
-          <span>第{{items.my.rank}}名</span>
+          <span>{{items.my.phone ? items.my.phone : '未作答'}}</span>
+          <span v-if="items.my.rank">第{{items.my.rank}}名</span>
+          <span v-else>无名次</span>
         </a>
-        <a>{{items.my.sum_score}}</a>
+        <a v-if="items.my.sum_score">{{items.my.sum_score}}</a>
+        <a v-else>{{'无成绩'}}</a>
       </div>
       <div></div>
     </div>
@@ -16,9 +18,9 @@
         <li v-for="(item, index) in items['rank']"
             :key="index">
           <div class="rank-info">
-            <a>{{item.rank}}</a>
-            <a>{{item.phone}}</a>
-            <a>{{item.sum_score}}</a>
+            <a>{{item.rank ? item.rank : '无'}}</a>
+            <a>{{item.phone ? item.phone : ''}}</a>
+            <a>{{item.sum_score ? item.sum_score : '无'}}</a>
           </div>
         </li>
       </ul>
@@ -33,6 +35,9 @@ export default {
       type: Object,
       required: true
     }
+  },
+  mounted() {
+    console.log(this.items.rank[0].sum_score)
   }
 }
 </script>

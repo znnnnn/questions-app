@@ -13,25 +13,16 @@
     <!-- tab-container -->
     <mt-tab-container v-model="selected">
       <mt-tab-container-item id="1">
-        <ranking :items="items"></ranking>
+        <ranking v-if="items[1]" :items="items[1]"></ranking>
       </mt-tab-container-item>
       <mt-tab-container-item id="2">
-        <mt-cell v-for="n in 4"
-                 :title="'测试 ' + n"
-                 :key=n />
-        <!-- <ranking :items="items"></ranking> -->
+        <ranking v-if="items[2]" :items="items[2]"></ranking>
       </mt-tab-container-item>
       <mt-tab-container-item id="3">
-        <mt-cell v-for="n in 6"
-                 :title="'选项 ' + n"
-                 :key=n />
-        <!-- <ranking :items="items"></ranking> -->
+        <ranking v-if="items[3]" :items="items[3]"></ranking>
       </mt-tab-container-item>
       <mt-tab-container-item id="4">
-        <mt-cell v-for="n in 6"
-                 :title="'选项 ' + n"
-                 :key=n />
-        <!-- <ranking :items="items"></ranking> -->
+        <ranking v-if="items[0]" :items="items[0]"></ranking>
       </mt-tab-container-item>
     </mt-tab-container>
   </div>
@@ -45,57 +36,21 @@ export default {
   components: { ranking },
   data() {
     return {
-      items: {
-        // 排名
-        'rank': [
-          {
-            'user_id': 1,
-            // 手机号
-            'phone': '15305875281',
-            // 总分（百分比总分）
-            'sum_score': 210,
-            'rank': 1
-          },
-          {
-            'user_id': 2,
-            'phone': '15305875280',
-            'sum_score': 160,
-            'rank': 2
-          },
-          {
-            'user_id': 3,
-            'phone': '15305875280',
-            'sum_score': 150,
-            'rank': 3
-          },
-          {
-            'user_id': 4,
-            'phone': '15305875280',
-            'sum_score': 140,
-            'rank': 4
-          }
-        ],
-        // 我的排名
-        'my': {
-          'user_id': 1,
-          'phone': '15305875280',
-          'sum_score': 160,
-          // 排名
-          'rank': 2
-        }},
+      items: [],
       selected: '1',
       title: ''
     }
   },
   created() {
-    this.$api.ranking.getRankingList()
-      .then(res => {
-        console.log(res)
-      })
+    for (let i = 0; i <= 3; i++) {
+      this.$api.ranking.getRankingList(i)
+        .then(res => {
+          // console.log('-------------------')
+          this.items.push(res.data.data)
+          // console.log(this.items)
+        })
+    }
   }
-  // mounted() {
-  //   console.log(this.item.rank)
-  // }
 }
 </script>
 

@@ -41,9 +41,9 @@ const devServer = {
   // 热更新
   hot: true,
   proxy: {
-    '/apis': {
+    '/api': {
       target: 'http://101.132.141.130:82/api/',
-      pathRewrite: { '^/apis': '' }
+      pathRewrite: { '^/api': '' }
     }
   }
 }
