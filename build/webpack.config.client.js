@@ -39,7 +39,13 @@ const devServer = {
   // 自动打开浏览器
   open: true,
   // 热更新
-  hot: true
+  hot: true,
+  proxy: {
+    '/apis': {
+      target: 'http://101.132.141.130:82/api/',
+      pathRewrite: { '^/apis': '' }
+    }
+  }
 }
 if (isDev) {
   config = merge(baseConfig, {
