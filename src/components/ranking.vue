@@ -37,7 +37,7 @@ export default {
     }
   },
   mounted() {
-    console.log(this.items.rank[0].sum_score)
+    // console.log(this.items.rank[0].sum_score)
   }
 }
 </script>

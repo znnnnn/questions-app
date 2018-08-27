@@ -41,16 +41,18 @@ export default {
       title: ''
     }
   },
-  created() {
+  mounted() {
     for (let i = 0; i <= 3; i++) {
       this.$api.ranking.getRankingList(i)
         .then(res => {
-          // console.log('-------------------')
-          this.items.push(res.data.data)
-          // console.log(this.items)
+          // console.log(i)
+          this.$set(this.items, i, res.data.data)
         })
     }
   }
+  // mounted() {
+  //   console.log(this.item.rank)
+  // }
 }
 </script>
 
