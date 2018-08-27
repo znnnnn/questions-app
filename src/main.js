@@ -2,9 +2,13 @@
 import Vue from 'vue'
 import App from './app.vue'
 import router from './router' /* 引入路由配置*/
+import Vuex from 'vuex'
 import MintUI from 'mint-ui'
 import ElementUI from 'element-ui'
+
+// 自己定义的模块
 import api from './api' // 导入api接口
+import createStore from './store/index'
 
 // css
 import 'element-ui/lib/theme-chalk/index.css'
@@ -17,8 +21,10 @@ import 'mint-ui/lib/style.css'
 
 // 注册组件和接口
 Vue.prototype.$api = api // 将api挂载到vue的原型上
+Vue.use(Vuex)
 Vue.use(MintUI)
 Vue.use(ElementUI)
+const store = createStore()
 
 Vue.config.productionTip = false
 
@@ -26,5 +32,6 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   render: h => h(App)
 })

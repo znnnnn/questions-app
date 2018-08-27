@@ -1,5 +1,6 @@
 export default {
   count: 0,
   firstName: 'nnnn',
-  lastName: 'z'
+  lastName: 'z',
+  network: true
 }

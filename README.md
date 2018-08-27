@@ -15,17 +15,19 @@
 
 本项目采用webpack打包，开发阶段使用webpack-dev-server进行开发
 
-```
+```sheel
 npm run dev2
 ```
 
 生产阶段使用build打包静态资源，打包的路径为/dist/
 
-```
+```sheel
 npm run build
 ```
 
 ## axios 使用说明
+
+本项目ajax使用axios进行发送请求，并对axios进行了简单的封装，以下是对封装的具体流程和说明。
 
 ``` html
 
