@@ -4,11 +4,13 @@
 // 文章模块接口
 import article from './article'
 import ranking from './ranking'
+import userinfoIndustry from './userinfo/industry'
 // 其他模块的接口……
 
 // 导出接口
 export default {
   article,
-  ranking
+  ranking,
+  userinfoIndustry
   // ……
 }
