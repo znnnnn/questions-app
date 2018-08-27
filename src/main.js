@@ -8,7 +8,7 @@ import ElementUI from 'element-ui'
 
 // 自己定义的模块
 import api from './api' // 导入api接口
-import createStore from './store/index'
+import store from './store/index'
 
 // css
 import 'element-ui/lib/theme-chalk/index.css'
@@ -24,7 +24,7 @@ Vue.prototype.$api = api // 将api挂载到vue的原型上
 Vue.use(Vuex)
 Vue.use(MintUI)
 Vue.use(ElementUI)
-const store = createStore()
+// const store = createStore()
 
 Vue.config.productionTip = false
 
@@ -34,4 +34,4 @@ new Vue({
   router,
   store,
   render: h => h(App)
-})
+}).$mount('#app')

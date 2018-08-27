@@ -4,7 +4,7 @@
   */
 import axios from 'axios'
 import router from '../router'
-import store from '../store/index'
+import store from '@src/store/index'
 import { Toast } from 'vant'
 
 /**
@@ -41,7 +41,8 @@ const errorHandle = (status, other) => {
   switch (status) {
     // 401: 未登录状态，跳转登录页
     case 401:
-      toLogin()
+      tip('登录过期，请重新登录')
+      // toLogin()
       break
       // 403 token过期
       // 清除token并跳转登录页
@@ -98,7 +99,8 @@ instance.interceptors.response.use(
       // eg:请求超时或断网时，更新state的network状态
       // network状态在app.vue中控制着一个全局的断网提示组件的显示隐藏
       // 关于断网组件中的刷新重新获取数据，会在断网组件中说明
-      store.commit('changeNetwork', false)
+      // store.commit('changeNetwork', false)
+      console.log('断网了！')
     }
   })
 

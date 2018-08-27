@@ -8,7 +8,7 @@ import axios from '@src/utils/http' // 导入http中创建的axios实例
 const ranking = {
   // 新闻列表
   getRankingList() {
-    return axios.get(`${base.sq}/report/rank/0`)
+    return axios.get(`${base.sq}report/rank/`)
   }
   // 其他接口…………
 }
