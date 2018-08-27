@@ -1,25 +1,25 @@
 <template>
-    <div id="app">
-        <div v-if="!network">
-            <h3>我没网了</h3>
-            <div @click="onRefresh">刷新</div>
-        </div>
-        <router-view/>
-    </div>
+  <div id="app">
+    <router-view></router-view>
+    <Tabs></Tabs>
+  </div>
 </template>
 
 <script>
-    import { mapState } from 'vuex'
+import Tabs from './components/tabs.vue'
 export default {
-      name: 'App',
-      computed: {
-        ...mapState(['network'])
-      },
-      methods: {
-        // 通过跳转一个空页面再返回的方式来实现刷新当前页面数据的目的
-        onRefresh() {
-          this.$router.replace('/refresh')
-        }
-      }
-    }
+  components: {
+    Tabs
+  },
+  mounted() {
+  },
+  methods: {
+  }
+}
 </script>
+ <style lang="css">
+  /* #app {
+    height: 100%;
+  } */
+</style>
+

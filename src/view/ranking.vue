@@ -86,6 +86,12 @@ export default {
       selected: '1',
       title: ''
     }
+  },
+  created() {
+    this.$api.ranking.getRankingList()
+      .then(res => {
+        console.log(res)
+      })
   }
   // mounted() {
   //   console.log(this.item.rank)
