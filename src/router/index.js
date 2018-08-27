@@ -5,6 +5,7 @@ import homePage from '@views/index.vue'
 import integral from '@views/integral.vue'
 import ranking from '@views/ranking.vue'
 import userinfo from '@views/userinfo.vue'
+import refresh from '@components/refresh.vue'
 
 // 二级路由
 import common from '@views/answer/common.vue'
@@ -58,6 +59,10 @@ const routes = [{
       component: feedback
     }
   ]
+},
+{
+  path: '/refresh',
+  component: refresh
 }]
 
 export default new Router({
