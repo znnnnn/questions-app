@@ -4,6 +4,7 @@
 
 import base from './base' // 导入接口域名列表
 import axios from '@src/utils/http' // 导入http中创建的axios实例
+import qs from 'qs' // 根据需求是否导入qs模块
 
 const userinfo = {
   // 排行排名
@@ -15,12 +16,13 @@ const userinfo = {
       }
     })
   },
-  selectCareer() {
-    return axios.post(`${base.sq}/user/selectcareer`, {
-      data: {
-        api_token: base.token
+  selectCareer(career_id) {
+    return axios.post(`${base.sq}/user/selectcareer`, qs.stringify(
+      {
+        api_token: base.token,
+        career_id: career_id
       }
-    })
+    ))
   }
   // 其他接口…………
 }

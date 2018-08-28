@@ -67,15 +67,16 @@ export default {
       sheetVisible: false,
       fullHeight: document.documentElement.clientHeight,
       actions: [
-        { name: '公民', method: function() { console.log(1) } },
-        { name: '医疗行业', method: function() { console.log(2) } },
-        { name: '金融行业', method: function() { console.log(3) } },
-        { name: '交通', method: function() { console.log(4) } },
-        { name: '电信', method: function() { console.log(5) } }
+        { name: '公民', id: 0, method: (_self = this) => { this.selectCareer(_self.id); this.refresh() } },
+        { name: '医疗行业', id: 1, method: (_self = this) => { this.selectCareer(_self.id); this.refresh() } },
+        { name: '金融行业', id: 2, method: (_self = this) => { this.selectCareer(_self.id); this.refresh() } },
+        { name: '交通', id: 3, method: (_self = this) => { this.selectCareer(_self.id); this.refresh() } },
+        { name: '电信', id: 4, method: (_self = this) => { this.selectCareer(_self.id); this.refresh() } }
       ]
     }
   },
   mounted() {
+    // 监控屏幕高度
     const container = document.querySelector('.mui-content')
     window.onresize = () => {
       return (() => {
@@ -85,14 +86,21 @@ export default {
       })()
     }
 
-    var loadinginstace = Loading.service({ fullscreen: true })
-    this.$api.userinfo.getUserInfo()
-      .then(res => {
-        loadinginstace.close()
-        this.item = res.data.data
-        this.industr = this.item.career.name
+    // 初始化页面数据
+    var _self = this
+    this.refresh = function refresh() {
+      var loadinginstace = Loading.service({ fullscreen: true })
+      _self.$api.userinfo.getUserInfo()
+        .then(res => {
+          loadinginstace.close()
+          _self.item = res.data.data
+          _self.industry = _self.item.career.name
+          console.log('a')
         // console.log(this.item.career.name)
-      })
+        })
+    }
+
+    this.refresh()
   },
   watch: {
     fullHeight(val) {
@@ -104,6 +112,12 @@ export default {
           that.timer = false
         }, 400)
       }
+    }
+  },
+  methods: {
+    selectCareer(career_id) {
+      this.$api.userinfo.selectCareer(career_id)
+      this.refresh
     }
   }
 }
