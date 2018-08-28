@@ -37,10 +37,10 @@ html,body,.mui-content {
 	position: relative;
 }
 .answer-body {
+	width: 100%;
 	background-color: #FFFFFF;
-	padding: 30px;
-	border-radius: 5px;
-	margin-bottom: 50px;
+	padding: 30px 35px;
+	overflow: hidden;
 }
 a.answer-title {
 	display: block;
@@ -66,7 +66,7 @@ ul.answer-list li {
 	padding: 10px 10px 10px 50px;
 	border: 1px solid #c4c4c4;
 	border-radius: 3px;
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 }
 ul.answer-list li.active {
 	border: 1px solid #0097a8;
