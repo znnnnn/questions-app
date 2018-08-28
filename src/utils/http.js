@@ -96,7 +96,7 @@ instance.interceptors.response.use(
   (res) => {
     setTimeout(() => {
       loadinginstace.close()
-    }, 400)
+    }, 500)
     return res.status === 200 ? Promise.resolve(res) : Promise.reject(res)
   },
   // 请求失败

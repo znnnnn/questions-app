@@ -3,7 +3,7 @@
   */
 const base = {
   sq: '/api',
-  bd: '/api'
+  bd: '/mock'
 }
 
 // http://101.132.141.130:82/api/report/rank/0

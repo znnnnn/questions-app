@@ -18,6 +18,7 @@ import '../css/mui.min.css'
 import '../css/main.css'
 // import '../css/mui.picker.min.css'
 import 'mint-ui/lib/style.css'
+import './mock' // mockjs模拟数据
 
 // 注册组件和接口
 Vue.prototype.$api = api // 将api挂载到vue的原型上
