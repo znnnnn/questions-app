@@ -5,17 +5,18 @@
 import axios from 'axios'
 import router from '../router'
 import store from '@src/store/index'
-import { Toast } from 'vant'
+import { Loading, Message } from 'element-ui'
+// import { Toast } from 'vant'
 
 /**
    * 提示函数
    * 禁止点击蒙层、显示一秒后关闭
    */
 const tip = msg => {
-  Toast({
+  Message({
     message: msg,
-    duration: 1000,
-    forbidClick: true
+    type: 'error',
+    duration: 3000
   })
 }
 
@@ -71,25 +72,36 @@ instance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlenco
    * 请求拦截器
    * 每次请求前，如果存在token则在请求头中携带token
    */
+var loadinginstace
 instance.interceptors.request.use(
   config => {
     // 登录流程控制中，根据本地是否存在token判断用户的登录情况
     // 但是即使token存在，也有可能token是过期的，所以在每次的请求头中携带token
     // 后台根据携带的token判断用户的登录情况，并返回给我们对应的状态码
     // 而后我们可以在响应拦截器中，根据状态码进行一些统一的操作。
+    loadinginstace = Loading.service({ fullscreen: true })
     const token = store.state.token
     token && (config.headers.Authorization = token)
     // console.log(config)
     return config
   },
-  error => Promise.error(error))
+  error => {
+    loadinginstace.close()
+    Promise.error(error)
+  })
 
 // 响应拦截器
 instance.interceptors.response.use(
   // 请求成功
-  res => res.status === 200 ? Promise.resolve(res) : Promise.reject(res),
+  (res) => {
+    setTimeout(() => {
+      loadinginstace.close()
+    }, 400)
+    return res.status === 200 ? Promise.resolve(res) : Promise.reject(res)
+  },
   // 请求失败
   error => {
+    loadinginstace.close()
     const { response } = error
     if (response) {
       // 请求已发出，但是不在2xx的范围

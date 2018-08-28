@@ -42,13 +42,21 @@ export default {
     }
   },
   mounted() {
-    for (let i = 0; i <= 3; i++) {
-      this.$api.ranking.getRankingList(i)
-        .then(res => {
+    var _this = this
+    var index = 0
+    function getRank(index) {
+      if (index < 4) {
+        _this.$api.ranking.getRankingList(index)
+          .then(res => {
           // console.log(i)
-          this.$set(this.items, i, res.data.data)
-        })
+            _this.$set(_this.items, index, res.data.data)
+            index += 1
+            getRank(index)
+          })
+      }
     }
+
+    getRank(index)
   }
   // mounted() {
   //   console.log(this.item.rank)

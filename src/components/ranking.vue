@@ -9,7 +9,7 @@
           <span v-else>无名次</span>
         </a>
         <a v-if="items.my.sum_score">{{items.my.sum_score}}</a>
-        <a v-else>{{'无成绩'}}</a>
+        <a v-else>{{'无'}}</a>
       </div>
       <div></div>
     </div>
