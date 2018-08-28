@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import {test} from '../../../js/iconfont.js'
+import { test } from '../../../js/iconfont.js'
 export default {
   data() {
     return {
@@ -41,16 +41,16 @@ export default {
       data: [
         {
           title: 1,
-          selects: [1.1,1.2,1.3,1.4]
+          selects: [1.1, 1.2, 1.3, 1.4]
         },
         {
           title: 2,
-          selects: [2.1,2.2,2.3,2.4]
+          selects: [2.1, 2.2, 2.3, 2.4]
         },
         {
           title: 3,
-          selects: [3.1,3.2,3.3,3.4]
-        },
+          selects: [3.1, 3.2, 3.3, 3.4]
+        }
       ],
       status: [
 
@@ -124,6 +124,7 @@ export default {
     }
   }
 }
+
 </script>
 <style scoped src="@css/index/answer.css"></style>
 <style scoped>
