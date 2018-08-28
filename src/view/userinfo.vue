@@ -26,7 +26,7 @@
             <a class="mui-navigate-right"
                @click="sheetVisible = true">
               <i class="iconfont icon-qizhi"></i>所属行业
-              <span class="industry right"></span>
+              <span class="industry right">{{industry}}</span>
             </a>
             <mt-actionsheet :actions="actions"
                             v-model="sheetVisible">
@@ -60,25 +60,26 @@ export default {
   data() {
     return {
       item: {
-        'id': 1,
-        // 手机号
-        'phone': '15305875280',
-        'name': null,
-        'career_id': 1,
-        // 积分
-        'points': 0,
-        'created_at': '2018-07-22 13:49:07',
-        'updated_at': '2018-07-23 11:14:31',
-        'deleted_at': null,
-        'career': {
-          'id': 1,
-          // 行业名称
-          'name': '医疗行业',
-          'mark': null,
-          'created_at': null,
-          'updated_at': null
-        }
+        // 'id': 1,
+        // // 手机号
+        // 'phone': '15305875280',
+        // 'name': null,
+        // 'career_id': 1,
+        // // 积分
+        // 'points': 0,
+        // 'created_at': '2018-07-22 13:49:07',
+        // 'updated_at': '2018-07-23 11:14:31',
+        // 'deleted_at': null,
+        // 'career': {
+        //   'id': 1,
+        //   // 行业名称
+        //   'name': '医疗行业',
+        //   'mark': null,
+        //   'created_at': null,
+        //   'updated_at': null
+        // }
       },
+      industry: '',
       sheetVisible: false,
       fullHeight: document.documentElement.clientHeight,
       actions: [
@@ -97,6 +98,13 @@ export default {
         // container.style.height = window.fullHeight
       })()
     }
+
+    this.$api.userinfo.getUserInfo()
+      .then(res => {
+        this.item = res.data.data
+        this.industry = this.item.career.name
+        console.log(this.item.career.name)
+      })
   },
   watch: {
     fullHeight(val) {

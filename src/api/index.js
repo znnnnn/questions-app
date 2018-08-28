@@ -3,7 +3,10 @@
   */
 // 文章模块接口
 import article from './article'
+// 排行模块接口
 import ranking from './ranking'
+// 我的模块接口
+import userinfo from './userinfo'
 import userinfoIndustry from './userinfo/industry'
 // 其他模块的接口……
 import test from './test' // mock测试
@@ -12,6 +15,7 @@ import test from './test' // mock测试
 export default {
   article,
   ranking,
+  userinfo,
   userinfoIndustry,
   test
   // ……

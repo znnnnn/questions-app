@@ -11,10 +11,10 @@
     </div>
     <div id="answer-body" class="answer-body">
         <full-page ref="fullpage" :options="options" id="fullpage">
-        <div class="section" v-for="item in data">
-          <a class="answer-title"><span>12.</span>{{item.title}}</a> 
+        <div class="section" v-for="item in data" :key="item">
+          <a class="answer-title"><span>12.</span>{{item.title}}</a>
           <ul class="answer-list">
-            <li v-for="select in item.selects">
+            <li v-for="select in item.selects" :key="select">
               <svg class="icon" aria-hidden="true"><use xlink:href="#icon-A"></use></svg>
               <a>{{select}}</a>
             </li>
@@ -58,7 +58,7 @@ export default {
   },
   mounted() {
     test()
-    var len = this.data.length
+    // var len = this.data.length
     // for (let i = 1; i <= len; i++) {
     //   let name = 'page' + i;
     //   this.options.anchors.push(name);
