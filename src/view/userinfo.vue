@@ -56,36 +56,22 @@
 </template>
 
 <script>
+
+import { Loading } from 'element-ui'
 export default {
   data() {
     return {
       item: {
-        // 'id': 1,
-        // // 手机号
-        // 'phone': '15305875280',
-        // 'name': null,
-        // 'career_id': 1,
-        // // 积分
-        // 'points': 0,
-        // 'created_at': '2018-07-22 13:49:07',
-        // 'updated_at': '2018-07-23 11:14:31',
-        // 'deleted_at': null,
-        // 'career': {
-        //   'id': 1,
-        //   // 行业名称
-        //   'name': '医疗行业',
-        //   'mark': null,
-        //   'created_at': null,
-        //   'updated_at': null
-        // }
       },
       industry: '',
       sheetVisible: false,
       fullHeight: document.documentElement.clientHeight,
       actions: [
-        { name: 1, method: function() { alert(1) } },
-        { name: 2, method: function() { alert(2) } },
-        { name: 3, method: function() { alert(3) } }
+        { name: '公民', method: function() { console.log(1) } },
+        { name: '医疗行业', method: function() { console.log(2) } },
+        { name: '金融行业', method: function() { console.log(3) } },
+        { name: '交通', method: function() { console.log(4) } },
+        { name: '电信', method: function() { console.log(5) } }
       ]
     }
   },
@@ -99,11 +85,13 @@ export default {
       })()
     }
 
+    var loadinginstace = Loading.service({ fullscreen: true })
     this.$api.userinfo.getUserInfo()
       .then(res => {
+        loadinginstace.close()
         this.item = res.data.data
-        this.industry = this.item.career.name
-        console.log(this.item.career.name)
+        this.industr = this.item.career.name
+        // console.log(this.item.career.name)
       })
   },
   watch: {

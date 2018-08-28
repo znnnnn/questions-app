@@ -5,7 +5,7 @@
 import axios from 'axios'
 import router from '../router'
 import store from '@src/store/index'
-import { Loading, Message } from 'element-ui'
+import { Message } from 'element-ui'
 // import { Toast } from 'vant'
 
 /**
@@ -74,7 +74,7 @@ instance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlenco
    */
 
 // element-ui loading
-var loadinginstace
+// var loadinginstace
 
 const pending = [] // 声明一个数组用于存储每个ajax请求的取消函数和ajax标识
 const CancelToken = axios.CancelToken
@@ -99,14 +99,14 @@ instance.interceptors.request.use(
       pending.push({ u: config.url + '&' + config.method, f: c })
     })
 
-    loadinginstace = Loading.service({ fullscreen: true })
+    // loadinginstace = Loading.service({ fullscreen: true })
     const token = store.state.token
     token && (config.headers.Authorization = token)
     // console.log(config)
     return config
   },
   error => {
-    loadinginstace.close()
+    // loadinginstace.close()
     Promise.error(error)
   })
 
@@ -116,13 +116,13 @@ instance.interceptors.response.use(
   (res) => {
     // loading界面延迟消失
     setTimeout(() => {
-      loadinginstace.close()
+      // loadinginstace.close()
     }, 300)
     return res.status === 200 ? Promise.resolve(res) : Promise.reject(res)
   },
   // 请求失败
   error => {
-    loadinginstace.close()
+    // loadinginstace.close()
     const { response } = error
     if (response) {
       // 请求已发出，但是不在2xx的范围

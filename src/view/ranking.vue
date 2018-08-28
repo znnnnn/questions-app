@@ -31,6 +31,7 @@
 <script>
 
 import ranking from '@components/ranking.vue'
+import { Loading } from 'element-ui'
 
 export default {
   components: { ranking },
@@ -59,9 +60,11 @@ export default {
     // getRank(index)
 
     // 点击tab请求，将四次请求分开
+    var loadinginstace = Loading.service({ fullscreen: true })
     this.$api.ranking.getRankingList(1)
       .then(res => {
         //       // console.log(i)
+        loadinginstace.close()
         this.$set(this.items, 1, res.data.data)
       })
 
