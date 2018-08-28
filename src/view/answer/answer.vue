@@ -72,13 +72,14 @@ export default {
   },
   methods: {
     onLeave(origin, destination, direction) {
-      var leavingSection = this
-      var last = origin.index
-      if (direction == 'down') {
-        this.index.pre++
-      } else if (direction == 'up') {
-        this.index.pre--
-      }
+      // var leavingSection = this
+      // var last = origin.index
+      // if (direction =='down'){
+      //   this.index.pre++
+      // }
+      // else if (direction == 'up'){
+      //   this.index.pre--
+      // }
       console.log(this.index.pre)
     },
     timeSet() {
@@ -86,7 +87,7 @@ export default {
       timer.innerText = '00:00:00'
       // 答题倒计时
       var time = 0
-      var a = setInterval(jishi, 1000) // 1000毫秒
+      setInterval(jishi, 1000) // 1000毫秒
       function jishi() {
         time++
         timer.innerText = calTime(time)
@@ -111,7 +112,7 @@ export default {
             min = '0' + parseInt(time / 60)
           }
         }
-        if (parseInt(time / 3600) != 0) { // 时
+        if (parseInt(time / 3600) !== 0) { // 时
           if (parseInt(time / 3600) > 9) {
             hour = parseInt(time / 3600)
           } else {
