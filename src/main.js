@@ -7,7 +7,6 @@ import MintUI from 'mint-ui'
 import ElementUI from 'element-ui'
 import VueFullPage from 'vue-fullpage.js'
 
-
 // 自己定义的模块
 import api from './api' // 导入api接口
 import store from './store/index'

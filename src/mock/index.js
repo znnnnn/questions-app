@@ -1,6 +1,6 @@
 var Mock = require('mockjs')
 import transactionAPI from './userinfo/industry'
 
-Mock.mock(/\/transaction\/list/, 'get', transactionAPI.getList)
+Mock.mock('/mock/test', 'get', transactionAPI.getList)
 
 export default Mock

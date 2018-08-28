@@ -55,8 +55,12 @@ export default {
           })
       }
     }
-
     getRank(index)
+
+    this.$api.test.test()
+      .then(res => {
+        console.log(res)
+      })
   }
   // mounted() {
   //   console.log(this.item.rank)

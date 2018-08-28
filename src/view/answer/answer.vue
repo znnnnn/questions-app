@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import {test} from '../../../js/iconfont.js'
+import { test } from '../../../js/iconfont.js'
 export default {
   data() {
     return {
@@ -34,38 +34,38 @@ export default {
         licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
         menu: '#menu',
         // anchors: ['page1', 'page2', 'page3'],
-        anchors: [],
+        anchors: []
         // sectionsColor: ['#41b883', '#ff5f45', '#0798ec']
       },
       data: [
         {
           title: 1,
-          selects: [1.1,1.2,1.3,1.4]
+          selects: [1.1, 1.2, 1.3, 1.4]
         },
         {
           title: 2,
-          selects: [2.1,2.2,2.3,2.4]
+          selects: [2.1, 2.2, 2.3, 2.4]
         },
         {
           title: 3,
-          selects: [3.1,3.2,3.3,3.4]
-        },
+          selects: [3.1, 3.2, 3.3, 3.4]
+        }
       ],
       status: [
 
-      ],
+      ]
     }
   },
   mounted() {
-    test();
-    var len = this.data.length;
+    test()
+    var len = this.data.length
     // for (let i = 1; i <= len; i++) {
     //   let name = 'page' + i;
     //   this.options.anchors.push(name);
     // }
     // console.log(this.options.anchors)
-  },
-  
+  }
+
 }
 </script>
 <style scoped src="@css/index/answer.css"></style>
