@@ -1,3 +1,6 @@
+* {
+	touch-action: auto!important;
+}
 header button {
 	color: #FFFFFF!important;
 	margin-right: 10px;
@@ -16,7 +19,7 @@ html,body,.mui-content {
 .mui-content .header a {
 	color: #000000;	
 }
-.mui-content .header a:last-child {
+.mui-content .header a.schedule {
 	float: right;
 }
 .mui-content .header a span.pre {
@@ -39,8 +42,9 @@ html,body,.mui-content {
 .answer-body {
 	width: 100%;
 	background-color: #FFFFFF;
-	padding: 30px 35px;
+	padding: 30px 45px;
 	overflow: hidden;
+	touch-action: auto!important;
 }
 a.answer-title {
 	display: block;
@@ -90,10 +94,10 @@ ul.answer-list li i {
 	color: #C0C0C0;
 }
 
-.answer-btns {
-	/*position: absolute;
-	bottom: 40px;*/
-}
+/* .answer-btns {
+	position: absolute;
+	bottom: 40px;
+} */
 .answer-btns div {
 	text-align: center;
 	padding: 13px 20px;
@@ -113,4 +117,28 @@ ul.answer-list li i {
 	background-color: #999999;
 	border-color: #999999;
 	color: #CCCCCC;
+}
+
+
+/* 题目导航 */
+.nav {
+	position: absolute;
+	width: 1.5em;
+	top: 84px;
+	bottom: 0;
+	left: 0;
+}
+.nav ul {
+	width: 100%;
+	height: 100%;
+	padding-top: 30px;
+}
+.nav ul li {
+	text-align: center;
+	color: #CCCCCC;
+	height: 1.5em;
+	line-height: 1.5em;
+}
+.nav ul li.active {
+ color: #0097a8;
 }

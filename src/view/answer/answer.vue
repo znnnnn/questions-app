@@ -7,15 +7,25 @@
     </header>
     <div class="header">
       <a class="desc">共{{data.length}}题，总计100分</a>
-      <a class="schedule"><span class="pre">{{index.pre+1}}</span>/<span class="totle">{{data.length}}</span></a>
+      <!-- <a class="schedule"><span class="pre">{{index.pre+1}}</span>/<span class="totle">{{data.length}}</span></a> -->
+    </div>
+    <div class="nav">
+      <ul>
+        <li v-for="(item,idx) in data" v-bind:class="[index.pre==idx ? 'active' : '']" @click="linkQue(idx)">{{idx+1}}</li>
+      </ul>
     </div>
     <div id="answer-body" class="answer-body">
         <full-page ref="fullpage" :options="options" id="fullpage">
-        <div class="section" v-for="item in data" :key="item">
+        <div class="section" v-for="(item,queId) in data">
           <a class="answer-title"><span>12.</span>{{item.title}}</a>
           <ul class="answer-list">
-            <li v-for="select in item.selects" :key="select">
-              <svg class="icon" aria-hidden="true"><use xlink:href="#icon-A"></use></svg>
+            <li v-for="(select,selId) in item.selects" :key="select" :data-queid="queId" :data-selid="selId">
+              <svg v-if="selId==0" class="icon" aria-hidden="true"><use xlink:href="#icon-0"></use></svg>
+              <svg v-if="selId==1" class="icon" aria-hidden="true"><use xlink:href="#icon-1"></use></svg>
+              <svg v-if="selId==2" class="icon" aria-hidden="true"><use xlink:href="#icon-2"></use></svg>
+              <svg v-if="selId==3" class="icon" aria-hidden="true"><use xlink:href="#icon-3"></use></svg>
+              <svg v-if="selId==4" class="icon" aria-hidden="true"><use xlink:href="#icon-4"></use></svg>
+              <svg v-if="selId==5" class="icon" aria-hidden="true"><use xlink:href="#icon-5"></use></svg>
               <a>{{select}}</a>
             </li>
           </ul>
@@ -36,29 +46,33 @@ export default {
         menu: '#menu',
         // anchors: ['page1', 'page2', 'page3'],
         anchors: [],
-        onLeave: this.onLeave
+        onLeave: this.onLeave,
+        afterLoad: this.statusSet
         // sectionsColor: ['#41b883', '#ff5f45', '#0798ec']
       },
       data: [
         {
           title: 1,
-          selects: [1.1, 1.2, 1.3, 1.4]
+          selects: [1.1, 1.2, 1.3, 1.4],
+          ismany: 0
         },
         {
           title: 2,
-          selects: [2.1, 2.2, 2.3, 2.4]
+          selects: [2.1, 2.2, 2.3, 2.4],
+          ismany: 0
         },
         {
           title: 3,
-          selects: [3.1, 3.2, 3.3, 3.4]
+          selects: [3.1, 3.2, 3.3, 3.4],
+          ismany: 0
         }
       ],
-      status: [
-
-      ],
+      answers: {},
       index: {
+        num: 0,
         pre: 0
-      }
+      },
+      icon: ['A','B','C','D','E','F','G','H','I','J']
     }
   },
   mounted() {
@@ -74,13 +88,37 @@ export default {
     onLeave(origin, destination, direction) {
       // var leavingSection = this
       // var last = origin.index
-      // if (direction =='down'){
-      //   this.index.pre++
-      // }
-      // else if (direction == 'up'){
-      //   this.index.pre--
-      // }
-      console.log(this.index.pre)
+      if (direction =='down'){
+        this.index.pre++
+      }
+      else if (direction == 'up'){
+        this.index.pre--
+      }
+      // console.log(this.index.pre)
+    },
+    statusSet() {
+      // console.log(this.index.num)
+      this.index.num++
+      if (this.index.num>2) {
+        return
+      }
+      var lis = document.querySelectorAll('li')
+      var len = lis.length
+      // console.log(len)
+      for (let i = 0; i < len; i++) {
+        lis[i].addEventListener('click',function() {
+          var queid = this.getAttribute('data-queid')
+          var selid = this.getAttribute('data-selid')
+          
+        })
+      }
+    },
+    submit() {
+      console.log(1)
+    },
+    linkQue(id) {
+      fullpage_api.moveTo(id+1);
+      this.index.pre = id
     },
     timeSet() {
       var timer = document.querySelector('#timer')

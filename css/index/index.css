@@ -68,7 +68,7 @@ span {
 #category li.infor li {
   display: inline-block;
   height: 100%;
-  float: left;
+  /* float: left; */
 }
 
 #category li.infor li.icon {
@@ -80,8 +80,8 @@ span {
   align-items: center;
   justify-content: center;
 }
-#category li.infor li.icon img {
-}
+/* #category li.infor li.icon img {
+} */
 
 #category li.infor li.category a {
   display: block;
