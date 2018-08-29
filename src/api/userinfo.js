@@ -16,6 +16,19 @@ const userinfo = {
       }
     })
   },
+  getCareerList() {
+    return axios.get(`${base.sq}/career/list`, {
+      params: { // 请求参数
+        api_token: base.token
+      }
+    })
+  },
+
+  init() {
+    // console.log(axios)
+    return Promise.all([this.getUserInfo(), this.getCareerList()])
+  },
+
   selectCareer(career_id) {
     return axios.post(`${base.sq}/user/selectcareer`, qs.stringify(
       {

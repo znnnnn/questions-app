@@ -63,6 +63,7 @@ export default {
     return {
       item: {
       },
+      careerList: {},
       industry: '',
       sheetVisible: false,
       fullHeight: document.documentElement.clientHeight,
@@ -76,33 +77,42 @@ export default {
     }
   },
   mounted() {
-    // 监控屏幕高度
-    const container = document.querySelector('.mui-content')
-    window.onresize = () => {
-      return (() => {
-        console.log(document.documentElement.clientHeight)
-        container.style.height = document.documentElement.clientHeight + 'px'
-        // container.style.height = window.fullHeight
-      })()
-    }
+    // 自动适配屏幕高度
+    this.resizeHeight()
 
     // 初始化页面数据
     var _self = this
     this.refresh = function refresh() {
+      // 显示Loading动画
       var loadinginstace = Loading.service({ fullscreen: true })
-      _self.$api.userinfo.getUserInfo()
-        .then(res => {
+      // 请求数据
+      _self.$api.userinfo.init()
+        .then(([userInfo, careerList]) => {
+          // 关闭loading动画
           loadinginstace.close()
-          _self.item = res.data.data
+          // 用户信息赋值
+          _self.item = userInfo.data.data
           _self.industry = _self.item.career.name
-          console.log('a')
-        // console.log(this.item.career.name)
+          // 获取行业列表
+          console.log(careerList.data.data)
+          _self.actions = careerList.data.data
+          for (let index = 0; index < _self.actions.length; index++) {
+            // _self.actions[index].id = index
+            _self.actions[index].method = (_self = this) => {
+              this.selectCareer(_self.id); setTimeout(() => {
+                this.refresh()
+              }, 200)
+            }
+            // console.log(_self.actions[0])
+          }
         })
+        .catch(error => console.log(error))
     }
 
     this.refresh()
   },
   watch: {
+    // 监控屏幕高度
     fullHeight(val) {
       if (!this.timer) {
         this.fullHeight = val
@@ -115,9 +125,22 @@ export default {
     }
   },
   methods: {
+    // 选择行业
     selectCareer(career_id) {
       this.$api.userinfo.selectCareer(career_id)
       this.refresh
+    },
+
+    resizeHeight() {
+      // 监控屏幕高度
+      const container = document.querySelector('.mui-content')
+      window.onresize = () => {
+        return (() => {
+          console.log(document.documentElement.clientHeight)
+          container.style.height = document.documentElement.clientHeight + 'px'
+        // container.style.height = window.fullHeight
+        })()
+      }
     }
   }
 }
