@@ -11,18 +11,25 @@
 
 **https://mint-ui.github.io/docs/#/zh-cn2/tabbar**
 
+**http://element-cn.eleme.io/#/zh-CN**
+
+
 ## 调试方法
 
 本项目采用webpack打包，开发阶段使用webpack-dev-server进行开发
 
 ```sheel
+
 npm run dev2
+
 ```
 
 生产阶段使用build打包静态资源，打包的路径为/dist/
 
 ```sheel
+
 npm run build
+
 ```
 
 ## axios 使用说明

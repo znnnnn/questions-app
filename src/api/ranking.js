@@ -11,7 +11,7 @@ const ranking = {
     // console.log(`${base.sq}report/rank/`)
     return axios.get(`${base.sq}/report/rank/${type}`, {
       params: { // 请求参数
-        api_token: '1535964211.TlMzj0yiC1ZWnatEXSErxzZfUp37i6YV6WXLO4MeYAJHutrkXzZYOERT25S3XgWJ'
+        api_token: base.token
       }
     })
   }

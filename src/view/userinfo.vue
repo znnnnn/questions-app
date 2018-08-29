@@ -56,40 +56,27 @@
 </template>
 
 <script>
+
+import { Loading } from 'element-ui'
 export default {
   data() {
     return {
       item: {
-        // 'id': 1,
-        // // 手机号
-        // 'phone': '15305875280',
-        // 'name': null,
-        // 'career_id': 1,
-        // // 积分
-        // 'points': 0,
-        // 'created_at': '2018-07-22 13:49:07',
-        // 'updated_at': '2018-07-23 11:14:31',
-        // 'deleted_at': null,
-        // 'career': {
-        //   'id': 1,
-        //   // 行业名称
-        //   'name': '医疗行业',
-        //   'mark': null,
-        //   'created_at': null,
-        //   'updated_at': null
-        // }
       },
       industry: '',
       sheetVisible: false,
       fullHeight: document.documentElement.clientHeight,
       actions: [
-        { name: 1, method: function() { alert(1) } },
-        { name: 2, method: function() { alert(2) } },
-        { name: 3, method: function() { alert(3) } }
+        { name: '公民', id: 0, method: (_self = this) => { this.selectCareer(_self.id); this.refresh() } },
+        { name: '医疗行业', id: 1, method: (_self = this) => { this.selectCareer(_self.id); this.refresh() } },
+        { name: '金融行业', id: 2, method: (_self = this) => { this.selectCareer(_self.id); this.refresh() } },
+        { name: '交通', id: 3, method: (_self = this) => { this.selectCareer(_self.id); this.refresh() } },
+        { name: '电信', id: 4, method: (_self = this) => { this.selectCareer(_self.id); this.refresh() } }
       ]
     }
   },
   mounted() {
+    // 监控屏幕高度
     const container = document.querySelector('.mui-content')
     window.onresize = () => {
       return (() => {
@@ -99,12 +86,21 @@ export default {
       })()
     }
 
-    this.$api.userinfo.getUserInfo()
-      .then(res => {
-        this.item = res.data.data
-        this.industry = this.item.career.name
-        console.log(this.item.career.name)
-      })
+    // 初始化页面数据
+    var _self = this
+    this.refresh = function refresh() {
+      var loadinginstace = Loading.service({ fullscreen: true })
+      _self.$api.userinfo.getUserInfo()
+        .then(res => {
+          loadinginstace.close()
+          _self.item = res.data.data
+          _self.industry = _self.item.career.name
+          console.log('a')
+        // console.log(this.item.career.name)
+        })
+    }
+
+    this.refresh()
   },
   watch: {
     fullHeight(val) {
@@ -116,6 +112,12 @@ export default {
           that.timer = false
         }, 400)
       }
+    }
+  },
+  methods: {
+    selectCareer(career_id) {
+      this.$api.userinfo.selectCareer(career_id)
+      this.refresh
     }
   }
 }
