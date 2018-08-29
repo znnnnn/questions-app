@@ -53,7 +53,7 @@ a.answer-title {
 	padding-left: 20px;
 	position: relative;
 }
-a.answer-title span {
+a.answer-title span:first-child {
 	position: absolute;
 	right: 94%;
 	text-align: right;

@@ -17,8 +17,8 @@
     <div id="answer-body" class="answer-body">
         <full-page ref="fullpage" :options="options" id="fullpage">
         <div class="section" v-for="(item,queId) in data">
-          <a class="answer-title"><span>12.</span>{{item.title}}</a>
-          <ul class="answer-list">
+          <a class="answer-title"><span>{{queId+1}}.</span>{{item.title}}<span v-if="item.ismany==1">(多选)</span></a>
+          <ul class="answer-list" data-presel="">
             <li v-for="(select,selId) in item.selects" :key="select" :data-queid="queId" :data-selid="selId">
               <svg v-if="selId==0" class="icon" aria-hidden="true"><use xlink:href="#icon-0"></use></svg>
               <svg v-if="selId==1" class="icon" aria-hidden="true"><use xlink:href="#icon-1"></use></svg>
@@ -64,7 +64,7 @@ export default {
         {
           title: 3,
           selects: [3.1, 3.2, 3.3, 3.4],
-          ismany: 0
+          ismany: 1
         }
       ],
       answers: {},
@@ -76,15 +76,20 @@ export default {
     }
   },
   mounted() {
-    test()
+    this.getData() //获取数据
+    test() //加载icon js文件
     var len = this.data.length
     for (let i = 1; i <= len; i++) {
       var name = 'page' + i
       this.options.anchors.push(name)
+      this.answers[i-1]= []
     }
     this.timeSet()
   },
   methods: {
+    getData() {
+
+    },
     onLeave(origin, destination, direction) {
       // var leavingSection = this
       // var last = origin.index
@@ -105,13 +110,41 @@ export default {
       var lis = document.querySelectorAll('li')
       var len = lis.length
       // console.log(len)
+      var _this = this;
       for (let i = 0; i < len; i++) {
         lis[i].addEventListener('click',function() {
           var queid = this.getAttribute('data-queid')
           var selid = this.getAttribute('data-selid')
-          
+         if (selid) {
+          _this.setAnswers(queid,selid,this,_this.data[queid].ismany)
+         }
         })
       }
+    },
+    setAnswers(queid,selid,obj,ismany) {
+      
+      var presel = obj.parentNode.getAttribute('data-presel')
+      if (ismany) {
+        // console.log('多选')
+        if (obj.classList[0]=='active') {
+          obj.classList.remove('active')
+          this.answers[queid].splice( this.answers[queid].indexOf(parseInt(selid)+1,1))
+          console.log(this.answers)
+          return
+        }
+        this.answers[queid].push(parseInt(selid) + 1)
+        obj.classList.add('active')
+      } else {
+        // console.log('单选')
+        if (presel) {
+          obj.parentNode.children[presel].classList.remove('active')
+        }
+        obj.parentNode.setAttribute('data-presel',selid)
+        obj.classList.add('active')
+        this.answers[queid] = [parseInt(selid) + 1]
+      }
+      // console.log(obj.classList)
+      console.log(this.answers)
     },
     submit() {
       console.log(1)
