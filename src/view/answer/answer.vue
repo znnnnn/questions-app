@@ -38,6 +38,7 @@
 <script>
 /* eslint-disable */
 import { test } from '../../../js/iconfont.js'
+import { MessageBox } from 'mint-ui';
 export default {
   data() {
     return {
@@ -104,6 +105,7 @@ export default {
       ],
       answers: {}, //答题记录
       index: {
+        timer: null,
         num: 0,
         pre: 0,
         answersNum: 0 //记录答题数量
@@ -191,7 +193,21 @@ export default {
       if(num==0){ //无答题记录不允许提交
         return
       }else if (num!=len) { //触发答题未完成事件
-        this.conf()
+        MessageBox({
+          title: '交卷提示',
+          message: '未完成所有题目，确认交卷吗？',
+          showCancelButton: true
+        }).then(({ value, action }) => {
+          console.log(1)
+        });
+      }else {
+        MessageBox({
+          title: '交卷提示',
+          message: '已完成所有题目确认交卷吗？',
+          showCancelButton: true
+        }).then(({ value, action }) => {
+          console.log(2)
+        });
       }
       console.log(this.answers)
 
@@ -208,7 +224,7 @@ export default {
       timer.innerText = '00:00:00'
       // 答题倒计时
       var time = 0
-      setInterval(jishi, 1000) // 1000毫秒
+      this.index.timer = setInterval(jishi, 1000) // 1000毫秒
       function jishi() {
         time++
         timer.innerText = calTime(time)
