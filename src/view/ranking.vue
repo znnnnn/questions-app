@@ -67,6 +67,10 @@ export default {
         loadinginstace.close()
         this.$set(this.items, 1, res.data.data)
       })
+      .catch(err => {
+        console.log('error:', err)
+        loadinginstace.close()
+      })
 
     var _this = this
     var type

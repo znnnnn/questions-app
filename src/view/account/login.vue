@@ -60,7 +60,10 @@
 export default {
   mounted() {
     console.log(1)
-    window.onresize(this.autoResize())
+    this.autoResize()
+    window.onresize = () => {
+      this.autoResize()
+    }
   },
   methods: {
     autoResize() {
