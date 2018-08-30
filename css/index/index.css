@@ -35,12 +35,11 @@ span {
   height: 50px;
 }
 
-#category ul li.infor {
+#category ul li {
   height: 100%;
 }
 
-#category ul,
-#category div.category > ul > li {
+#category ul {
   width: 100%;
 }
 
@@ -48,16 +47,16 @@ span {
   margin-bottom: 10px;
 }
 
-.knowledge {
+a.link:nth-child(1) div.category {
   background-color: #ffb724;
 }
-.profession {
+a.link:nth-child(2) div.category {
   background-color: #64a6da;
 }
-.competition  {
+a.link:nth-child(3) div.category  {
   background-color: #e73b37;
 }
-.industry {
+a.link:nth-child(4) div.category {
   background-color: #9d5ac7;
 }
 
@@ -65,16 +64,16 @@ span {
   margin-bottom: 2px;
 }
 
-#category li.infor li {
-  display: inline-block;
+#category li {
+  float: left;
   height: 100%;
   /* float: left; */
 }
 
-#category li.infor li.icon {
+#category li.icon {
   width: 14%;
 }
-#category li.infor li.icon a {
+#category li.icon a {
   display: flex;
   height: 100%;
   align-items: center;
@@ -83,51 +82,51 @@ span {
 /* #category li.infor li.icon img {
 } */
 
-#category li.infor li.category a {
+#category li.category a {
   display: block;
   font-size: 85%;
   font-weight: 500;
 }
-#category li.infor li.category a:nth-child(1) {
+#category li.category a:nth-child(1) {
   margin-top: 5px;
 }
-#category li.infor li.category a:nth-child(2) {
+#category li.category a:nth-child(2) {
   font-size: 65%;
   margin-top: -3px;
 }
 
-#category div.industry li.category a {
+a.link:nth-child(4) li.category a {
   margin: 0!important;
   line-height: 50px;
 }
 
-#category li.infor li.score {
+#category li.score {
   float: right;
   font-size: 160%;
   line-height: 100%;
 }
-#category li.infor li.score a {
+#category li.score a {
   display: block;
   height: 100%;
   line-height: 45px;
   font-weight: bolder;
 }
 
-#category div.knowledge li.icon img {
+#category div.category:first-child li.icon img {
   height: 65%;
   
 }
 
-#category div.profession li.icon img {
+#category div.category:nth-child(2) li.icon img {
   height: 55%;
   margin-left: 5px
 }
 
-#category div.competition li.icon img {
+#category div.category:nth-child(3) li.icon img {
   height: 55%;
 }
 
-#category div.industry li.icon img {
+#category div.category:nth-child(4) li.icon img {
   height: 70%;
 }
 
@@ -137,9 +136,6 @@ span {
   right: 20px;
 }
 
-#category div.category:nth-child(4) li.category a {
-  line-height: 40px;
-}
 
 #category div.lable a {
   display: block;

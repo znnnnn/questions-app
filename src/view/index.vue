@@ -7,9 +7,30 @@
 		<div id="category"
 		     class="mui-scroll-wrapper"
 		     data-scroll="1">
-			<div class="mui-scroll"
-			     style="transform: translate3d(0px, 0px, 0px) translateZ(0px); transition-duration: 0ms;">
-				<router-link to="/answer/common">
+			<div class="mui-scroll" style="transform: translate3d(0px, 0px, 0px) translateZ(0px); transition-duration: 0ms;">
+				<router-link v-for="(item,index) in category" class="link" :to="index==3?'/answer/indexIndustry':'/answer/common'">
+					<div class="category">
+						<ul>
+							<li class="icon">
+								<a>
+									<img v-if="index==0" src="../../images/index/knowledge.png"/>
+									<img v-else-if="index==1" src="../../images/index/profession.png"/>
+									<img v-else-if="index==2" src="../../images/index/competition.png"/>
+									<img v-else src="../../images/index/industry.png"/>
+								</a>
+							</li>
+							<li class="category">
+								<a>{{item.name}}</a>
+								<a v-if="item.mark!=null">({{item.mark}})</a>
+							</li>
+							<li class="score"><a><span class="grade">{{item.pass_num}}</span>/<span class="sum">{{item.quesion_allnum}}</span></a></li>
+						</ul>
+						<div class="lable">
+							<a v-for="(tab,index) in item.sub">{{tab.name}}</a>
+						</div>
+					</div>
+				</router-link>
+				<!-- <router-link to="/answer/common">
 					<div class="category knowledge"
 					     data-cate="知识类(全民普法)">
 						<ul>
@@ -118,7 +139,7 @@
 
 						</div>
 					</div>
-				</router-link>
+				</router-link> -->
 			</div>
 			<div class="mui-scrollbar mui-scrollbar-vertical">
 				<div class="mui-scrollbar-indicator"
@@ -131,14 +152,30 @@
 
 <script>
 
-// import req from '@src/utlis/request'
-/**
- * 拼团详情
- */
+import { Loading } from 'element-ui'
 
 export default {
+  data() {
+    return {
+      category: null
+    }
+  },
   mounted() {
-    // console.log(req.get('http://panmiaorong.top'))
+    var _this = this
+    function refresh() {
+      var loadinginstace = Loading.service({ fullscreen: true })
+      _this.$api.homepage.getCategory()
+        .then(res => {
+          loadinginstace.close()
+          _this.category = res.data.data
+          console.log(_this.category)
+        })
+        .catch(error => {
+          loadinginstace.close()
+          console.log(error)
+        })
+    }
+    refresh()
   }
 }
 </script>
