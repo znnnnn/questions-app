@@ -1,5 +1,5 @@
 /**
-  * ranking模块接口列表
+  * homePage模块接口列表
   */
 
 import base from './base' // 导入接口域名列表

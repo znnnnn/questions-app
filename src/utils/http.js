@@ -43,7 +43,11 @@ const errorHandle = (status, other) => {
   switch (status) {
     // 401: 未登录状态，跳转登录页
     case 401:
-      tip('登录过期，请重新登录，3秒后跳转登录页')
+      Message({
+        message: '登录过期，请重新登录，3秒后跳转登录页',
+        center: 'true',
+        type: 'error'
+      })
       setTimeout(() => {
         router.push({ path: '/account/login' })
       }, 0)

@@ -12,6 +12,8 @@ import userinfo from './userinfo'
 import userinfoIndustry from './userinfo/industry'
 // 其他模块的接口……
 import test from './test' // mock测试
+// account的模块接口
+import login from './account/login'
 
 // 导出接口
 export default {
@@ -20,6 +22,7 @@ export default {
   userinfo,
   userinfoIndustry,
   test,
-  homepage
+  homepage,
+  login
   // ……
 }

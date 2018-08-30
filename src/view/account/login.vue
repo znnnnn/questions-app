@@ -13,7 +13,8 @@
                  type="text"
                  class="mui-input-clear mui-input"
                  placeholder="请输入手机号"
-                 maxlength="11">
+                 maxlength="11"
+                 v-model="phone">
         </div>
         <div class="mui-input-row"
              id="pwdBox">
@@ -22,7 +23,8 @@
                  type="password"
                  class="mui-input-clear mui-input"
                  placeholder="请输入6-14位密码"
-                 maxlength="14">
+                 maxlength="14"
+                 v-model="password">
         </div>
         <div class="mui-input-row mui-hidden">
           <label class="pwd"></label>
@@ -36,7 +38,9 @@
       </form>
       <div class="mui-content-padded">
         <button id='login'
-                class="mui-btn mui-btn-block mui-btn-primary">立即登录</button>
+                class="mui-btn mui-btn-block mui-btn-primary"
+                @click="login"
+                @keyup.enter="login">立即登录</button>
 
         <div class="link-area">
           <a id="change">用短信验证码登录</a>
@@ -56,10 +60,16 @@
 </template>
 
 <script>
+// import { MessageBox } from 'element-ui'
 
 export default {
+  data() {
+    return {
+      phone: '',
+      password: ''
+    }
+  },
   mounted() {
-    console.log(1)
     this.autoResize()
     window.onresize = () => {
       this.autoResize()
@@ -70,6 +80,22 @@ export default {
       const container = document.querySelector('.mui-content')
       container.style.height = document.documentElement.clientHeight + 'px'
       container.style.width = document.documentElement.clientWidth + 'px'
+    },
+    login() {
+      this.$api.login.login(this.phone, this.password)
+        .then(res => {
+          this.$message({
+            message: '恭喜你，登录成功！',
+            type: 'success',
+            center: true
+            // /////////////下一步  判断密码错误
+          })
+          this.$store.commit('resetToken', res.data.data.api_token)
+          this.$router.push({ path: '/' })
+          console.log(res)
+        }
+        // this.router
+        )
     }
   }
 
@@ -88,11 +114,14 @@ export default {
 <style scoped>
 .mui-content {
   background: url("~@img/login-bg.png");
+  background-color: #efeff4;
   height: 100%;
   width: 100%;
   background-size: 50%;
   background-repeat: no-repeat;
   background-position: center 25%;
+  z-index: 100;
+  position: absolute;
 }
 
 .mui-input-row label {
