@@ -6,7 +6,8 @@ export default {
     console.log(state)
     state.network = network
   },
-  resetToken(state) {
-    state = null
+  resetToken(state, newToken) {
+    state.token = ''
+    console.log(state.token)
   }
 }

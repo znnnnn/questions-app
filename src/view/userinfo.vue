@@ -59,6 +59,13 @@
 
 import { Loading } from 'element-ui'
 import { MessageBox } from 'mint-ui'
+// import {
+//   mapState,
+//   mapGetters,
+//   mapActions,
+//   mapMutations
+//   // mapGetters
+// } from 'vuex'
 
 export default {
   data() {
@@ -86,6 +93,7 @@ export default {
       var loadinginstace = Loading.service({ fullscreen: true })
 
       // 请求数据
+      // console.log(_self.$api.userinfo.init())
       _self.$api.userinfo.init()
         .then(([userInfo, careerList]) => {
           // 关闭loading动画
@@ -117,17 +125,7 @@ export default {
     }
     this.refresh()
 
-    // vue-router路由守卫
-
-    // console.log(this.$router)
-    // this.$router.beforeRouteLeave (to, from , next) {
-    //   const answer = window.confirm('Do you really want to leave? you have unsaved changes!')
-    //   if (answer) {
-    //     next()
-    //   } else {
-    //     next(false)
-    //   }
-    // }
+    // this.$store.commit('resetToken', null)
   },
   watch: {
     // 监控屏幕高度
@@ -143,24 +141,26 @@ export default {
     }
   },
   methods: {
+
     // 选择行业
     selectCareer(career_id) {
       this.$api.userinfo.selectCareer(career_id)
       this.refresh
     },
 
+    // 监控屏幕高度
     resizeHeight() {
-      // 监控屏幕高度
       const container = document.querySelector('.mui-content')
       window.onresize = () => {
         return (() => {
-          console.log(document.documentElement.clientHeight)
+          console.log('当前高度为：' + document.documentElement.clientHeight)
           container.style.height = document.documentElement.clientHeight + 'px'
         // container.style.height = window.fullHeight
         })()
       }
     },
 
+    // 确认离开
     confirmToLeave() {
       MessageBox({
         title: '提示',
@@ -169,9 +169,8 @@ export default {
       })
         .then(action => {
           if (action === 'confirm') { // 确认的回调
+            this.$store.commit('resetToken')
             this.$router.push({ path: '/account/login' })
-            console.log(this.$store.commit())
-            this.$store.mutation.resetToken
           } else {
             console.log(2)
           }

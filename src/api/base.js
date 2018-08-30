@@ -1,7 +1,9 @@
 /**
   * 接口域名的管理
   */
-import store from '../store/index'
+import createStore from '../store/index'
+
+var store = createStore()
 
 const base = {
   sq: '/api', // 在线地址api -> '/api'在'webpack.config.client.js中映射为'http://101.132.141.130:82/api/'

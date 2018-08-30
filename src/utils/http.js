@@ -4,10 +4,11 @@
   */
 import axios from 'axios'
 import router from '../router'
-import store from '@src/store/index'
+import createStore from '@src/store/index'
 import { Message } from 'element-ui'
 // import { Toast } from 'vant'
 
+const store = createStore()
 /**
    * 提示函数
    * 禁止点击蒙层、显示一秒后关闭

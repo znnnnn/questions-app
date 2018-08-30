@@ -7,16 +7,17 @@ import mutations from './mutations/index'
 import getters from './getters/index'
 import actions from './actions/index'
 
-const isDev = process.env.NODE_ENV === 'development'
+// const isDev = process.env.NODE_ENV === 'development'
 
-const store = new Vuex.Store({
-  strict: isDev,
-  state: defaultState,
-  mutations,
-  getters,
-  actions,
-  modules: {
-  }
-})
+export default () => {
+  return new Vuex.Store({
+    // strict: isDev,
+    state: defaultState,
+    mutations,
+    getters,
+    actions,
+    modules: {
+    }
+  })
+}
 
-export default store
