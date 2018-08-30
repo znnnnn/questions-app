@@ -3,7 +3,6 @@
   */
 import store from '../store/index'
 
-// console.log(store.state.state)
 const base = {
   sq: '/api', // 在线地址api -> '/api'在'webpack.config.client.js中映射为'http://101.132.141.130:82/api/'
   bd: '/mock', // '本地开发api  数据mock模拟'

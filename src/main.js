@@ -2,7 +2,6 @@
 import Vue from 'vue'
 import App from './app.vue'
 import router from './router' /* 引入路由配置*/
-import Vuex from 'vuex'
 import MintUI from 'mint-ui'
 import ElementUI from 'element-ui'
 import VueFullPage from 'vue-fullpage.js'
@@ -23,10 +22,10 @@ import 'mint-ui/lib/style.css'
 
 // 注册组件和接口
 Vue.prototype.$api = api // 将api挂载到vue的原型上
-Vue.use(Vuex)
 Vue.use(MintUI)
 Vue.use(ElementUI)
 Vue.use(VueFullPage)
+console.log(store)
 // const store = createStore()
 
 Vue.config.productionTip = false

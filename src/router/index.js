@@ -7,14 +7,18 @@ import ranking from '@views/ranking.vue'
 import userinfo from '@views/userinfo.vue'
 import refresh from '@components/refresh.vue'
 
-// 二级路由
+// 答题页面路由
 import common from '@views/answer/common.vue'
 import indexIndustry from '@views/answer/indexIndustry.vue'
 import answer from '@views/answer/answer.vue'
 
+// userinfo路由
 import industry from '@views/userinfo/industry.vue'
 import newPwd from '@views/userinfo/newPwd.vue'
 import feedback from '@views/userinfo/feedback.vue'
+
+// account路由
+import login from '@views/account/login.vue'
 
 Vue.use(Router)
 
@@ -63,6 +67,10 @@ const routes = [{
 {
   path: '/refresh',
   component: refresh
+},
+{
+  path: '/account/login',
+  component: login
 }]
 
 export default new Router({

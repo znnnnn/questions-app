@@ -44,11 +44,11 @@
             <a class="mui-navigate-right">
               <i class="iconfont icon-htmal5icon27"></i>问题反馈</a>
           </router-link>
-          <li class="mui-table-view-cell"
-              id="exit">
+          <a class="mui-table-view-cell li-item"
+                       @click="this.confirmToLeave">
             <a class="mui-navigate-right">
               <i class="iconfont icon-setup_icon"></i>退出登录</a>
-          </li>
+          </a>
         </ul>
       </div>
     </div>
@@ -58,6 +58,8 @@
 <script>
 
 import { Loading } from 'element-ui'
+import { MessageBox } from 'mint-ui'
+
 export default {
   data() {
     return {
@@ -68,11 +70,8 @@ export default {
       sheetVisible: false,
       fullHeight: document.documentElement.clientHeight,
       actions: [
-        { name: '公民', id: 0, method: (_self = this) => { this.selectCareer(_self.id); this.refresh() } },
-        { name: '医疗行业', id: 1, method: (_self = this) => { this.selectCareer(_self.id); this.refresh() } },
-        { name: '金融行业', id: 2, method: (_self = this) => { this.selectCareer(_self.id); this.refresh() } },
-        { name: '交通', id: 3, method: (_self = this) => { this.selectCareer(_self.id); this.refresh() } },
-        { name: '电信', id: 4, method: (_self = this) => { this.selectCareer(_self.id); this.refresh() } }
+        // example
+        // { name: '公民', id: 0, method: (_self = this) => { this.selectCareer(_self.id); this.refresh() } },
       ]
     }
   },
@@ -85,19 +84,24 @@ export default {
     this.refresh = function refresh() {
       // 显示Loading动画
       var loadinginstace = Loading.service({ fullscreen: true })
+
       // 请求数据
       _self.$api.userinfo.init()
         .then(([userInfo, careerList]) => {
           // 关闭loading动画
           loadinginstace.close()
+
           // 用户信息赋值
           _self.item = userInfo.data.data
           _self.industry = _self.item.career.name
+
           // 获取行业列表
-          console.log(careerList.data.data)
+          // console.log(careerList.data.data)
           _self.actions = careerList.data.data
           for (let index = 0; index < _self.actions.length; index++) {
             // _self.actions[index].id = index
+
+            // 为每一个按钮添加选择行业的方法
             _self.actions[index].method = (_self = this) => {
               this.selectCareer(_self.id); setTimeout(() => {
                 this.refresh()
@@ -106,10 +110,24 @@ export default {
             // console.log(_self.actions[0])
           }
         })
-        .catch(error => console.log(error))
+        .catch(error => {
+          console.log(error)
+          loadinginstace.close()
+        })
     }
-
     this.refresh()
+
+    // vue-router路由守卫
+
+    // console.log(this.$router)
+    // this.$router.beforeRouteLeave (to, from , next) {
+    //   const answer = window.confirm('Do you really want to leave? you have unsaved changes!')
+    //   if (answer) {
+    //     next()
+    //   } else {
+    //     next(false)
+    //   }
+    // }
   },
   watch: {
     // 监控屏幕高度
@@ -141,6 +159,23 @@ export default {
         // container.style.height = window.fullHeight
         })()
       }
+    },
+
+    confirmToLeave() {
+      MessageBox({
+        title: '提示',
+        message: '确认退出登录吗？',
+        showCancelButton: true
+      })
+        .then(action => {
+          if (action === 'confirm') { // 确认的回调
+            this.$router.push({ path: '/account/login' })
+            console.log(this.$store.commit())
+            this.$store.mutation.resetToken
+          } else {
+            console.log(2)
+          }
+        })
     }
   }
 }
