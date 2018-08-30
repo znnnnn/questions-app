@@ -169,7 +169,7 @@ export default {
       })
         .then(action => {
           if (action === 'confirm') { // 确认的回调
-            this.$store.commit('resetToken')
+            this.$store.commit('resetToken', null)
             this.$router.push({ path: '/account/login' })
           } else {
             console.log(2)

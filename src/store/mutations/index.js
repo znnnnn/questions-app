@@ -7,7 +7,7 @@ export default {
     state.network = network
   },
   resetToken(state, newToken) {
-    state.token = ''
+    state.token = newToken
     console.log(state.token)
   }
 }

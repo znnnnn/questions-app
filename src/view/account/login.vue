@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mui-content">
     <header class="mui-title">
       <a>网络安全答题平台</a>
     </header>
@@ -55,9 +55,51 @@
   </div>
 </template>
 
+<script>
+
+export default {
+  mounted() {
+    console.log(1)
+    window.onresize(this.autoResize())
+  },
+  methods: {
+    autoResize() {
+      const container = document.querySelector('.mui-content')
+      container.style.height = document.documentElement.clientHeight + 'px'
+      container.style.width = document.documentElement.clientWidth + 'px'
+    }
+  }
+
+}
+
+</script>
+
+
 <style scoped src="@css/style.css">
 </style>
 <style scoped src="@css/common-css.css">
 </style>
 <style scoped src="@css/mui.min.css">
+</style>
+
+<style scoped>
+.mui-content {
+  background: url("~@img/login-bg.png");
+  height: 100%;
+  width: 100%;
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center 25%;
+}
+
+.mui-input-row label {
+  width: 22%;
+  padding: 25px 15px;
+}
+
+.mui-input-row label ~ input {
+  width: 78%;
+  height: 50px;
+  color: #ffffff !important;
+}
 </style>

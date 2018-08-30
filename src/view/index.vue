@@ -139,6 +139,7 @@
 export default {
   mounted() {
     // console.log(req.get('http://panmiaorong.top'))
+    console.log(2222)
   }
 }
 </script>
