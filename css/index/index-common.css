@@ -30,12 +30,14 @@ div.list ul {
 	width: 100%;
 	overflow: hidden;
 	height: 50px;
+	display: flex;
+	justify-content: center;
 	/*background-color: #efefef;*/
 }
 div.list ul li {
 	float: left;
 	text-align: center;
-	padding: 15px 0;
+	padding: 15px 15px;
 	position: relative;
 }
 div.list ul li:after {

@@ -8,9 +8,7 @@
     <div class="mui-content">
 			<div class="knowledge-category list">
 				<ul>
-					<li class="active"><a>个人信息安全</a></li>
-					<li><a>防电信诈骗</a></li>
-					<li><a>网络安全法</a></li>
+					<li v-for="(item,index) in title" :class="index==0?'active':''"><a>{{item}}</a></li>
 				</ul>
 				
 			</div>
@@ -142,6 +140,16 @@
     <router-view></router-view>
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      title: ['个人信息安全', '防电信诈骗', '网络安全法']
+    }
+  }
+}
+</script>
+
 
 <style scoped src="@css/index/index-common.css"></style>
 <style scoped>
