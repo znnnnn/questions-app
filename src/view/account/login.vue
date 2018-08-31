@@ -44,7 +44,7 @@
 
         <div class="link-area">
           <a id="change">用短信验证码登录</a>
-          <a id='reg'>新用户注册</a>
+          <router-link to="/account/register" id='reg'>新用户注册</router-link>
           <a id='forgetPassword'>忘记密码</a>
         </div>
       </div>

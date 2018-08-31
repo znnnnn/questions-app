@@ -19,6 +19,7 @@ import feedback from '@views/userinfo/feedback.vue'
 
 // account路由
 import login from '@views/account/login.vue'
+import register from '@views/account/register.vue'
 
 Vue.use(Router)
 
@@ -71,6 +72,10 @@ const routes = [{
 {
   path: '/account/login',
   component: login
+},
+{
+  path: '/account/register',
+  component: register
 }]
 
 export default new Router({
