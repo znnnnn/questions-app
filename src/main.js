@@ -9,6 +9,7 @@ import VueFullPage from 'vue-fullpage.js'
 
 // 自己定义的模块
 import api from './api' // 导入api接口
+import reg from './utils/reg'
 import createStore from './store/index'
 
 // css
@@ -23,6 +24,7 @@ import 'mint-ui/lib/style.css'
 
 // 注册组件和接口
 Vue.prototype.$api = api // 将api挂载到vue的原型上
+Vue.prototype.$reg = reg // 将api挂载到vue的原型上
 Vue.use(MintUI)
 Vue.use(ElementUI)
 Vue.use(VueFullPage)

@@ -46,6 +46,23 @@ export default {
   },
   methods: {
     register() {
+      if (!this.$reg.checkPhone(this.phone)) {
+        this.$message({
+          message: '手机号格式错误',
+          type: 'error',
+          center: 'true'
+        })
+      } else if (!this.$reg.checkPwd(this.pwd)) {
+        this.$message({
+          message: '密码格式错误, 请输入六位以上数组加密码',
+          type: 'error',
+          center: 'true'
+        })
+      } else {
+        this.registerRequest()
+      }
+    },
+    registerRequest() {
       this.$api.register.register(this.code, this.phone, this.pwd)
         .then(res => {
           console.log(res.data)
@@ -90,8 +107,7 @@ export default {
               center: true
             })
             return
-          }
-          if (error.data.errors.password[0] === 'The password must be at least 6 characters.') {
+          } else if (error.data.errors.password[0] === 'The password must be at least 6 characters.') {
             this.$message({
               message: '密码至少为6位',
               type: 'error',

@@ -10,16 +10,25 @@ var store = createStore()
 
 const login = {
   // 排行排名
-  login(phone, password) {
-    return axios.post(`${base.sq}/login`, qs.stringify(
-      {
-        api_token: store.state.token,
-        phone: phone,
-        password: password
-      }
-    ))
+  login(phone, password, mode, code) {
+    if (mode === 'primary') {
+      return axios.post(`${base.sq}/login`, qs.stringify(
+        {
+          api_token: store.state.token,
+          phone: phone,
+          password: password
+        }
+      ))
+    } else if (mode === 'code') {
+      return axios.post(`${base.sq}/login/sms`, qs.stringify(
+        {
+          api_token: store.state.token,
+          phone: phone,
+          code: code
+        }
+      ))
+    }
   }
-
   // 其他接口…………
 }
 

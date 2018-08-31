@@ -17,7 +17,8 @@
                  v-model="phone">
         </div>
         <div class="mui-input-row"
-             id="pwdBox">
+          id="pwdBox"
+          v-if="this.mode === 'primary'">
           <label class="pwd"></label>
           <input id='password'
                  type="password"
@@ -26,14 +27,14 @@
                  maxlength="14"
                  v-model="password">
         </div>
-        <div class="mui-input-row mui-hidden">
+        <div class="mui-input-row" v-else>
           <label class="pwd"></label>
           <input id='code'
                  type="text"
                  class="mui-input-clear mui-input"
                  placeholder="请输入验证码"
                  maxlength="6">
-          <div id="getCode"></div>
+                 <sendsms :phone="this.phone"></sendsms>
         </div>
       </form>
       <div class="mui-content-padded">
@@ -43,7 +44,8 @@
                 @keyup.enter="login">立即登录</button>
 
         <div class="link-area">
-          <a id="change">用短信验证码登录</a>
+          <a id="change" v-if="this.mode === 'primary'" @click="mode = 'code'">用短信验证码登录</a>
+          <a id="change" v-else @click="mode = 'primary'">用密码登录登录</a>
           <router-link to="/account/register" id='reg'>新用户注册</router-link>
           <a id='forgetPassword'>忘记密码</a>
         </div>
@@ -60,20 +62,25 @@
 </template>
 
 <script>
-// import { MessageBox } from 'element-ui'
+// 引入发送验证码组件
+import sendsms from '@components/sendsms.vue'
 
 export default {
+  components: {
+    sendsms
+  },
   data() {
     return {
       phone: '',
-      password: ''
+      password: '',
+      mode: 'primary'
     }
   },
   mounted() {
     this.autoResize()
-    window.onresize = () => {
-      this.autoResize()
-    }
+    // window.onresize = () => {
+    //   this.autoResize()
+    // }
   },
   methods: {
     autoResize() {
@@ -82,7 +89,29 @@ export default {
       container.style.width = document.documentElement.clientWidth + 'px'
     },
     login() {
-      this.$api.login.login(this.phone, this.password)
+      if (!this.$reg.checkPhone(this.phone)) {
+        this.$message({
+          message: '手机号格式错误',
+          type: 'error',
+          center: 'true'
+        })
+      } else if (!this.$reg.checkPwd(this.password)) {
+        this.$message({
+          message: '密码格式错误',
+          type: 'error',
+          center: 'true'
+        })
+      } else {
+        if (this.mode === 'primary') {
+          this.loginRequest('primary')
+        } else if (this.mode === 'code') {
+          this.loginRequest('code', this.code)
+        }
+      }
+    },
+    // 登录请求
+    loginRequest(mode, code) {
+      this.$api.login.login(this.phone, this.password, mode)
         .then(res => {
           if (res.data.message === '登录成功') {
             this.$message({
@@ -94,31 +123,15 @@ export default {
             this.$store.commit('resetToken', res.data.data.api_token)
             this.$router.push({ path: '/' })
           } else if (res.data.message === '账号或密码不正确') {
-            this.pwdError()
+            this.$message({
+              message: '账号或密码不正确',
+              type: 'error',
+              center: true
+            })
           }
-          console.log(res)
         }
-        // this.router
         )
-        // .catch(error => {
-        //   // console.log(error)
-        //   if (error.status === '401') {
-        //     this.$message({
-        //       message: '密码错误',
-        //       type: 'error',
-        //       center: true
-        //     })
-        //   }
-        // })
-    },
-    pwdError() {
-      this.$message({
-        message: '账号或密码不正确',
-        type: 'error',
-        center: true
-      })
     }
-
   }
 
 }
