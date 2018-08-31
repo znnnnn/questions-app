@@ -8,7 +8,14 @@
 		     class="mui-scroll-wrapper"
 		     data-scroll="1">
 			<div class="mui-scroll" style="transform: translate3d(0px, 0px, 0px) translateZ(0px); transition-duration: 0ms;">
-				<router-link v-for="(item,index) in category" class="link" :to="index==3?'/answer/indexIndustry':'/answer/common'">
+				<router-link v-for="(item,index) in category" class="link" 
+				:to="{
+					path: index==3?'/answer/indexIndustry':'/answer/common',
+					query: {
+						title: item.name+'('+item.mark+')',
+						cateid: item.id
+					}
+				}">
 					<div class="category">
 						<ul>
 							<li class="icon">
@@ -30,116 +37,6 @@
 						</div>
 					</div>
 				</router-link>
-				<!-- <router-link to="/answer/common">
-					<div class="category knowledge"
-					     data-cate="知识类(全民普法)">
-						<ul>
-							<li class="infor">
-								<ul>
-									<li class="icon">
-										<a><img src="../../images/index/knowledge.png"></a>
-									</li>
-									<li class="category">
-										<a>知识类</a>
-										<a>(全民普法)</a>
-									</li>
-									<li class="score">
-										<a>
-											<span class="grade">0</span>/<span class="sum">100</span>
-										</a>
-									</li>
-								</ul>
-							</li>
-						</ul>
-						<div class="lable">
-							<a>个人信息安全</a>
-							<a>防电信诈骗</a>
-							<a>网络安全法</a>
-						</div>
-					</div>
-				</router-link>
-				<router-link to="/answer/common">
-					<div class="category profession"
-					     data-cate="专业类(检测组)">
-						<ul>
-							<li class="infor">
-								<ul>
-									<li class="icon">
-										<a><img src="../../images/index/profession.png"></a>
-									</li>
-									<li class="category">
-										<a>专业类</a>
-										<a>(检测组)</a>
-									</li>
-									<li class="score">
-										<a>
-											<span class="grade">0</span>/<span class="sum">100</span>
-										</a>
-									</li>
-								</ul>
-							</li>
-						</ul>
-
-						<div class="lable">
-							<a>等级保护制度</a>
-							<a>CISP题库</a>
-							<a>数据分析</a>
-						</div>
-					</div>
-				</router-link>
-				<router-link to="/answer/common">
-					<div class="category competition"
-					     data-cate="竞赛类(安服组)">
-						<ul>
-							<li class="infor">
-								<ul>
-									<li class="icon">
-										<a><img src="../../images/index/competition.png"></a>
-									</li>
-									<li class="category">
-										<a>竞赛类</a>
-										<a>(安服组)</a>
-									</li>
-									<li class="score">
-										<a>
-											<span class="grade">0</span>/<span class="sum">100</span>
-										</a>
-									</li>
-								</ul>
-							</li>
-						</ul>
-
-						<div class="lable">
-							<a>CTF</a>
-						</div>
-					</div>
-				</router-link>
-				<router-link to="/answer/indexIndustry">
-					<div class="category industry"
-					     data-cate="行业类">
-						<ul>
-							<li class="infor">
-								<ul>
-									<li class="icon">
-										<a><img src="../../images/index/industry.png"></a>
-									</li>
-									<li class="category">
-										<a>行业类</a>
-									</li>
-									<li class="score">
-										<a>
-											<span class="grade">0</span>/<span class="sum">10</span>
-										</a>
-									</li>
-								</ul>
-							</li>
-						</ul>
-
-						<div class="lable">
-
-						</div>
-					</div>
-				</router-link> -->
 			</div>
 			<div class="mui-scrollbar mui-scrollbar-vertical">
 				<div class="mui-scrollbar-indicator"
@@ -168,7 +65,6 @@ export default {
         .then(res => {
           loadinginstace.close()
           _this.category = res.data.data
-          console.log(_this.category)
         })
         .catch(error => {
           loadinginstace.close()

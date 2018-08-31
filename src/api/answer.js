@@ -8,19 +8,19 @@ import qs from 'qs' // 根据需求是否导入qs模块
 
 const answer = {
   // 排行排名
-  getUserInfo(type = '') {
-    // console.log(`${base.sq}report/rank/`)
-    return axios.get(`${base.sq}/user/info`, {
+  getAnswer(sid, gid) {
+    console.log(sid)
+    console.log(gid)
+    return axios.get(`${base.sq}/` + sid + `/` + gid + `/questions`, {
       params: { // 请求参数
         api_token: base.token
       }
     })
   },
-  selectCareer(career_id) {
-    return axios.post(`${base.sq}/user/selectcareer`, qs.stringify(
+  submitone() {
+    return axios.post(`${base.sq}/question/submitone`, qs.stringify(
       {
-        api_token: base.token,
-        career_id: career_id
+        api_token: base.token
       }
     ))
   }

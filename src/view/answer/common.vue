@@ -1,21 +1,39 @@
 <template>
   <div class="indexContainer">
     <header class="mui-bar mui-bar-nav cblue">
-      <router-link to="/"
-                   class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></router-link>
-      <h1 class="mui-title">XXXX类</h1>
+      <a @click="$router.back(-1)" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+      <h1 class="mui-title">{{title}}</h1>
     </header>
     <div class="mui-content">
 			<div class="knowledge-category list">
 				<ul>
-					<li v-for="(item,index) in title" :class="index==0?'active':''"><a>{{item}}</a></li>
+					<li v-for="(item,index) in nav" :class="index==0?'active nav':'nav'" :data-index="index" :data-id="item.id"><a>{{item.name}}</a></li>
 				</ul>
 				
 			</div>
 
       <div class="mui-scroll-wrapper levels">
         <div class="mui-scroll">
-          <router-link to="/answer/answer">
+          <router-link v-for="(item,index) in levels" :to="{
+            path: item.able==1?'/answer/answer':'',
+            query: {
+              seccateid: secCateId,
+              groupid: item.id
+            }
+          }">
+            <ul :class="item.able==0?'lock':''">
+              <li>
+                <i class="iconfont icon-xunzhang active"></i>
+                <i class="iconfont icon-xunzhang"></i>
+                <i class="iconfont icon-xunzhang"></i>
+              </li>
+              <li>
+                <a>{{item.name}}</a>
+                <a>{{item.grade==null?0:item.grade}}</a>
+              </li>
+            </ul>
+          </router-link>
+          <!-- <router-link to="/answer/answer">
             <ul>
               <li>
                 <i class="iconfont icon-xunzhang active"></i>
@@ -40,111 +58,93 @@
                 <a>1000</a>
               </li>
             </ul>
-          </router-link>
-          <router-link to="/answer/answer">
-            <ul class="lock">
-              <li>
-                <i class="iconfont icon-xunzhang active"></i>
-                <i class="iconfont icon-xunzhang"></i>
-                <i class="iconfont icon-xunzhang"></i>
-              </li>
-              <li>
-                <a>第一关</a>
-                <a>1000</a>
-              </li>
-            </ul>
-          </router-link>
-          <router-link to="/answer/answer">
-            <ul class="lock">
-              <li>
-                <i class="iconfont icon-xunzhang active"></i>
-                <i class="iconfont icon-xunzhang"></i>
-                <i class="iconfont icon-xunzhang"></i>
-              </li>
-              <li>
-                <a>第一关</a>
-                <a>1000</a>
-              </li>
-            </ul>
-          </router-link>
-          <router-link to="/answer/answer">
-            <ul class="lock">
-              <li>
-                <i class="iconfont icon-xunzhang active"></i>
-                <i class="iconfont icon-xunzhang"></i>
-                <i class="iconfont icon-xunzhang"></i>
-              </li>
-              <li>
-                <a>第一关</a>
-                <a>1000</a>
-              </li>
-            </ul>
-          </router-link>
-          <router-link to="/answer/answer">
-            <ul class="lock">
-              <li>
-                <i class="iconfont icon-xunzhang active"></i>
-                <i class="iconfont icon-xunzhang"></i>
-                <i class="iconfont icon-xunzhang"></i>
-              </li>
-              <li>
-                <a>第一关</a>
-                <a>1000</a>
-              </li>
-            </ul>
-          </router-link>
-          <router-link to="/answer/answer">
-            <ul class="lock">
-              <li>
-                <i class="iconfont icon-xunzhang active"></i>
-                <i class="iconfont icon-xunzhang"></i>
-                <i class="iconfont icon-xunzhang"></i>
-              </li>
-              <li>
-                <a>第一关</a>
-                <a>1000</a>
-              </li>
-            </ul>
-          </router-link>
-          <router-link to="/answer/answer">
-            <ul class="lock">
-              <li>
-                <i class="iconfont icon-xunzhang active"></i>
-                <i class="iconfont icon-xunzhang"></i>
-                <i class="iconfont icon-xunzhang"></i>
-              </li>
-              <li>
-                <a>第一关</a>
-                <a>1000</a>
-              </li>
-            </ul>
-          </router-link>
-          <router-link to="/answer/answer">
-            <ul class="lock">
-              <li>
-                <i class="iconfont icon-xunzhang active"></i>
-                <i class="iconfont icon-xunzhang"></i>
-                <i class="iconfont icon-xunzhang"></i>
-              </li>
-              <li>
-                <a>第xxxx关</a>
-                <a>1000</a>
-              </li>
-            </ul>
-          </router-link>
+          </router-link> -->
         </div>
       </div>
 		</div>
-		
-		
     <router-view></router-view>
   </div>
 </template>
 <script>
+import { Loading } from 'element-ui'
 export default {
   data() {
     return {
-      title: ['个人信息安全', '防电信诈骗', '网络安全法']
+      levels: null,
+      title: '',
+      nav: null,
+      cateId: null,
+      secCateId: null,
+      preNav: 0
+    }
+  },
+  created() {
+    this.cateId = this.$route.query.cateid
+    this.title = this.$route.query.title
+    //
+    var _this = this
+    function refresh() {
+      var loadinginstace = Loading.service({ fullscreen: true })
+      _this.$api.levels.getNav(_this.cateId)
+        .then(res => {
+          loadinginstace.close()
+          _this.nav = res.data.data
+          _this.secCateId = res.data.data[0].id
+          _this.$nextTick(function() {
+            _this.navClick()
+          })
+          _this.$api.levels.getLevels(_this.secCateId)
+            .then(res => {
+              loadinginstace.close()
+              _this.levels = res.data.data
+            })
+            .catch(error => {
+              loadinginstace.close()
+              console.log(error)
+            })
+        })
+        .catch(error => {
+          loadinginstace.close()
+          console.log(error)
+        })
+    }
+    refresh()
+  },
+  mounted() {
+  },
+  methods: {
+    navClick: function() {
+      var nav = document.querySelectorAll('li.nav')
+      var len = nav.length
+      var _this = this
+      for (let i = 0; i < len; i++) {
+        nav[i].addEventListener('click', function() {
+          var id = this.getAttribute('data-id')
+          nav[_this.preNav].classList.remove('active')
+          _this.preNav = this.getAttribute('data-index')
+          this.classList.add('active')
+          var loadinginstace = Loading.service({ fullscreen: true })
+          _this.$api.levels.getLevels(id)
+            .then(res => {
+              loadinginstace.close()
+              _this.levels = res.data.data
+            })
+            .catch(error => {
+              loadinginstace.close()
+              console.log(error)
+            })
+        })
+      }
+    },
+    example: function() {
+      // modify data
+      console.log('changed')
+      // DOM is not updated yet
+      this.$nextTick(function() {
+        // DOM is now updated
+        // `this` is bound to the current instance
+        console.log(1)
+      })
     }
   }
 }
@@ -157,7 +157,7 @@ export default {
   padding-top: 0!important;
 }
 .indexContainer {
-  padding-top: 48px!important;
+  padding-top: 44px!important;
 }
 .levels {
   overflow: auto;

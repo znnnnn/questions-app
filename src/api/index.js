@@ -3,8 +3,12 @@
   */
 // 文章模块接口
 import article from './article'
-// 分类
+// 分类模块接口
 import homepage from './homePage'
+// 关卡模块接口
+import levels from './levels'
+// 题目模块接口
+import answer from './answer'
 // 排行模块接口
 import ranking from './ranking'
 // 我的模块接口
@@ -20,6 +24,8 @@ export default {
   userinfo,
   userinfoIndustry,
   test,
-  homepage
+  homepage,
+  levels,
+  answer
   // ……
 }
