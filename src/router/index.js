@@ -20,6 +20,7 @@ import feedback from '@views/userinfo/feedback.vue'
 // account路由
 import login from '@views/account/login.vue'
 import register from '@views/account/register.vue'
+import forgotPassword from '@views/account/forgotPassword.vue'
 
 Vue.use(Router)
 
@@ -76,6 +77,10 @@ const routes = [{
 {
   path: '/account/register',
   component: register
+},
+{
+  path: '/account/forgotPassword',
+  component: forgotPassword
 }]
 
 export default new Router({

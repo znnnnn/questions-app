@@ -15,6 +15,7 @@ import test from './test' // mock测试
 // account的模块接口
 import login from './account/login'
 import register from './account/register'
+import forgotPassword from './account/forgotPassword'
 // 通用接口
 import sendsms from './sendsms'
 
@@ -28,6 +29,7 @@ export default {
   homepage,
   login,
   register,
-  sendsms
+  sendsms,
+  forgotPassword
   // ……
 }
