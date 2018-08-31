@@ -31,14 +31,11 @@ export default {
   userinfoIndustry,
   test,
   homepage,
-<<<<<<< HEAD
-  levels,
-  answer
-=======
   login,
   register,
   sendsms,
-  forgotPassword
->>>>>>> b6b58c501844a5238f73b32e4f7dec1b504620db
+  forgotPassword,
+  levels,
+  answer
   // ……
 }

@@ -8,7 +8,6 @@
 		     class="mui-scroll-wrapper"
 		     data-scroll="1">
 			<div class="mui-scroll" style="transform: translate3d(0px, 0px, 0px) translateZ(0px); transition-duration: 0ms;">
-<<<<<<< HEAD
 				<router-link v-for="(item,index) in category" class="link" 
 				:to="{
 					path: index==3?'/answer/indexIndustry':'/answer/common',
@@ -17,9 +16,6 @@
 						cateid: item.id
 					}
 				}">
-=======
-				<router-link v-for="(item,index) in category" class="link" :to="index==3?'/answer/indexIndustry':'/answer/common'" :key="index">
->>>>>>> b6b58c501844a5238f73b32e4f7dec1b504620db
 					<div class="category">
 						<ul>
 							<li class="icon">
