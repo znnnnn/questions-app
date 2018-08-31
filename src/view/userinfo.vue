@@ -172,6 +172,12 @@ export default {
             this.$store.commit('resetToken', null)
             window.localStorage.setItem('token', null)
             this.$router.push({ path: '/account/login' })
+            this.$message({
+              message: '退出登录成功！',
+              type: 'success',
+              center: true
+            // /////////////下一步  判断密码错误
+            })
           } else {
             console.log(2)
           }
