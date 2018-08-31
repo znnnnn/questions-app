@@ -11,18 +11,17 @@ var store = createStore()
 const answer = {
   // 排行排名
   getAnswer(sid, gid) {
-    console.log(sid)
-    console.log(gid)
     return axios.get(`${base.sq}/` + sid + `/` + gid + `/questions`, {
       params: { // 请求参数
         api_token: store.state.token
       }
     })
   },
-  submitone() {
-    return axios.post(`${base.sq}/question/submitone`, qs.stringify(
+  submitone(answers, seccateid, groupid) {
+    return axios.post(`${base.sq}/report/` + seccateid + `/checkandsubmit/` + groupid, qs.stringify(
       {
-        api_token: store.state.token
+        api_token: store.state.token,
+        answers: answers
       }
     ))
   }

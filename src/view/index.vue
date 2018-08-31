@@ -13,7 +13,8 @@
 					path: index==3?'/answer/indexIndustry':'/answer/common',
 					query: {
 						title: item.name+'('+item.mark+')',
-						cateid: item.id
+						cateid: item.id,
+						index: index
 					}
 				}">
 					<div class="category">

@@ -23,9 +23,9 @@
           }">
             <ul :class="item.able==0?'lock':''">
               <li>
-                <i class="iconfont icon-xunzhang active"></i>
-                <i class="iconfont icon-xunzhang"></i>
-                <i class="iconfont icon-xunzhang"></i>
+                <svg :class="item.difficulty>0?'icon active':'icon'" aria-hidden="true"><use class="ic" xlink:href="#icon-xunzhang"></use></svg>
+                <svg :class="item.difficulty>1?'icon active':'icon'" aria-hidden="true"><use class="ic" xlink:href="#icon-xunzhang"></use></svg>
+                <svg :class="item.difficulty>2?'icon active':'icon'" aria-hidden="true"><use class="ic" xlink:href="#icon-xunzhang"></use></svg>
               </li>
               <li>
                 <a>{{item.name}}</a>
@@ -66,6 +66,8 @@
   </div>
 </template>
 <script>
+/* eslint-disable */
+import { test } from '../../../js/iconfont.js'
 import { Loading } from 'element-ui'
 export default {
   data() {
@@ -75,13 +77,15 @@ export default {
       nav: null,
       cateId: null,
       secCateId: null,
-      preNav: 0
+      preNav: 0,
+      index: null
     }
   },
   created() {
     this.cateId = this.$route.query.cateid
     this.title = this.$route.query.title
-    //
+    this.index = this.$route.query.index
+    console.log(this.index)
     var _this = this
     function refresh() {
       var loadinginstace = Loading.service({ fullscreen: true })
@@ -111,6 +115,7 @@ export default {
     refresh()
   },
   mounted() {
+    test() //加载icon js文件
   },
   methods: {
     navClick: function() {
