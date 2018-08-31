@@ -16,6 +16,12 @@ import userinfo from './userinfo'
 import userinfoIndustry from './userinfo/industry'
 // 其他模块的接口……
 import test from './test' // mock测试
+// account的模块接口
+import login from './account/login'
+import register from './account/register'
+import forgotPassword from './account/forgotPassword'
+// 通用接口
+import sendsms from './sendsms'
 
 // 导出接口
 export default {
@@ -25,7 +31,14 @@ export default {
   userinfoIndustry,
   test,
   homepage,
+<<<<<<< HEAD
   levels,
   answer
+=======
+  login,
+  register,
+  sendsms,
+  forgotPassword
+>>>>>>> b6b58c501844a5238f73b32e4f7dec1b504620db
   // ……
 }

@@ -4,10 +4,11 @@
   */
 import axios from 'axios'
 import router from '../router'
-import store from '@src/store/index'
+import createStore from '@src/store/index'
 import { Message } from 'element-ui'
 // import { Toast } from 'vant'
 
+const store = createStore()
 /**
    * 提示函数
    * 禁止点击蒙层、显示一秒后关闭
@@ -42,7 +43,14 @@ const errorHandle = (status, other) => {
   switch (status) {
     // 401: 未登录状态，跳转登录页
     case 401:
-      tip('登录过期，请重新登录')
+      Message({
+        message: '登录状态过期，请重新登录，3秒后将跳转登录页',
+        center: 'true',
+        type: 'error'
+      })
+      setTimeout(() => {
+        router.push({ path: '/account/login' })
+      }, 3000)
       // toLogin()
       break
       // 403 token过期
@@ -134,7 +142,12 @@ instance.interceptors.response.use(
       // network状态在app.vue中控制着一个全局的断网提示组件的显示隐藏
       // 关于断网组件中的刷新重新获取数据，会在断网组件中说明
       // store.commit('changeNetwork', false)
-      console.log('断网了！')
+      // console.log('断网了！')
+      Message({
+        message: '断网了',
+        type: 'error',
+        center: 'true'
+      })
     }
   })
 

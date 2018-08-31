@@ -6,7 +6,10 @@ export default {
     console.log(state)
     state.network = network
   },
-  resetToken(state) {
-    state = null
+  resetToken(state, newToken) {
+    state.token = newToken
+    window.localStorage.setItem('token', newToken)
+    // console.log(window.localStorage.getItem('token'))
+    // console.log(state.token)
   }
 }
