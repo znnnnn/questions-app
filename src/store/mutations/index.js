@@ -8,6 +8,8 @@ export default {
   },
   resetToken(state, newToken) {
     state.token = newToken
-    console.log(state.token)
+    window.localStorage.setItem('token', newToken)
+    // console.log(window.localStorage.getItem('token'))
+    // console.log(state.token)
   }
 }

@@ -84,19 +84,41 @@ export default {
     login() {
       this.$api.login.login(this.phone, this.password)
         .then(res => {
-          this.$message({
-            message: '恭喜你，登录成功！',
-            type: 'success',
-            center: true
+          if (res.data.message === '登录成功') {
+            this.$message({
+              message: '恭喜你，登录成功！',
+              type: 'success',
+              center: true
             // /////////////下一步  判断密码错误
-          })
-          this.$store.commit('resetToken', res.data.data.api_token)
-          this.$router.push({ path: '/' })
+            })
+            this.$store.commit('resetToken', res.data.data.api_token)
+            this.$router.push({ path: '/' })
+          } else if (res.data.message === '账号或密码不正确') {
+            this.pwdError()
+          }
           console.log(res)
         }
         // this.router
         )
+        // .catch(error => {
+        //   // console.log(error)
+        //   if (error.status === '401') {
+        //     this.$message({
+        //       message: '密码错误',
+        //       type: 'error',
+        //       center: true
+        //     })
+        //   }
+        // })
+    },
+    pwdError() {
+      this.$message({
+        message: '账号或密码不正确',
+        type: 'error',
+        center: true
+      })
     }
+
   }
 
 }
