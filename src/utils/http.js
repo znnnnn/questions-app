@@ -27,7 +27,7 @@ const tip = msg => {
    */
 const toLogin = () => {
   router.replace({
-    path: '/login',
+    path: '/account/login',
     query: {
       redirect: router.currentRoute.fullPath
     }
@@ -49,7 +49,7 @@ const errorHandle = (status, other) => {
         type: 'error'
       })
       setTimeout(() => {
-        router.push({ path: '/account/login' })
+        toLogin()
       }, 3000)
       // toLogin()
       break
@@ -61,7 +61,7 @@ const errorHandle = (status, other) => {
       store.commit('loginSuccess', null)
       setTimeout(() => {
         toLogin()
-      }, 1000)
+      }, 3000)
       break
       // 404请求不存在
     case 404:

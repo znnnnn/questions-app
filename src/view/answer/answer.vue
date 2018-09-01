@@ -11,13 +11,13 @@
     </div>
     <div class="nav">
       <ul>
-        <li v-for="(item,idx) in data" v-bind:class="[index.pre==idx ? 'active' : '']" @click="linkQue(idx)">{{idx+1}}</li>
+        <li v-for="(item,idx) in data" v-bind:class="[index.pre==idx ? 'active' : '']" @click="linkQue(idx)" :key="item">{{idx+1}}</li>
       </ul>
     </div>
     <div id="answer-body" class="answer-body">
       <!-- <div id="fullpage"> -->
         <full-page ref="fullpage" :options="options" id="fullpage">
-        <div class="section" v-for="(item,queId) in data">
+        <div class="section" v-for="(item,queId) in data" :key="item">
           <a class="answer-title"><span>{{queId+1}}.</span>{{item.question}}<span v-if="item.ismany==1">(多选)</span></a>
           <ul class="answer-list" data-presel="">
             <li v-for="(select,selId) in item.selects" ref="select" class="select" :key="select" :data-queid="queId" :data-selid="selId">

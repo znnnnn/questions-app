@@ -8,7 +8,7 @@
 		     class="mui-scroll-wrapper"
 		     data-scroll="1">
 			<div class="mui-scroll" style="transform: translate3d(0px, 0px, 0px) translateZ(0px); transition-duration: 0ms;">
-				<router-link v-for="(item,index) in category" class="link" 
+				<router-link v-for="(item,index) in category" class="link" :key="index"
 				:to="{
 					path: index==3?'/answer/indexIndustry':'/answer/common',
 					query: {

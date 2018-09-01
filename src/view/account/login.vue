@@ -33,7 +33,8 @@
                  type="text"
                  class="mui-input-clear mui-input"
                  placeholder="请输入验证码"
-                 maxlength="6">
+                 maxlength="6"
+                 v-model="code">
                  <sendsms :phone="this.phone"></sendsms>
         </div>
       </form>
@@ -73,6 +74,7 @@ export default {
     return {
       phone: '',
       password: '',
+      code: '',
       mode: 'primary'
     }
   },
@@ -89,31 +91,39 @@ export default {
       container.style.width = document.documentElement.clientWidth + 'px'
     },
     login() {
-      if (!this.$reg.checkPhone(this.phone)) {
-        this.$message({
-          message: '手机号格式错误',
-          type: 'error',
-          center: 'true'
-        })
-      } else if (!this.$reg.checkPwd(this.password)) {
-        this.$message({
-          message: '密码格式错误',
-          type: 'error',
-          center: 'true'
-        })
-      } else {
-        if (this.mode === 'primary') {
+      if (this.mode === 'primary') {
+        if (!this.$reg.checkPhone(this.phone)) {
+          this.$message({
+            message: '手机号格式错误',
+            type: 'error',
+            center: 'true'
+          })
+        } else if (!this.$reg.checkPwd(this.password)) {
+          this.$message({
+            message: '密码格式错误',
+            type: 'error',
+            center: 'true'
+          })
+        } else {
           this.loginRequest('primary')
-        } else if (this.mode === 'code') {
+        }
+      } else if (this.mode === 'code') {
+        if (!this.$reg.checkPhone(this.phone)) {
+          this.$message({
+            message: '手机号格式错误',
+            type: 'error',
+            center: 'true'
+          })
+        } else {
           this.loginRequest('code', this.code)
         }
       }
     },
     // 登录请求
     loginRequest(mode, code) {
-      this.$api.login.login(this.phone, this.password, mode)
+      this.$api.login.login(this.phone, this.password, mode, code)
         .then(res => {
-          if (res.data.message === '登录成功') {
+          if (res.data.status === 0) {
             this.$message({
               message: '恭喜你，登录成功！',
               type: 'success',
@@ -125,6 +135,12 @@ export default {
           } else if (res.data.message === '账号或密码不正确') {
             this.$message({
               message: '账号或密码不正确',
+              type: 'error',
+              center: true
+            })
+          } else if (res.data.status === 3) {
+            this.$message({
+              message: '验证码错误',
               type: 'error',
               center: true
             })
