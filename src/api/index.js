@@ -14,6 +14,7 @@ import ranking from './ranking'
 // 我的模块接口
 import userinfo from './userinfo'
 import userinfoIndustry from './userinfo/industry'
+import feedback from './userinfo/feedback'
 // 其他模块的接口……
 import test from './test' // mock测试
 // account的模块接口
@@ -36,6 +37,7 @@ export default {
   sendsms,
   forgotPassword,
   levels,
-  answer
+  answer,
+  feedback
   // ……
 }
