@@ -7,13 +7,13 @@
     <div class="mui-content">
 			<div class="knowledge-category list">
 				<ul>
-					<li v-for="(item,index) in nav" :class="index==0?'active nav':'nav'" :data-index="index" :data-id="item.id" :key="item"><a>{{item.name}}</a></li>
+					<li v-for="(item,index) in nav" :class="index==0?'active nav':'nav'" :data-index="index" :data-id="item.id"><a>{{item.name}}</a></li>
 				</ul>
 			</div>
 
       <div class="mui-scroll-wrapper levels">
         <div class="mui-scroll">
-          <router-link v-for="(item,index) in levels" :key="index" :to="{
+          <router-link v-for="(item,index) in levels" :to="{
             path: item.able==1?'/answer/answer':'',
             query: {
               seccateid: secCateId,
@@ -84,7 +84,6 @@ export default {
     this.cateId = this.$route.query.cateid
     this.title = this.$route.query.title
     this.index = this.$route.query.index
-    console.log(this.index)
     var _this = this
     function refresh() {
       var loadinginstace = Loading.service({ fullscreen: true })
@@ -157,6 +156,9 @@ export default {
 
 <style scoped src="@css/index/index-common.css"></style>
 <style scoped>
+.mui-scroll-wrapper {
+  top: 94px;
+}
 .mui-content {
   padding-top: 0!important;
 }
