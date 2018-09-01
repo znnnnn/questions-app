@@ -3,9 +3,9 @@
 }
 
 /*覆盖mui默认样式*/
-.mui-scroll-wrapper {
+/* .mui-scroll-wrapper {
 	top: 95px;
-}
+} */
 
 a.tip {
 	display: block;
@@ -90,7 +90,16 @@ div.levels ul li:last-child {
 	font-size: 16px;
 	margin-right: -2px;
 }*/
-div.levels ul li i.active {
+.icon {
+	width: 1em;
+	color: #a6a6a6;
+	fill: currentColor;
+	height: 100%;
+}
+.lock .icon {
+	color: #FFFFFF;
+}
+.lock .icon.active {
 	color: #ffb724;
 }
 div.levels ul li a {
@@ -224,7 +233,7 @@ div.levels ul.lock a:last-child {
 	font-size: 22px!important;	
 }
 .industry div.choose {
-	padding: 40px 20px 0;
+	padding: 20px 0;
 	height: 100%;
 	text-align: center;
 }
