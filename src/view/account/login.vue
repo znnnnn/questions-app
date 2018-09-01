@@ -65,6 +65,7 @@
 <script>
 // 引入发送验证码组件
 import sendsms from '@components/sendsms.vue'
+import { Message } from 'element-ui'
 
 export default {
   components: {
@@ -85,7 +86,15 @@ export default {
     // }
   },
   methods: {
+    tips(msg) {
+      Message({
+        message: msg,
+        type: 'error',
+        duration: 3000
+      })
+    },
     autoResize() {
+      console.log(this)
       const container = document.querySelector('.mui-content')
       container.style.height = document.documentElement.clientHeight + 'px'
       container.style.width = document.documentElement.clientWidth + 'px'
@@ -93,27 +102,15 @@ export default {
     login() {
       if (this.mode === 'primary') {
         if (!this.$reg.checkPhone(this.phone)) {
-          this.$message({
-            message: '手机号格式错误',
-            type: 'error',
-            center: 'true'
-          })
+          this.tips('手机号格式错误')
         } else if (!this.$reg.checkPwd(this.password)) {
-          this.$message({
-            message: '密码格式错误',
-            type: 'error',
-            center: 'true'
-          })
+          this.tips('密码格式错误')
         } else {
           this.loginRequest('primary')
         }
       } else if (this.mode === 'code') {
         if (!this.$reg.checkPhone(this.phone)) {
-          this.$message({
-            message: '手机号格式错误',
-            type: 'error',
-            center: 'true'
-          })
+          this.tips('手机号格式错误')
         } else {
           this.loginRequest('code', this.code)
         }
@@ -133,21 +130,14 @@ export default {
             this.$store.commit('resetToken', res.data.data.api_token)
             this.$router.push({ path: '/' })
           } else if (res.data.message === '账号或密码不正确') {
-            this.$message({
-              message: '账号或密码不正确',
-              type: 'error',
-              center: true
-            })
+            this.tips('账号或密码不正确')
           } else if (res.data.status === 3) {
-            this.$message({
-              message: '验证码错误',
-              type: 'error',
-              center: true
-            })
+            this.tips('验证码错误')
           }
         }
         )
     }
+
   }
 
 }

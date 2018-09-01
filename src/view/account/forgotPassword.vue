@@ -128,6 +128,8 @@ export default {
 </style>
 <style scoped src="@css/mui.min.css">
 </style>
+<style scoped src="@css/userinfo/newPwd.css">
+</style>
 
 <style scoped>
 

@@ -43,14 +43,10 @@ const errorHandle = (status, other) => {
   switch (status) {
     // 401: 未登录状态，跳转登录页
     case 401:
-      Message({
-        message: '登录状态过期，请重新登录，3秒后将跳转登录页',
-        center: 'true',
-        type: 'error'
-      })
+      tip('登录状态过期，请重新登录，自动跳转登录页')
       setTimeout(() => {
         toLogin()
-      }, 3000)
+      }, 0)
       // toLogin()
       break
       // 403 token过期
@@ -58,10 +54,10 @@ const errorHandle = (status, other) => {
     case 403:
       tip('登录过期，请重新登录')
       localStorage.removeItem('token')
-      store.commit('loginSuccess', null)
+      // store.commit('loginSuccess', null)
       setTimeout(() => {
         toLogin()
-      }, 3000)
+      }, 0)
       break
       // 404请求不存在
     case 404:

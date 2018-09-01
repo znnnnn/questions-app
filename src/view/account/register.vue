@@ -30,6 +30,8 @@
 <script>
 // 引入发送验证码组件
 import sendsms from '@components/sendsms.vue'
+import { Message } from 'element-ui'
+
 export default {
   components: {
     sendsms
@@ -45,19 +47,20 @@ export default {
 
   },
   methods: {
+    tips(msg) {
+      Message({
+        message: msg,
+        type: 'error',
+        duration: 3000
+      })
+    },
     register() {
       if (!this.$reg.checkPhone(this.phone)) {
-        this.$message({
-          message: '手机号格式错误',
-          type: 'error',
-          center: 'true'
-        })
+        this.tips('手机号格式错误')
+      } else if (this.code === '') {
+        this.tips('请输入验证码')
       } else if (!this.$reg.checkPwd(this.pwd)) {
-        this.$message({
-          message: '密码格式错误, 请输入六位以上数组加密码',
-          type: 'error',
-          center: 'true'
-        })
+        this.tips('密码格式错误, 请输入六位以上数组加密码')
       } else {
         this.registerRequest()
       }
@@ -67,25 +70,13 @@ export default {
         .then(res => {
           console.log(res.data)
           if (res.data.message === '验证码未填写') {
-            this.$message({
-              message: '请填写验证码',
-              type: 'error',
-              center: true
-            })
+            this.tips('请填写验证码')
             return
           } else if (res.data.message === '验证码错误') {
-            this.$message({
-              message: '验证码错误',
-              type: 'error',
-              center: true
-            })
+            this.tips('验证码错误')
             return
           } else if (res.data.message === '该手机号已被注册') {
-            this.$message({
-              message: '该手机号已被注册',
-              type: 'error',
-              center: true
-            })
+            this.tips('该手机号已被注册')
             return
           } else if (res.data.message === '注册成功') {
             this.$message({
@@ -101,18 +92,10 @@ export default {
           // console.log(error.data)
           // console.log(error.data.errors.phone[0])
           if (error.data.errors.phone[0] === 'The phone format is invalid.') {
-            this.$message({
-              message: '手机号格式错误',
-              type: 'error',
-              center: true
-            })
+            this.tips('手机号格式错误')
             return
           } else if (error.data.errors.password[0] === 'The password must be at least 6 characters.') {
-            this.$message({
-              message: '密码至少为6位',
-              type: 'error',
-              center: true
-            })
+            this.tips('密码至少为6位')
             return
           }
         })
@@ -127,6 +110,8 @@ export default {
 <style scoped src="@css/common-css.css">
 </style>
 <style scoped src="@css/mui.min.css">
+</style>
+<style scoped src="@css/userinfo/newPwd.css">
 </style>
 
 <style scoped>
