@@ -233,21 +233,21 @@ div.levels ul.lock a:last-child {
 	font-size: 22px!important;	
 }
 .industry div.choose {
-	padding: 20px 0;
+	/* padding: 20px 0; */
 	height: 100%;
 	text-align: center;
 }
 .industry div.choose-list a {
 	display: block;
+	box-sizing: border-box;
 	position: relative;
 	font-size: 18px!important;	
 	color: #CCCCCC;
-	padding: 2px 0;
+	padding: 5px 0;
 	margin: 5px;
 }
 .industry div.choose-list a.active {
-	color: #000000;
-	padding: 5px 0;
+	color: #0097a8;
 	border-top: 1px solid #CCCCCC;
 	border-bottom: 1px solid #CCCCCC;
 }

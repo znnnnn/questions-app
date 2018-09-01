@@ -21,6 +21,13 @@ const levels = {
         api_token: store.state.token
       }
     })
+  },
+  getAllLevels(id) {
+    return axios.get(`${base.sq}/cate/` + id + `/allgroups`, {
+      params: { // 请求参数
+        api_token: store.state.token
+      }
+    })
   }
 }
 

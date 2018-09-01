@@ -347,7 +347,7 @@ showList.prototype.LiClick = function(obj){
 			var html = [];
 			
 			if(this.index==0){
-				showAllList(Data); 
+				showAllList(Data);
 			}
 			
 			if(this.index==1){

@@ -5,6 +5,8 @@
 import article from './article'
 // 分类模块接口
 import homepage from './homePage'
+// 行业分类模块
+import industry from './industry'
 // 关卡模块接口
 import levels from './levels'
 // 题目模块接口
@@ -38,6 +40,7 @@ export default {
   forgotPassword,
   levels,
   answer,
-  feedback
+  feedback,
+  industry
   // ……
 }
