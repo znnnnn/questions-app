@@ -1,0 +1,89 @@
+.mint-tab-item {
+  background-color: #efefef;
+}
+
+.mint-tab-item {
+  color: #5c5c5c !important;
+}
+
+.mint-navbar .mint-tab-item.is-selected {
+  color: #0097a8 !important;
+}
+
+.container {
+  background-color: #efefef;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 119px);
+}
+
+.box {
+  width: 100%;
+}
+
+.oCircle {
+  width: 50%;
+  height: 0;
+  padding-bottom: 50%;
+  margin: auto;
+  border: 3px solid #0097a8;
+  border-radius: 50%;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 0 0 3px#83d8e1;
+  position: relative;
+  background-color: #fff;
+}
+
+
+.textBox {
+  /* top: calc(50% - 57.5px);
+  position: absolute; */
+  /* margin-top: 50%; */
+  position: absolute;
+  left: 50%;
+  margin-left: -48px;
+  top: 50%;
+  margin-top: -47.5px;
+}
+
+.textBox h3 {
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 40px;
+}
+
+.textBox .score {
+  font-size: 36.8px;
+  font-weight: 200 !important;
+}
+
+.btnBox {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.go {
+  width: 200px;
+  background-color: #fff ;
+  border: 1px solid #0097a8;
+  color: #0097a8;
+}
+
+.go:active {
+  background-color: #eee;
+  border: 1px solid #008190;
+  color: #008190;
+}
+
+.el-button:focus, .el-button:hover {
+  color: #008190;
+  border-color: #a0ced3;
+  background-color: #d9eaec;
+}
+
+.btnBox p{
+  line-height: 35px;
+}
