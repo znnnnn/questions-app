@@ -30,7 +30,7 @@ import { MessageBox } from 'mint-ui'
 export default {
   data() {
     return {
-      score: 567
+      score: 1567
     }
   },
   mounted() {
@@ -42,8 +42,26 @@ export default {
         message: '确认兑换吗？',
         showCancelButton: true
       })
-        .then(() => {
-          MessageBox.alert('兑换成功！', '恭喜')
+        .then(action => {
+          if (action === 'confirm' && this.score >= 1000) { // 确认的回调
+            this.score -= 1000
+            this.$message({
+              message: '兑换成功！',
+              type: 'success',
+              center: true
+            })
+          } else if (action === 'confirm' && this.score < 1000) {
+            this.$message({
+              message: '当前积分不足',
+              type: 'error',
+              center: true
+            })
+          } else if (action === 'cancel') {
+            this.$message({
+              message: '取消兑换',
+              center: true
+            })
+          }
         })
     }
   }
