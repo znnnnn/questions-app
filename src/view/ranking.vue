@@ -75,7 +75,7 @@ export default {
     var _this = this
     var type
     const tabsBtnGroup = document.querySelectorAll('#typeTabs .mint-tab-item')
-    console.log(tabsBtnGroup)
+    // console.log(tabsBtnGroup)
     for (const tabItem of tabsBtnGroup) {
       tabItem.addEventListener('click', function() {
         // console.log(tabItem.getAttribute('type'))

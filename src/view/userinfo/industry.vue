@@ -55,9 +55,9 @@ export default {
         for (let index = 0; index < res.data.data.length; index++) {
           this.$set(this.item, index, res.data.data[index])
         }
-        console.log(res.data.data)
+        // console.log(res.data.data)
         // console.log(i)
-        console.log(this.item)
+        // console.log(this.item)
         // this.items = res
       })
   }

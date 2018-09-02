@@ -147,10 +147,6 @@ export default {
 
 <style scoped src="@css/style.css">
 </style>
-<style scoped src="@css/common-css.css">
-</style>
-<style scoped src="@css/mui.min.css">
-</style>
 
 <style scoped>
 .mui-content {

@@ -65,7 +65,7 @@ export default {
     Request() {
       this.$api.forgotPassword.forgotPassword(this.code, this.phone, this.pwd)
         .then(res => {
-          console.log(res.data)
+          // console.log(res.data)
           if (res.data.message === '验证码未填写') {
             this.$message({
               message: '请填写验证码',
@@ -122,13 +122,11 @@ export default {
 </script>
 
 
-<style scoped src="@css/style.css">
-</style>
 <style scoped src="@css/common-css.css">
 </style>
 <style scoped src="@css/mui.min.css">
 </style>
-<style scoped src="@css/userinfo/newPwd.css">
+<style scoped src="@css/reg-forgetPwd-common.css">
 </style>
 
 <style scoped>
@@ -162,6 +160,18 @@ header {
 
 #getCode {
   top: 15px !important;
+}
+
+.mui-input-group .mui-input-row:after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 15px;
+    height: 1px;
+    content: '';
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+    background-color: #c8c7cc;
 }
 
 </style>

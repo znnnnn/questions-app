@@ -122,13 +122,11 @@ export default {
 </script>
 
 
-<style scoped src="@css/style.css">
-</style>
 <style scoped src="@css/common-css.css">
 </style>
 <style scoped src="@css/mui.min.css">
 </style>
-<style scoped src="@css/userinfo/newPwd.css">
+<style scoped src="@css/reg-forgetPwd-common.css">
 </style>
 
 <style scoped>
@@ -160,5 +158,8 @@ header {
   color: #ffffff !important;
 }
 
+#getCode {
+  top:15px;
+}
 
 </style>
