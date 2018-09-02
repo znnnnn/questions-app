@@ -115,6 +115,10 @@ export default {
       // console.log(this.index.pre)
     },
     back() {
+      if(this.index.queLen==0){
+        this.$router.back(-1)
+        return
+      }
       MessageBox({
         message: '答题未完成，确认退出吗？',
         showCancelButton: true
@@ -300,7 +304,7 @@ export default {
     
   },
   destroyed () {
-      alert('实例已销毁')
+      
   }
 }
 

@@ -10,8 +10,8 @@
     <div :class="status?'mui-hidden':'mui-content nav'">
 			<div class="knowledge-category list">
 				<ul>
-					<li class="active"><a>{{fName}}</a></li>
-					<li><a>全部行业</a></li>
+					<li :class="active?'active':''" @click="liClick(0)"><a>{{fName}}</a></li>
+					<li :class="active?'':'active'" @click="liClick(1)"><a>全部行业</a></li>
 					<!-- <li><a>选择行业</a></li> -->
 				</ul>
 			</div>
@@ -23,17 +23,17 @@
             <a v-for="(item,index) in selects" :class="index==pre?'active':''" @click="changeId(index,item.id,$event)">{{item.name}}</a>
 					</div>
 				</div>
-        <router-link :class="status?'mui-hidden':'levels'" to="/answer/answer">
-          <ul class="process">
+        <!-- <router-link to="/answer/answer"> -->
+          <ul class="level" v-for="(item,index) in data" :class="status?'mui-hidden':'levels'" :data-groupId="item.id">
             <li>
-              <a class="title">医疗行业大苏打的</a>
+              <a class="title">{{item.name}}</a>
             </li>
             <li>
-              <a class="time">时间dsadsadasd</a>
-              <a class="lable">行业标签</a>
+              <a class="time">{{item.start_time?item.start_time:item.pivot.start_time}}/{{item.expire_time?item.expire_time:item.pivot.expire_time}}</a>
+              <a class="lable">{{item.mark?item.mark:'公民'}}</a>
             </li>
           </ul>
-        </router-link>
+        <!-- </router-link> -->
 				<!--<ul class="process">
 					<li>
 						<a class="title">医疗行业大苏打的</a>
@@ -68,6 +68,7 @@
 
 <script>
 import { Loading } from 'element-ui'
+import { Toast } from 'mint-ui'
 export default {
   data() {
     return {
@@ -77,7 +78,9 @@ export default {
       pre: 0,
       cateId: null,
       fName: '',
-      status: true
+      status: true,
+      seccateId: null,
+      active: true
     }
   },
   created() {
@@ -90,9 +93,7 @@ export default {
           loadinginstace.close()
           _this.selects = res.data.data
           _this.fName = res.data.data[0].name
-          console.log(res)
-          _this.$nextTick(function() {
-          })
+          _this.seccateId = res.data.data[0].id
         })
         .catch(error => {
           loadinginstace.close()
@@ -102,18 +103,121 @@ export default {
     refresh()
   },
   mounted() {
-
   },
   methods: {
+    liClick(id) {
+      var _this = this
+      console.log(this.active)
+      var loadinginstace = Loading.service({ fullscreen: true })
+      if (id === 0) {
+        _this.active = true
+        _this.$api.levels.getLevels(_this.seccateId)
+          .then(res => {
+            loadinginstace.close()
+            _this.data = res.data.data
+            _this.$nextTick(function() {
+              _this.checkData()
+            })
+          })
+          .catch(error => {
+            loadinginstace.close()
+            console.log(error)
+          })
+      } else {
+        _this.active = false
+        _this.$api.levels.getAllLevels(_this.cateId)
+          .then(res => {
+            loadinginstace.close()
+            _this.data = res.data.data
+            console.log(_this.cateId)
+            _this.$nextTick(function() {
+              _this.checkData()
+            })
+          })
+          .catch(error => {
+            loadinginstace.close()
+            console.log(error)
+          })
+      }
+    },
     changeId(index, id, e) {
       this.pre = index
-      this.cateId = id
       this.fName = e.target.innerText
-      console.log(id)
+      this.seccateId = id
     },
     choose() {
+      this.active = true
       this.status = false
-      console.log(this.cateId)
+      var _this = this
+      var loadinginstace = Loading.service({ fullscreen: true })
+      _this.$api.levels.getLevels(_this.seccateId)
+        .then(res => {
+          loadinginstace.close()
+          _this.data = res.data.data
+          _this.$nextTick(function() {
+            _this.checkData()
+          })
+        })
+        .catch(error => {
+          loadinginstace.close()
+          console.log(error)
+        })
+    },
+    checkData() {
+      var _this = this
+      var Uls = document.querySelectorAll('.level')
+      var len = Uls.length
+      var time = new Date().getTime()
+      for (let i = 0; i < len; i++) {
+        var sTime = this.data[i].start_time ? this.data[i].start_time : this.data[i].pivot.start_time
+        // sTime = sTime ? sTime : 0
+        var eTime = this.data[i].expire_time ? this.data[i].expire_time : this.data[i].pivot.expire_time
+        // eTime = eTime ? eTime : 0
+        var nsTime = new Date(sTime).getTime()
+        var neTime = new Date(eTime).getTime()
+        if (time < nsTime) {
+          Uls[i].classList.add('nostart')
+          Uls[i].addEventListener('click', function() {
+            Toast('答题未开始')
+          })
+        } else if (time < neTime) {
+          Uls[i].classList.add('process')
+          Uls[i].addEventListener('click', function() {
+            var gId = this.getAttribute('data-groupId')
+            _this.checkLimit(gId)
+          })
+        } else {
+          Uls[i].classList.add('lock')
+          Uls[i].addEventListener('click', function() {
+            Toast('答题已结束')
+          })
+        }
+      }
+    },
+    checkLimit(gId) {
+      console.log(this.seccateId)
+      console.log(gId)
+      this.$api.answer.getAnswer(this.seccateId, gId)
+        .then(res => {
+          console.log(res)
+          if (res.data.status === 21) {
+            Toast('该身份不允许参加')
+          } else {
+            this.linkAnswer(this.seccateId, gId)
+          }
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+    linkAnswer(a, b) {
+      this.$router.push({
+        path: '/answer/answer',
+        query: {
+          seccateid: a,
+          groupid: b
+        }
+      })
     }
   }
 }
@@ -145,7 +249,7 @@ export default {
   }
   .list li {
     overflow: hidden;
-    width: 33.333333%;
+    width: 50%;
   }
   .list li a {
     display: block;
