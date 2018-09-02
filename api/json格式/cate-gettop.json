@@ -1,0 +1,61 @@
+{
+    "status": 0,
+    "message": "",
+    "data": [
+        {
+			//cate_id 注意保存
+            "id": 1,
+            "sort": 0,
+            "name": "知识类",
+            "mark": "2016级",
+            "pid": 0,
+            "career_id": null,
+			//开始时间
+            "start_time": null,
+			//结束时间
+            "expire_time": null,
+            "created_at": null,
+            "updated_at": null,
+            "deleted_at": null
+        },
+        {
+            "id": 2,
+            "sort": 0,
+            "name": "专业类",
+            "mark": "检查组",
+            "pid": 0,
+            "career_id": null,
+            "start_time": null,
+            "expire_time": null,
+            "created_at": null,
+            "updated_at": null,
+            "deleted_at": null
+        },
+        {
+            "id": 3,
+            "sort": 0,
+            "name": "竞赛类",
+            "mark": "安服组",
+            "pid": 0,
+            "career_id": "1,2,3",
+            "start_time": "2018-07-25 13:13:01",
+            "expire_time": "2019-07-25 18:13:05",
+            "created_at": null,
+            "updated_at": null,
+            "deleted_at": null
+        },
+        {
+            "id": 4,
+            "sort": 0,
+            "name": "行业类",
+            "mark": null,
+            "pid": 0,
+            "career_id": null,
+            "start_time": null,
+            "expire_time": null,
+            "created_at": null,
+            "updated_at": null,
+            "deleted_at": null
+        }
+    ]
+}

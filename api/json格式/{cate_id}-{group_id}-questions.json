@@ -1,0 +1,89 @@
+{
+    "status": 0,
+    "message": "",
+    "data": [
+        {
+            "id": 6,
+			//问题内容
+            "question": "问题1",
+			//选项
+            "selects": [
+                "选择1",
+                "选择2",
+                "选择3",
+                "选择4"
+            ],
+            "score": null,
+            "difficulty": null,
+            "created_at": null,
+            "updated_at": null,
+            "deleted_at": null,
+			//保存 留用！！！
+            "sort_id": 0
+        },
+        {
+            "id": 7,
+            "question": "问题2",
+            "selects": [
+                "选择1",
+                "选择2",
+                "选择3",
+                "选择4"
+            ],
+            "score": null,
+            "difficulty": null,
+            "created_at": null,
+            "updated_at": null,
+            "deleted_at": null,
+            "sort_id": 1
+        },
+        {
+            "id": 8,
+            "question": "问题3",
+            "selects": [
+                "选择1",
+                "选择2",
+                "选择3",
+                "选择4"
+            ],
+            "score": null,
+            "difficulty": null,
+            "created_at": null,
+            "updated_at": null,
+            "deleted_at": null,
+            "sort_id": 2
+        },
+        {
+            "id": 9,
+            "question": "问题4",
+            "selects": [
+                "选择1",
+                "选择2",
+                "选择3",
+                "选择4"
+            ],
+            "score": null,
+            "difficulty": null,
+            "created_at": null,
+            "updated_at": null,
+            "deleted_at": null,
+            "sort_id": 3
+        },
+        {
+            "id": 10,
+            "question": "问题5",
+            "selects": [
+                "选择1",
+                "选择2",
+                "选择3",
+                "选择4"
+            ],
+            "score": null,
+            "difficulty": null,
+            "created_at": null,
+            "updated_at": null,
+            "deleted_at": null,
+            "sort_id": 4
+        }
+    ]
+}

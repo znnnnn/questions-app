@@ -1,0 +1,126 @@
+{
+    "status": 0,
+    "message": "",
+    "data": [
+        {
+			//group_id 注意保存
+            "id": 1,
+			//关卡名称
+            "name": "1",
+			//及格分数
+            "pass": 80,
+			//难度 1、2、3
+            "difficulty": null,
+            "pre_group_id": 0,
+            "mark": null,
+            "created_at": null,
+            "updated_at": null,
+            "deleted_at": null,
+			//能否答题
+            "able": 1,
+			//分数
+            "grade": 0,
+			//是否及格
+            "ispass": "1",
+            "pivot": {
+                "category_id": 5,
+                "group_id": 1,
+                "sort": 0,
+                "career_id": null,
+				//开始时间
+                "start_time": "2018-07-29 14:26:42",
+				//结束时间
+                "expire_time": "2028-07-29 14:26:44"
+            }
+        },
+        {
+            "id": 2,
+            "name": "2",
+            "pass": 60,
+            "difficulty": 1,
+            "pre_group_id": 1,
+            "mark": null,
+            "created_at": null,
+            "updated_at": null,
+            "deleted_at": null,
+            "able": 1,
+            "grade": 60,
+            "ispass": "1",
+            "pivot": {
+                "category_id": 5,
+                "group_id": 2,
+                "sort": 0,
+                "career_id": "1,2,3",
+                "start_time": null,
+                "expire_time": null
+            }
+        },
+        {
+            "id": 3,
+            "name": "3",
+            "pass": 80,
+            "difficulty": null,
+            "pre_group_id": 2,
+            "mark": null,
+            "created_at": null,
+            "updated_at": null,
+            "deleted_at": null,
+            "able": 1,
+            "grade": null,
+            "ispass": 0,
+            "pivot": {
+                "category_id": 5,
+                "group_id": 3,
+                "sort": 0,
+                "career_id": "1",
+                "start_time": null,
+                "expire_time": null
+            }
+        },
+        {
+            "id": 4,
+            "name": "4",
+            "pass": 80,
+            "difficulty": null,
+            "pre_group_id": 3,
+            "mark": null,
+            "created_at": null,
+            "updated_at": null,
+            "deleted_at": null,
+            "able": 0,
+            "grade": null,
+            "ispass": 0,
+            "pivot": {
+                "category_id": 5,
+                "group_id": 4,
+                "sort": 0,
+                "career_id": "1,2",
+                "start_time": null,
+                "expire_time": null
+            }
+        },
+        {
+            "id": 5,
+            "name": "5",
+            "pass": 80,
+            "difficulty": null,
+            "pre_group_id": 4,
+            "mark": null,
+            "created_at": null,
+            "updated_at": null,
+            "deleted_at": null,
+            "able": 0,
+            "grade": null,
+            "ispass": 0,
+            "pivot": {
+                "category_id": 5,
+                "group_id": 5,
+                "sort": 0,
+                "career_id": null,
+                "start_time": null,
+                "expire_time": null
+            }
+        }
+    ]
+}
+		

@@ -30,7 +30,7 @@ Vue.use(ElementUI)
 Vue.use(VueFullPage)
 // Vue.use(Vuex)
 var store = createStore()
-console.log(store)
+// console.log(store)
 
 Vue.config.productionTip = false
 

@@ -1,0 +1,46 @@
+{
+    "status": 0,
+    "message": "",
+    "data": [
+        {
+			//cate_id
+            "id": 5,
+            "sort": 0,
+            "name": "个人信息安全",
+            "mark": null,
+            "pid": 1,
+            "career_id": null,
+            "start_time": null,
+            "expire_time": null,
+            "created_at": null,
+            "updated_at": null,
+            "deleted_at": null
+        },
+        {
+            "id": 6,
+            "sort": 0,
+            "name": "放电信诈骗",
+            "mark": null,
+            "pid": 1,
+            "career_id": null,
+            "start_time": null,
+            "expire_time": null,
+            "created_at": null,
+            "updated_at": null,
+            "deleted_at": null
+        },
+        {
+            "id": 7,
+            "sort": 0,
+            "name": "网络安全法",
+            "mark": null,
+            "pid": 1,
+            "career_id": null,
+            "start_time": null,
+            "expire_time": null,
+            "created_at": null,
+            "updated_at": null,
+            "deleted_at": null
+        }
+    ]
+}

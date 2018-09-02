@@ -50,7 +50,7 @@
               <i class="iconfont icon-xing"></i>修改密码</a>
           </router-link>
           <a class="mui-table-view-cell li-item"
-                       @click="this.confirmToLeave">
+             @click="this.confirmToLeave">
             <a class="mui-navigate-right">
               <i class="iconfont icon-setup_icon"></i>退出登录</a>
           </a>
@@ -160,7 +160,7 @@ export default {
         return (() => {
           console.log('当前高度为：' + document.documentElement.clientHeight)
           container.style.height = document.documentElement.clientHeight + 'px'
-        // container.style.height = window.fullHeight
+          // container.style.height = window.fullHeight
         })()
       }
     },
@@ -181,7 +181,7 @@ export default {
               message: '退出登录成功！',
               type: 'success',
               center: true
-            // /////////////下一步  判断密码错误
+              // /////////////下一步  判断密码错误
             })
           } else {
             console.log(2)
@@ -194,12 +194,12 @@ export default {
 
 
 <style scoped src="@css/userinfo/index.css">
-
 </style>
 
 <style scoped>
 .mui-content {
   height: 100vh;
+  justify-content: center;
   /* overflow: hidden; */
 }
 
@@ -210,6 +210,17 @@ export default {
 .mui-navigate-right {
   color: #000 !important;
 }
+
+#app > div.mui-content > header {
+  position: fixed;
+  left: 50%;
+  margin-left: -46px;
+  color: #ffffff;
+  line-height: 50px;
+  /* font-weight: bold; */
+  letter-spacing: 2px;
+  font-weight: 700;
+}
 </style>
 
 <style>
@@ -218,10 +229,10 @@ export default {
   background-color: #efefef;
   position: absolute;
   height: 100%;
-  width:100%;
+  width: 100%;
 }
 
 .mui-bar-nav.mui-bar .mui-icon {
-  margin-top:0;
+  margin-top: 0;
 }
 </style>

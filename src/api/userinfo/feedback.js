@@ -11,14 +11,20 @@ var store = createStore()
 const feedback = {
   // 排行排名
   feedback(content, img, comms) {
+    // console.log(qs.stringify(
+    //   {
+    //     api_token: store.state.token,
+    //     content: content,
+    //     comms: comms
+    //   }) + `&img=[${img}]`)
     return axios.post(`${base.sq}/feedback/create`, qs.stringify(
       {
         api_token: store.state.token,
         content: content,
-        img: img,
         comms: comms
-      }
-    ))
+      }) + `&img=[${img}]`, {
+      traditional: true
+    })
   }
 
   // 其他接口…………

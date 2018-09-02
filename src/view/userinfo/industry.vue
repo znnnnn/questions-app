@@ -58,7 +58,7 @@ export default {
         }
         console.log(res.data)
         // console.log(i)
-        console.log(this.item)
+        // console.log(this.item)
         // this.items = res
       })
   },
