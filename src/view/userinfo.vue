@@ -4,7 +4,8 @@
     <header>
       <a>个人中心</a>
     </header>
-    <div class="userInfo">
+    <div class="userInfoBox">
+      <div class="userInfo">
       <div>
         <ul class="mui-table-view">
           <li class="mui-table-view-cell">
@@ -57,6 +58,7 @@
         </ul>
       </div>
     </div>
+    </div>
   </div>
 </template>
 
@@ -89,7 +91,7 @@ export default {
   },
   mounted() {
     // 自动适配屏幕高度
-    this.resizeHeight()
+    // this.resizeHeight()
 
     // 初始化页面数据
     var _self = this
@@ -154,16 +156,16 @@ export default {
     },
 
     // 监控屏幕高度
-    resizeHeight() {
-      const container = document.querySelector('.mui-content')
-      window.onresize = () => {
-        return (() => {
-          console.log('当前高度为：' + document.documentElement.clientHeight)
-          container.style.height = document.documentElement.clientHeight + 'px'
-          // container.style.height = window.fullHeight
-        })()
-      }
-    },
+    // resizeHeight() {
+    //   const container = document.querySelector('.mui-content')
+    //   window.onresize = () => {
+    //     return (() => {
+    //       console.log('当前高度为：' + document.documentElement.clientHeight)
+    //       container.style.height = document.documentElement.clientHeight + 'px'
+    //       // container.style.height = window.fullHeight
+    //     })()
+    //   }
+    // },
 
     // 确认离开
     confirmToLeave() {
@@ -234,5 +236,28 @@ export default {
 
 .mui-bar-nav.mui-bar .mui-icon {
   margin-top: 0;
+}
+
+.mui-table-view-cell {
+  padding-left:40px !important;
+}
+
+.userInfoBox {
+  box-sizing: content-box;
+  height: calc(100% - 119px);
+  padding-top:50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userInfo {
+  position: relative !important;
+  top: auto !important
+}
+
+.mui-content {
+  overflow: hidden;
+  transition: 0.5s all;
 }
 </style>

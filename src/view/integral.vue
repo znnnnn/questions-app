@@ -18,7 +18,7 @@
         <div class="btnBox">
           <el-input placeholder="请输入手机号"
                     v-model="phone"
-                    id="phone"
+                    id="integralPhone"
                     clearable>
           </el-input>
           <el-row>
@@ -109,7 +109,7 @@ export default {
 </style>
 
 <style>
-#phone {
+#integralPhone {
   width: 200px;
   background-color: #fff;
   border: 1px solid #0097a8;
@@ -117,21 +117,21 @@ export default {
 }
 
 .go:active,
-#phone:active {
+#integralPhone:active {
   background-color: #eee;
   border: 1px solid #008190;
   color: #008190;
 }
 
-#phone:focus,
-#phone:hover {
+#integralPhone:focus,
+#integralPhone:hover {
   color: #008190;
   border-color: #a0ced3;
   background-color: #d9eaec;
 }
 
-#phone:focus,
-#phone:hover {
+#integralPhone:focus,
+#integralPhone:hover {
   color: #008190;
   border-color: #a0ced3 !important;
 }

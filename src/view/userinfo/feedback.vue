@@ -174,6 +174,7 @@ export default {
 
 .mui-content {
   background-color: #fdfaff;
+  transition: 0.5s all;
 }
 
 header {
@@ -192,6 +193,7 @@ header {
 }
 
 div.sub {
-  padding-bottom: 90px;
+  padding-top:10px;
+  padding-bottom: 130px;
 }
 </style>
