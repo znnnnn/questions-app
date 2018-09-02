@@ -125,27 +125,17 @@ export default {
       // console.log(this.index.pre)
     },
     back() {
-      // this.fullpage = false
-      fullpage_api.destroy()
-      this.$router.back(-1)
-      return
-      if(this.index.queLen==0 && this.cateId === 4){
-        this.$router.push({
-          path: '/answer/answer'
-        })
+      if(this.index.queLen==0){
+        this.$router.back(-1)
         return
-      }
-      if(this.cateId === 4) {
-
       }
       MessageBox({
         message: '答题未完成，确认退出吗？',
         showCancelButton: true
       }).then(action => {
         if( action =='confirm'){
-          this.$router.push({
-            path: '/'
-          })
+          fullpage_api.destroy()
+          this.$router.back(-1)
         }
       });
     },
