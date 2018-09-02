@@ -5,6 +5,9 @@
     </header>
 
     <div class="container">
+      <el-button type="text"
+                 @click="rule"
+                 id="rule">积分规则</el-button>
       <div class="box">
         <div class="oCircle">
           <div class="textBox">
@@ -13,9 +16,16 @@
           </div>
         </div>
         <div class="btnBox">
+          <el-input placeholder="请输入手机号"
+                    v-model="phone"
+                    id="phone"
+                    clearable>
+          </el-input>
           <el-row>
-            <el-button round class="go" @click="go">立即兑换</el-button>
-            <p>注：1000积分兑换1个学分</p>
+            <el-button round
+                       class="go"
+                       @click="preGo">立即兑换</el-button>
+            <p>注：1000积分兑换15元话费</p>
           </el-row>
         </div>
       </div>
@@ -30,12 +40,28 @@ import { MessageBox } from 'mint-ui'
 export default {
   data() {
     return {
-      score: 1567
+      score: 1567,
+      phone: ''
     }
   },
   mounted() {
+    var Oinput = document.getElementById('phone')
+    // console.log(Oinput)
+    Oinput.style.marginBottom = 0 + 'px'
+    Oinput.style.borderRadius = 10 + 'px'
   },
   methods: {
+    preGo() {
+      if (!this.$reg.checkPhone(this.phone)) {
+        this.$message({
+          message: '手机号格式不正确',
+          type: 'error',
+          center: true
+        })
+      } else {
+        this.go()
+      }
+    },
     go() {
       MessageBox({
         title: '提示',
@@ -63,9 +89,16 @@ export default {
             })
           }
         })
+    },
+    rule() {
+      this.$alert('<strong>这是 <i>积分规则</i> 片段</strong>', '积分规则', {
+        dangerouslyUseHTMLString: true,
+        center: true
+      })
     }
   }
 }
+
 </script>
 
 
@@ -75,7 +108,51 @@ export default {
 <style scoped src="@css/integral.css">
 </style>
 
-<style lang="css" scoped>
-body {
+<style>
+#phone {
+  width: 200px;
+  background-color: #fff;
+  border: 1px solid #0097a8;
+  color: #0097a8;
+}
+
+.go:active,
+#phone:active {
+  background-color: #eee;
+  border: 1px solid #008190;
+  color: #008190;
+}
+
+#phone:focus,
+#phone:hover {
+  color: #008190;
+  border-color: #a0ced3;
+  background-color: #d9eaec;
+}
+
+#phone:focus,
+#phone:hover {
+  color: #008190;
+  border-color: #a0ced3 !important;
+}
+
+#rule {
+  position: fixed;
+  z-index: 100;
+  top: 50px;
+  right: 12px;
+}
+
+.el-message-box {
+  width: 50vh !important;
+}
+
+#rule {
+  color: #008190;
+}
+
+#rule:hover {
+  border: 0px solid #fff;
+  background-color: transparent;
 }
 </style>

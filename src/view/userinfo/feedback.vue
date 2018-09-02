@@ -109,6 +109,10 @@ export default {
               center: true
             })
           } else if (res.data.status === 0) {
+            this.question = ''
+            this.mail = ''
+            this.fileList = []
+            this.imgFileList = []
             this.$message({
               message: '反馈成功！',
               type: 'success',

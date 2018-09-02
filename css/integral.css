@@ -63,24 +63,24 @@
 }
 
 .btnBox {
-  margin-top: 15px;
+  margin-top: 35px;
   text-align: center;
 }
 
-.go {
+.go,.el-input__inner {
   width: 200px;
   background-color: #fff ;
   border: 1px solid #0097a8;
   color: #0097a8;
 }
 
-.go:active {
+.go:active,.el-input__inner:active {
   background-color: #eee;
   border: 1px solid #008190;
   color: #008190;
 }
 
-.el-button:focus, .el-button:hover {
+.el-button:focus, .el-button:hover,.el-input__inner:focus,.el-input__inner:hover {
   color: #008190;
   border-color: #a0ced3;
   background-color: #d9eaec;
@@ -88,4 +88,16 @@
 
 .btnBox p{
   line-height: 35px;
+}
+
+.el-input {
+  width: 200px !important;
+}
+
+.el-row {
+  margin-top: 15px;
+}
+
+.el-button.is-round {
+  border-radius: 10px
 }
