@@ -51,8 +51,6 @@
 </template>
 
 <script>
-// import $ from 'jquery'
-
 export default {
   data() {
     return {
@@ -91,9 +89,22 @@ export default {
         .then(res => {
           // console.log(res)
         })
+        .catch(error => {
+          console.log(error)
+        })
     },
     handleRemove(file, fileList) {
+      // 通过Uid来删除指定图片
+      // console.log(file.uid)
       // console.log(fileList)
+      // console.log(this.fileList)
+      this.fileList.forEach((item, i) => {
+        if (item.uid === file.uid) {
+          this.fileList.splice(i, 1)
+          this.imgFileList.splice(i, 1)
+        }
+      })
+      // console.log($('.el-upload-list__item-delete'))
     },
     handlePictureCardPreview(file) {
       this.dialogImageUrl = file.url

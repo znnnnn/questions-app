@@ -74,3 +74,8 @@ export default {
 
 <style scoped src="@css/integral.css">
 </style>
+
+<style lang="css" scoped>
+body {
+}
+</style>
