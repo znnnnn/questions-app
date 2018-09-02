@@ -214,6 +214,7 @@ export default {
       this.$router.push({
         path: '/answer/answer',
         query: {
+          cateId: this.cateId,
           seccateid: a,
           groupid: b
         }

@@ -17,7 +17,7 @@
               </div>
               <div class="box-bottom">
                 时间：
-                <a>{{item.start_time ? item.start_time : 'undefined'}}---{{item.expire_time ? item.expire_time : 'undefinedundefined'}}</a>
+                <a>{{item.start_time ? item.start_time : 'undefined'}}---{{item.expire_time ? item.expire_time : 'undefined'}}</a>
                 <a class="lable">{{item.mark}}</a>
               </div>
             </div>
