@@ -1,0 +1,41 @@
+所有排序：cate_id=0或不设置
+{
+    "status": 0,
+    "message": "",
+    "data": {
+		//排名
+        "rank": [
+            {
+                "user_id": 2,
+				//手机号
+                "phone": "15305875281",
+				//总分（百分比总分）
+                "sum_score": 210
+            },
+            {
+                "user_id": 1,
+                "phone": "15305875280",
+                "sum_score": 160,
+                "rank": 2
+            }
+        ],
+		//我的排名
+        "my": {
+            "user_id": 1,
+            "phone": "15305875280",
+            "sum_score": 160,
+			//排名
+            "rank": 2
+        }
+    }
+}
+
+没有排名
+{
+    "status": 0,
+    "message": "",
+    "data": {
+        "rank": [],
+        "my": []
+    }
+}

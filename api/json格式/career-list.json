@@ -1,0 +1,38 @@
+{
+    "status": 0,
+    "message": "",
+    "data": [
+        {
+            "id": 0,
+            "name": "公民"
+        },
+        {
+            "id": 1,
+            "name": "医疗行业",
+            "mark": null,
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 2,
+            "name": "金融行业",
+            "mark": null,
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 3,
+            "name": "交通",
+            "mark": null,
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 4,
+            "name": "电信",
+            "mark": null,
+            "created_at": null,
+            "updated_at": null
+        }
+    ]
+}

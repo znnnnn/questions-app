@@ -6,45 +6,47 @@
       <h1 class="mui-title">意见反馈</h1>
     </header>
     <div class="mui-content">
-      <div class="mui-content-padded">
-        <div class="mui-inline">问题和意见</div>
-      </div>
-      <div class="row mui-input-row">
-        <textarea id='question'
-                  class="mui-input-clear question"
-                  placeholder="请详细描述你的问题和意见..."
-                  v-model="question"></textarea>
-      </div>
-      <p>图片(选填,提供问题截图,总大小10M以下)</p>
-      <!-- <div id='image-list' class="row image-list"></div> -->
-      <el-upload action="http://101.132.141.130:82/api/feedback/create"
-                 :before-upload="beforUpload"
-                 list-type="picture-card"
-                 :file-list="fileList"
-                 :on-preview="handlePictureCardPreview"
-                 ref="newupload"
-                 :on-remove="handleRemove"
-                 :multiple="true"
-                 id="file" >
-        <i class="el-icon-plus"></i>
-      </el-upload>
-      <el-dialog :visible.sync="dialogVisible">
-        <img width="100%"
-             :src="dialogImageUrl"
-             alt="">
-      </el-dialog>
-      <p>QQ/邮箱</p>
-      <div class="mui-input-row">
-        <input id='contact'
-               type="text"
-               class="mui-input-clear contact"
-               placeholder="(选填,方便我们联系你 )"
-               v-model="mail" />
-      </div>
-      <div class="sub">
-        <button id="submit"
-                class="mui-btn mui-btn-blue mui-btn-link"
-                @click="submit">立即提交</button>
+      <div class="box">
+        <div class="mui-content-padded">
+          <div class="mui-inline">问题和意见</div>
+        </div>
+        <div class="row mui-input-row">
+          <textarea id='question'
+                    class="mui-input-clear question"
+                    placeholder="请详细描述你的问题和意见..."
+                    v-model="question"></textarea>
+        </div>
+        <p>图片(选填,提供问题截图,总大小10M以下)</p>
+        <!-- <div id='image-list' class="row image-list"></div> -->
+        <el-upload action="http://101.132.141.130:82/api/feedback/create"
+                   :before-upload="beforUpload"
+                   list-type="picture-card"
+                   :file-list="fileList"
+                   :on-preview="handlePictureCardPreview"
+                   ref="newupload"
+                   :on-remove="handleRemove"
+                   :multiple="true"
+                   id="file">
+          <i class="el-icon-plus"></i>
+        </el-upload>
+        <el-dialog :visible.sync="dialogVisible">
+          <img width="100%"
+               :src="dialogImageUrl"
+               alt="">
+        </el-dialog>
+        <p>QQ/邮箱</p>
+        <div class="mui-input-row">
+          <input id='contact'
+                 type="text"
+                 class="mui-input-clear contact"
+                 placeholder="(选填,方便我们联系你 )"
+                 v-model="mail" />
+        </div>
+        <div class="sub">
+          <button id="submit"
+                  class="mui-btn mui-btn-blue mui-btn-link"
+                  @click="submit">立即提交</button>
+        </div>
       </div>
     </div>
   </div>
@@ -88,6 +90,31 @@ export default {
       this.$api.feedback.feedback(this.question, this.imgFileList, this.mail)
         .then(res => {
           // console.log(res)
+          if (this.question === '') {
+            this.$message({
+              message: '内容不能为空',
+              type: 'error',
+              center: true
+            })
+          } else if (res.data.status === 2) {
+            this.$message({
+              message: '图片过多！',
+              type: 'error',
+              center: true
+            })
+          } else if (res.data.status === 3) {
+            this.$message({
+              message: '图片文件太大！',
+              type: 'error',
+              center: true
+            })
+          } else if (res.data.status === 0) {
+            this.$message({
+              message: '反馈成功！',
+              type: 'success',
+              center: true
+            })
+          }
         })
         .catch(error => {
           console.log(error)
@@ -155,5 +182,12 @@ header {
 
 .v-modal {
   z-index: 0 !important ;
+}
+
+.mui-bar-nav ~ .mui-content {
+}
+
+div.sub {
+  padding-bottom: 90px;
 }
 </style>

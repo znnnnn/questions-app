@@ -1,0 +1,23 @@
+
+{
+    "status": 0,
+    "message": "提交成功",
+    "data": {
+        "user_id": 1,
+        "group_id": "2",
+		//获得成绩
+        "get_score": 60,
+		//花费时间
+        "take_time": null,
+		//是否及格
+        "is_pass": 1
+    }
+}
+
+
+{
+    "status": 1,
+    "message": "成绩不存在",
+    "data": ""
+}
+

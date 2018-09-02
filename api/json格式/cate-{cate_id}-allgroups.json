@@ -1,0 +1,154 @@
+{
+    "status": 0,
+    "message": "",
+    "data": [
+        {
+			//group_id 注意保存
+            "id": 3,
+			//关卡名称
+            "name": "3",
+			//及格百分比
+            "pass": 80,
+			//难度
+            "difficulty": null,
+            "pre_group_id": 2,
+			//备注
+            "mark": null,
+            "created_at": null,
+            "updated_at": null,
+            "deleted_at": null,
+			//开始时间
+            "start_time": null,
+			//结束时间
+            "expire_time": null,
+			//此关卡所属的分类名称
+            "cate_name": "个人信息安全"
+        },
+        {
+            "id": 1,
+            "name": "1",
+            "pass": 80,
+            "difficulty": null,
+            "pre_group_id": 0,
+            "mark": null,
+            "created_at": null,
+            "updated_at": null,
+            "deleted_at": null,
+            "start_time": "2018-07-29 14:26:42",
+            "expire_time": "2028-07-29 14:26:44",
+            "cate_name": "个人信息安全"
+        },
+        {
+            "id": 5,
+            "name": "5",
+            "pass": 80,
+            "difficulty": null,
+            "pre_group_id": 4,
+            "mark": null,
+            "created_at": null,
+            "updated_at": null,
+            "deleted_at": null,
+            "start_time": null,
+            "expire_time": null,
+            "cate_name": "个人信息安全"
+        },
+        {
+            "id": 6,
+            "name": "1",
+            "pass": 80,
+            "difficulty": null,
+            "pre_group_id": 0,
+            "mark": null,
+            "created_at": null,
+            "updated_at": null,
+            "deleted_at": null,
+            "start_time": null,
+            "expire_time": null,
+            "cate_name": "放电信诈骗"
+        },
+        {
+            "id": 7,
+            "name": "2",
+            "pass": 80,
+            "difficulty": null,
+            "pre_group_id": 0,
+            "mark": null,
+            "created_at": null,
+            "updated_at": null,
+            "deleted_at": null,
+            "start_time": null,
+            "expire_time": null,
+            "cate_name": "放电信诈骗"
+        },
+        {
+            "id": 8,
+            "name": "3",
+            "pass": 80,
+            "difficulty": null,
+            "pre_group_id": 0,
+            "mark": null,
+            "created_at": null,
+            "updated_at": null,
+            "deleted_at": null,
+            "start_time": null,
+            "expire_time": null,
+            "cate_name": "放电信诈骗"
+        },
+        {
+            "id": 2,
+            "name": "2",
+            "pass": 60,
+            "difficulty": 1,
+            "pre_group_id": 1,
+            "mark": null,
+            "created_at": null,
+            "updated_at": null,
+            "deleted_at": null,
+            "start_time": null,
+            "expire_time": null,
+            "cate_name": "个人信息安全"
+        },
+        {
+            "id": 9,
+            "name": "4",
+            "pass": 80,
+            "difficulty": null,
+            "pre_group_id": 0,
+            "mark": null,
+            "created_at": null,
+            "updated_at": null,
+            "deleted_at": null,
+            "start_time": null,
+            "expire_time": null,
+            "cate_name": "放电信诈骗"
+        },
+        {
+            "id": 10,
+            "name": "5",
+            "pass": 80,
+            "difficulty": null,
+            "pre_group_id": 0,
+            "mark": null,
+            "created_at": null,
+            "updated_at": null,
+            "deleted_at": null,
+            "start_time": null,
+            "expire_time": null,
+            "cate_name": "放电信诈骗"
+        },
+        {
+            "id": 4,
+            "name": "4",
+            "pass": 80,
+            "difficulty": null,
+            "pre_group_id": 3,
+            "mark": null,
+            "created_at": null,
+            "updated_at": null,
+            "deleted_at": null,
+            "start_time": null,
+            "expire_time": null,
+            "cate_name": "个人信息安全"
+        }
+    ]
+}
