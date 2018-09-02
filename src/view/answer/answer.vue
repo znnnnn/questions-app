@@ -1,7 +1,8 @@
 <template>
   <div class="indexContainer">
     <header class="mui-bar mui-bar-nav cblue">
-      <a @click="back" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+      <a @click="back" class="mui-icon mui-icon-left-nav mui-pull-left"></a>
+      <!-- <router-link to="/" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></router-link> -->
       <h1 class="mui-title" id="timer"></h1>
       <button id="submit" class="mui-btn mui-btn-link mui-pull-right" @click="submit">交卷</button>
     </header>
@@ -15,7 +16,7 @@
       </ul>
     </div>
     <div id="answer-body" class="answer-body">
-      <div id="fullpage">
+      <div :id="fullpage?'fullpage':''">
         <!-- <full-page ref="fullpage" :options="options" id="fullpage"> -->
         <div class="section" v-for="(item,queId) in ques" :key="queId">
           <a class="answer-title"><span>{{queId+1}}.</span>{{item.question}}<span v-if="item.ismany==1">(多选)</span></a>
@@ -62,15 +63,21 @@ export default {
         pre: 0,
         answersNum: 0, //记录答题数量
         queLen: 0, //记录题目数量
+        cateId: null, //顶级分类id
         seccateid: null, //二级分类id
-        groupid: null //关卡id
+        groupid: null, //关卡id,
+        index: null,
+        title: null
       },
-      fullpage: null
+      fullpage: true
     }
   },
   created() {
+    this.index.cateId = this.$route.query.cateId
     this.index.seccateid = this.$route.query.seccateid
     this.index.groupid = this.$route.query.groupid
+    this.index.index = this.$route.query.index
+    this.index.title = this.$route.query.title
     var _this = this
     function refresh() {
       var loadinginstace = Loading.service({ fullscreen: true })
@@ -79,8 +86,11 @@ export default {
           loadinginstace.close()
           _this.ques = res.data.data
           var len = res.data.data.length
+          if (len === 0) {
+            return
+          }
           _this.$nextTick(function() {
-            _this.fullpage = new fullpage('#fullpage', {
+            new fullpage('#fullpage', {
               licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
               onLeave: this.onLeave
             })
@@ -115,11 +125,16 @@ export default {
       // console.log(this.index.pre)
     },
     back() {
+      if(this.index.queLen==0){
+        this.$router.back(-1)
+        return
+      }
       MessageBox({
         message: '答题未完成，确认退出吗？',
         showCancelButton: true
       }).then(action => {
         if( action =='confirm'){
+          fullpage_api.destroy()
           this.$router.back(-1)
         }
       });
@@ -300,7 +315,7 @@ export default {
     
   },
   destroyed () {
-      alert('实例已销毁')
+      
   }
 }
 

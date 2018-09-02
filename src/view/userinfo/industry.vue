@@ -17,7 +17,7 @@
               </div>
               <div class="box-bottom">
                 时间：
-                <a>{{item.start_time ? item.start_time : 'undefined'}}---{{item.expire_time ? item.expire_time : 'undefinedundefined'}}</a>
+                <a>{{item.start_time ? item.start_time : 'undefined'}}---{{item.expire_time ? item.expire_time : 'undefined'}}</a>
                 <a class="lable">{{item.mark}}</a>
               </div>
             </div>
@@ -42,6 +42,7 @@
 
 
 <script>
+// import { Loading } from 'element-ui'
 
 export default {
   data() {
@@ -50,16 +51,19 @@ export default {
     }
   },
   mounted() {
-    this.$api.userinfoIndustry.getUserinfoIndustry(1)
+    this.$api.userinfoIndustry.getUserinfoIndustry()
       .then(res => {
         for (let index = 0; index < res.data.data.length; index++) {
           this.$set(this.item, index, res.data.data[index])
         }
-        // console.log(res.data.data)
+        console.log(res.data)
         // console.log(i)
         // console.log(this.item)
         // this.items = res
       })
+  },
+  created() {
+
   }
 }
 </script>

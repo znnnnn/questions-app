@@ -34,7 +34,7 @@
 							<li class="score"><a><span class="grade">{{item.pass_num}}</span>/<span class="sum">{{item.quesion_allnum}}</span></a></li>
 						</ul>
 						<div class="lable">
-							<a v-for="(tab,index) in item.sub" :key="index">{{tab.name}}</a>
+							<a :class="index==3?'mui-hidden':''" v-for="(tab,sindex) in item.sub">{{tab.name}}</a>
 						</div>
 					</div>
 				</router-link>

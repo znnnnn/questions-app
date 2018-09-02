@@ -9,9 +9,10 @@ var store = createStore()
 
 const userinfoIndustry = {
   // 排行排名
-  getUserinfoIndustry(type = '') {
+  getUserinfoIndustry() {
+    console.log(1)
     // console.log(`${base.sq}report/rank/`)
-    return axios.get(`${base.sq}/report/history/${type}`, {
+    return axios.get(`${base.sq}/report/history/4`, {
       params: { // 请求参数
         api_token: store.state.token
       }
