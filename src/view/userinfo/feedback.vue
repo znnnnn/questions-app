@@ -175,6 +175,7 @@ export default {
 .mui-content {
   background-color: #fdfaff;
   transition: 0.5s all;
+  position: relative;
 }
 
 header {
@@ -195,5 +196,9 @@ header {
 div.sub {
   padding-top:10px;
   padding-bottom: 130px;
+}
+
+#contact {
+  position: relative;
 }
 </style>

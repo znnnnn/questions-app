@@ -13,16 +13,29 @@
 .container {
   background-color: #efefef;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  /* display: table-cell; */
+  vertical-align: middle;
+  text-align: center;
+  /* width: 100vh; */
   height: calc(100vh - 119px);
+  min-height: 380px !important;
+  position: absolute;
+  line-height: 1
 }
 
 .box {
   width: 100%;
-  max-width: 800px;
+  /* max-width: 800px; */
   min-width: 250px;
+  /* margin-top: 5%; */
+  font-size: 1.2rem;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  line-height: 1;
 }
 
 .oCircle {
@@ -38,7 +51,6 @@
   position: relative;
   background-color: #fff;
 }
-
 
 .textBox {
   /* top: calc(50% - 57.5px);
@@ -67,26 +79,31 @@
   text-align: center;
 }
 
-.go,.el-input__inner {
+.go,
+.el-input__inner {
   width: 200px;
-  background-color: #fff ;
+  background-color: #fff;
   border: 1px solid #0097a8;
   color: #0097a8;
 }
 
-.go:active,.el-input__inner:active {
+.go:active,
+.el-input__inner:active {
   background-color: #eee;
   border: 1px solid #008190;
   color: #008190;
 }
 
-.el-button:focus, .el-button:hover,.el-input__inner:focus,.el-input__inner:hover {
+.el-button:focus,
+.el-button:hover,
+.el-input__inner:focus,
+.el-input__inner:hover {
   color: #008190;
   border-color: #a0ced3;
   background-color: #d9eaec;
 }
 
-.btnBox p{
+.btnBox p {
   line-height: 35px;
 }
 
@@ -100,4 +117,8 @@
 
 .el-button.is-round {
   border-radius: 10px
+}
+
+header {
+  z-index: 100;
 }

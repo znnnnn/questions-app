@@ -45,10 +45,10 @@ export default {
     }
   },
   mounted() {
-    var Oinput = document.getElementById('phone')
-    // console.log(Oinput)
-    Oinput.style.marginBottom = 0 + 'px'
-    Oinput.style.borderRadius = 10 + 'px'
+    // var Oinput = document.getElementById('phone')
+    // // console.log(Oinput)
+    // Oinput.style.marginBottom = 0 + 'px'
+    // Oinput.style.borderRadius = 10 + 'px'
   },
   methods: {
     preGo() {
@@ -113,7 +113,9 @@ export default {
   width: 200px;
   background-color: #fff;
   border: 1px solid #0097a8;
+  border-radius: 10px;
   color: #0097a8;
+  margin-bottom: 0;
 }
 
 .go:active,
@@ -137,9 +139,9 @@ export default {
 }
 
 #rule {
-  position: fixed;
+  position: absolute;
   z-index: 100;
-  top: 50px;
+  top: 0px;
   right: 12px;
 }
 
@@ -154,5 +156,9 @@ export default {
 #rule:hover {
   border: 0px solid #fff;
   background-color: transparent;
+}
+
+header {
+  position: relative;
 }
 </style>
