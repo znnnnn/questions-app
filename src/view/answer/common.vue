@@ -126,6 +126,7 @@ export default {
       for (let i = 0; i < len; i++) {
         nav[i].addEventListener('click', function() {
           var id = this.getAttribute('data-id')
+          _this.secCateId = id
           nav[_this.preNav].classList.remove('active')
           _this.preNav = this.getAttribute('data-index')
           this.classList.add('active')

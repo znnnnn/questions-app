@@ -102,7 +102,9 @@ header {
 }
 
 .mui-content {
-  margin-bottom: 69px;
+	margin-bottom: 69px;
+	/* background-color: #ffffff; */
+	/* padding_bottom: 69px; */
 }
 
 #category div.category {

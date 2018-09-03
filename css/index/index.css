@@ -16,7 +16,7 @@ span {
 }
 /*分类*/
 #category {
-  background-color: #fdfaff;
+  /* background-color: #fdfaff; */
   padding-top: 230px;
 }
 #category div.category {

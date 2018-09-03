@@ -70,10 +70,13 @@ export default {
         //   url: '测试文字'
         // }
       ],
-      index: 0
+      index: 0,
+      docmHeight: document.documentElement.clientHeight // 默认屏幕高度
     }
   },
   mounted() {
+    var con = document.querySelector('.container')
+    con.style.height = this.docmHeight + 'px'
   },
   methods: {
     beforUpload(file) {
@@ -184,6 +187,8 @@ header {
 
 .container {
   position: relative;
+  height: auto;
+  padding-bottom: 50px;
 }
 
 .v-modal {
@@ -195,7 +200,6 @@ header {
 
 div.sub {
   padding-top:10px;
-  padding-bottom: 130px;
 }
 
 #contact {

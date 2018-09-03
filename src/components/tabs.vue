@@ -1,6 +1,6 @@
 <template>
 
-  <div>
+  <div :class="hidshow?'':'mui-hidden '">
     <mt-tabbar v-model="selected">
       <router-link to="/" class="mint-tab-item">
         <mt-tab-item id="首页">
@@ -31,7 +31,26 @@
 export default {
   data() {
     return {
-      selected: '首页'
+      selected: '首页',
+      docmHeight: document.documentElement.clientHeight, // 默认屏幕高度
+      showHeight: document.documentElement.clientHeight, // 实时屏幕高度
+      hidshow: true // 显示或者隐藏footer
+    }
+  },
+  mounted() {
+    window.onresize = () => {
+      return (() => {
+        this.showHeight = document.body.clientHeight
+      })()
+    }
+  },
+  watch: {
+    showHeight: function() {
+      if (this.docmHeight > this.showHeight) {
+        this.hidshow = false
+      } else {
+        this.hidshow = true
+      }
     }
   }
 }

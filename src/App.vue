@@ -11,6 +11,11 @@ export default {
   components: {
     Tabs
   },
+  data() {
+    return {
+      screenHeight: document.body.clientHeight
+    }
+  },
   created() {
     // *
     // 初始化过程中
@@ -21,6 +26,9 @@ export default {
     }
   },
   mounted() {
+    var app = document.querySelector('#app')
+    console.log(app)
+    app.style.height = this.screenHeight + 'px'
   },
   methods: {
   }
@@ -30,5 +38,8 @@ export default {
   /* #app {
     height: 100%;
   } */
+  .mint-tabbar {
+    height: 69px;
+  }
 </style>
 
