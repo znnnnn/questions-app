@@ -145,12 +145,12 @@ export default {
     },
     example: function() {
       // modify data
-      console.log('changed')
+      // console.log('changed')
       // DOM is not updated yet
       this.$nextTick(function() {
         // DOM is now updated
         // `this` is bound to the current instance
-        console.log(1)
+        // console.log(1)
       })
     }
   }
