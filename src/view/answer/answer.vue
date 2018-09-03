@@ -1,7 +1,7 @@
 <template>
   <div class="indexContainer">
     <header class="mui-bar mui-bar-nav cblue">
-      <a @click="back" class="mui-icon mui-icon-left-nav mui-pull-left"></a>
+      <a @click="$router.back(-1)" class="mui-icon mui-icon-left-nav mui-pull-left"></a>
       <!-- <router-link to="/" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></router-link> -->
       <h1 class="mui-title" id="timer"></h1>
       <button id="submit" class="mui-btn mui-btn-link mui-pull-right" @click="submit">交卷</button>
@@ -115,6 +115,17 @@ export default {
   mounted() {
     test() //加载icon js文件
   },
+  beforeRouteLeave (to, from, next) {
+    MessageBox({
+      message: '答题未完成，确认退出吗？',
+        showCancelButton: true
+      }).then(action => {
+        if( action =='confirm'){
+          fullpage_api.destroy()
+          next()
+        }
+      });
+  },
   methods: {
     onLeave(origin, destination, direction) {
       var leavingSection = this
@@ -132,15 +143,7 @@ export default {
       //   this.$router.back(-1)
       //   return
       // }
-      MessageBox({
-        message: '答题未完成，确认退出吗？',
-        showCancelButton: true
-      }).then(action => {
-        if( action =='confirm'){
-          fullpage_api.destroy()
-          this.$router.back(-1)
-        }
-      });
+      
     },
     statusSet() { //设置选择点击事件
       var lis = document.querySelectorAll('#answer-body li')
