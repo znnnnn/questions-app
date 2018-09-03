@@ -21,7 +21,7 @@
                 <a class="lable">{{item.mark}}</a>
               </div>
             </div>
-            <div>
+            <div v-if="item.length === 0">
               <h1 class="noJoin" >暂未参加答题</h1>
             </div>
             <!-- <div class="box off">
