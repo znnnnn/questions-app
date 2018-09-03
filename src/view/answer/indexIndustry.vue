@@ -107,7 +107,7 @@ export default {
   methods: {
     liClick(id) {
       var _this = this
-      console.log(this.active)
+      // console.log(this.active)
       var loadinginstace = Loading.service({ fullscreen: true })
       if (id === 0) {
         _this.active = true
@@ -129,7 +129,7 @@ export default {
           .then(res => {
             loadinginstace.close()
             _this.data = res.data.data
-            console.log(_this.cateId)
+            // console.log(_this.cateId)
             _this.$nextTick(function() {
               _this.checkData()
             })
@@ -195,11 +195,11 @@ export default {
       }
     },
     checkLimit(gId) {
-      console.log(this.seccateId)
-      console.log(gId)
+      // console.log(this.seccateId)
+      // console.log(gId)
       this.$api.answer.getAnswer(this.seccateId, gId)
         .then(res => {
-          console.log(res)
+          // console.log(res)
           if (res.data.status === 21) {
             Toast('该身份不允许参加')
           } else {

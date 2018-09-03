@@ -27,7 +27,6 @@ export default {
   },
   mounted() {
     var app = document.querySelector('#app')
-    console.log(app)
     app.style.height = this.screenHeight + 'px'
   },
   methods: {

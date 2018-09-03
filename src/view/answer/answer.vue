@@ -78,8 +78,8 @@ export default {
     this.index.groupid = this.$route.query.groupid
     this.index.index = this.$route.query.index
     this.index.title = this.$route.query.title
-    console.log(this.index.seccateid)
-    console.log(this.index.groupid)
+    // console.log(this.index.seccateid)
+    // console.log(this.index.groupid)
     var _this = this
     function refresh() {
       var loadinginstace = Loading.service({ fullscreen: true })
@@ -87,7 +87,7 @@ export default {
         .then(res => {
           loadinginstace.close()
           _this.ques = res.data.data
-          console.log(res)
+          // console.log(res)
           var len = res.data.data.length
           if (len === 0) {
             return
