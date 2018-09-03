@@ -99,7 +99,7 @@ div.levels ul li:last-child {
 .lock .icon {
 	color: #FFFFFF;
 }
-.lock .icon.active {
+.icon.active {
 	color: #ffb724;
 }
 div.levels ul li a {

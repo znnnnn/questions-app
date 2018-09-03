@@ -189,7 +189,7 @@ export default {
         } else {
           Uls[i].classList.add('lock')
           Uls[i].addEventListener('click', function() {
-            Toast('答题已结束')
+            Toast('答题已结束，请到个人中心查看最终成绩')
           })
         }
       }

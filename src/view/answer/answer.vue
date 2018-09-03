@@ -116,6 +116,10 @@ export default {
     test() //加载icon js文件
   },
   beforeRouteLeave (to, from, next) {
+    if (this.index.queLen === 0) {
+      next()
+      return
+    }
     MessageBox({
       message: '答题未完成，确认退出吗？',
         showCancelButton: true

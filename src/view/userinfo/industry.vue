@@ -9,10 +9,10 @@
       <div class="mui-scroll-wrapper">
         <div class="mui-scroll">
           <div>
-            <div v-for="(item, index) in item" :key="index" v-bind:class="['box',item.is_pass === '1' ? 'on' : 'off']">
+            <div v-for="(item, index) in item" :key="index" class="box">
               <div>
                 <a class="title">{{item.name}}</a>
-                <a class="grade">{{item.max_get_score}}</a>
+                <a class="grade">最高成绩：{{item.max_get_score}}</a>
                 <a></a>
               </div>
               <div class="box-bottom">
@@ -24,7 +24,7 @@
             <!-- <div class="box off">
               <div>
                 <a class="title">的撒大祭祀啊大家</a>
-                <a class="grade">2222</a>
+                <a class="grade">最高成绩：2222</a>
                 <a></a>
               </div>
               <div class="box-bottom">
@@ -43,6 +43,7 @@
 
 <script>
 // import { Loading } from 'element-ui'
+import { Toast } from 'mint-ui'
 
 export default {
   data() {
@@ -56,7 +57,7 @@ export default {
         for (let index = 0; index < res.data.data.length; index++) {
           this.$set(this.item, index, res.data.data[index])
         }
-        console.log(res.data)
+        this.checkData()
         // console.log(i)
         // console.log(this.item)
         // this.items = res
@@ -64,6 +65,35 @@ export default {
   },
   created() {
 
+  },
+  methods: {
+    checkData() {
+      if (this.item.length === '') {
+        return
+      }
+      var _this = this
+      var boxs = document.querySelectorAll('.box')
+      var len = boxs.length
+      var time = new Date().getTime()
+      for (let i = 0; i < len; i++) {
+        // var sTime = this.item[i].start_time ? this.item[i].start_time : this.item[i].pivot.start_time
+        // sTime = sTime ? sTime : 0
+        var eTime = this.item[i].expire_time ? this.item[i].expire_time : this.item[i].pivot.expire_time
+        // eTime = eTime ? eTime : 0
+        // var nsTime = new Date(sTime).getTime()
+        var neTime = new Date(eTime).getTime()
+        if (time < neTime) {
+          // boxs[i].addEventListener('click', function() {
+          //   Toast('1')
+          // })
+        } else {
+          boxs[i].classList.add('off')
+          // boxs[i].addEventListener('click', function() {
+          //   Toast('答题已结束')
+          // })
+        }
+      }
+    }
   }
 }
 </script>
