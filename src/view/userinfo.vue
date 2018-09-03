@@ -200,7 +200,7 @@ export default {
 
 <style scoped>
 .mui-content {
-  height: 100vh;
+  height: 100%;
   justify-content: center;
   /* overflow: hidden; */
 }
