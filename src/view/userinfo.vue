@@ -203,6 +203,7 @@ export default {
   height: 100%;
   justify-content: center;
   /* overflow: hidden; */
+  /* overflow: visible; */
 }
 
 .li-item {

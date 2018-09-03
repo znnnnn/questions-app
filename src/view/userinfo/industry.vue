@@ -9,7 +9,7 @@
       <div class="mui-scroll-wrapper">
         <div class="mui-scroll">
           <div>
-            <div v-for="(item, index) in item" :key="index" class="box">
+            <div v-for="(item, index) in item" :key="index" class="box" >
               <div>
                 <a class="title">{{item.name}}</a>
                 <a class="grade">最高成绩：{{item.max_get_score}}</a>
@@ -20,6 +20,9 @@
                 <a>{{item.start_time ? item.start_time : 'undefined'}}---{{item.expire_time ? item.expire_time : 'undefined'}}</a>
                 <a class="lable">{{item.mark}}</a>
               </div>
+            </div>
+            <div>
+              <h1 class="noJoin" >暂未参加答题</h1>
             </div>
             <!-- <div class="box off">
               <div>
@@ -126,6 +129,13 @@ export default {
 
 .box {
   width: 48% !important;
+}
+
+.noJoin {
+  text-align: center;
+  color: #666;
+  line-height: 100px;
+  font-weight: 300;
 }
 
 </style>

@@ -20,11 +20,11 @@
 			<div class="mui-scroll">
 				<div :class="status?'choose':'mui-hidden'">
 					<div class="choose-list">
-            <a v-for="(item,index) in selects" :class="index==pre?'active':''" @click="changeId(index,item.id,$event)">{{item.name}}</a>
+            <a v-for="(item,index) in selects" :class="index==pre?'active':''" :key="item" @click="changeId(index,item.id,$event)">{{item.name}}</a>
 					</div>
 				</div>
         <!-- <router-link to="/answer/answer"> -->
-          <ul class="level" v-for="(item,index) in data" :class="status?'mui-hidden':'levels'" :data-groupId="item.id">
+          <ul class="level" v-for="(item,index) in data" :class="status?'mui-hidden':'levels'" :key="index" :data-groupId="item.id">
             <li>
               <a class="title">{{item.name}}</a>
             </li>

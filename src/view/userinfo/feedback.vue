@@ -193,7 +193,7 @@ header {
 }
 
 .container {
-  position: relative;
+  position: absolute;
   height: auto;
   /* padding-bottom: 50px; */
   z-index: 100;
@@ -215,7 +215,7 @@ div.sub {
 }
 
 .container {
-  min-height: 600px;
+  min-height: 630px;
 }
 
 .feedback-content {

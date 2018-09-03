@@ -41,5 +41,9 @@ export default {
   .mint-tabbar {
     height: 69px;
   }
+
+  #app {
+    min-height: 630px;
+  }
 </style>
 
