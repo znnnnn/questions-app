@@ -5,7 +5,7 @@
                    class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></router-link>
       <h1 class="mui-title">意见反馈</h1>
     </header>
-    <div class="mui-content">
+    <div class="mui-content feedback-content">
       <div class="box">
         <div class="mui-content-padded">
           <div class="mui-inline">问题和意见</div>
@@ -75,8 +75,7 @@ export default {
     }
   },
   mounted() {
-    var con = document.querySelector('.container')
-    con.style.height = this.docmHeight + 'px'
+    this.autoHeight()
   },
   methods: {
     beforUpload(file) {
@@ -160,6 +159,14 @@ export default {
         name: name,
         url: url
       }
+    },
+    autoHeight() {
+      var con = document.querySelector('.container')
+      con.style.height = this.docmHeight + 70 + 'px'
+      window.onresize = function() {
+        // console.log(document.documentElement.clientHeight)
+        con.style.height = document.documentElement.clientHeight + 70 + 'px'
+      }
     }
   }
 }
@@ -188,7 +195,8 @@ header {
 .container {
   position: relative;
   height: auto;
-  padding-bottom: 50px;
+  /* padding-bottom: 50px; */
+  z-index: 100;
 }
 
 .v-modal {
@@ -204,5 +212,13 @@ div.sub {
 
 #contact {
   position: relative;
+}
+
+.container {
+  min-height: 600px;
+}
+
+.feedback-content {
+  height: 100% !important;
 }
 </style>

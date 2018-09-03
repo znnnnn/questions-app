@@ -43,7 +43,7 @@
 
 <script>
 // import { Loading } from 'element-ui'
-import { Toast } from 'mint-ui'
+// import { Toast } from 'mint-ui'
 
 export default {
   data() {
@@ -71,7 +71,7 @@ export default {
       if (this.item.length === '') {
         return
       }
-      var _this = this
+      // var _this = this
       var boxs = document.querySelectorAll('.box')
       var len = boxs.length
       var time = new Date().getTime()
