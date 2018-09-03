@@ -10,7 +10,7 @@ const config = {
   output: {
     filename: 'bundle.[hash:8].js',
     path: path.resolve(__dirname, '../dist'),
-    publicPath: './'
+    publicPath: '/dist/'
   },
   resolve: {
     alias: {
@@ -55,7 +55,7 @@ const config = {
     {
       test: /\.(gif|jpg|jpeg|png|svg)$/,
       use: [{
-        loader: 'url-loader?limit=8962&name=[name]_[hash].[ext]'
+        loader: 'url-loader?limit=8962&name=[name]_[hash].[ext]?[hash]=static/img/'
         // options: {
         //   limit: 1024,
         //   name: 'resources/[path][name].[ext]'
