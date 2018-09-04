@@ -41,6 +41,12 @@ const routes = [{
       component: answer
     }
   ]
+},
+{
+  path: '/', component: homePage, alias: '/public/dist/index.html'
+},
+{
+  path: '/', component: homePage, alias: '/public/dist/'
 }, {
   path: '/integral',
   component: integral

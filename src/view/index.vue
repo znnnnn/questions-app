@@ -2,7 +2,7 @@
 	<div class="mui-content">
 		<router-view></router-view>
 		<header>
-			<img src="~@img/index/poster.png">
+			<img src="../assets/images/poster.png">
 		</header>
 		<div id="category"
 		     class="mui-scroll-wrapper"
@@ -34,7 +34,7 @@
 							<li class="score"><a><span class="grade">{{item.pass_num}}</span>/<span class="sum">{{item.quesion_allnum}}</span></a></li>
 						</ul>
 						<div class="lable">
-							<a :class="index==3?'mui-hidden':''" v-for="(tab,sindex) in item.sub">{{tab.name}}</a>
+							<a :class="index==3?'mui-hidden':''" v-for="(tab,sindex) in item.sub" :key="sindex">{{tab.name}}</a>
 						</div>
 					</div>
 				</router-link>
