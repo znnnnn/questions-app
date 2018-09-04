@@ -16,25 +16,23 @@
 				</ul>
 			</div>
 		</div>
-    <div class="mui-scroll-wrapper box">
-			<div class="mui-scroll">
+    <div class="mui-scroll-wrapper box wrapper">
+			<div class="mui-scroll content">
 				<div :class="status?'choose':'mui-hidden'">
 					<div class="choose-list">
             <a v-for="(item,index) in selects" :class="index==pre?'active':''" :key="index" @click="changeId(index,item.id,$event)">{{item.name}}</a>
 					</div>
 				</div>
-        <!-- <router-link to="/answer/answer"> -->
-          <ul class="level" v-for="(item,index) in data" :class="status?'mui-hidden':'levels'" :key="index" :data-groupId="item.id">
-            <li>
-              <a class="title">{{item.name}}</a>
-            </li>
-            <li>
-              <a class="time">{{item.start_time?item.start_time:item.pivot.start_time}}/{{item.expire_time?item.expire_time:item.pivot.expire_time}}</a>
-              <a class="lable">{{item.mark?item.mark:'公民'}}</a>
-            </li>
-          </ul>
-        <!-- </router-link> -->
-				<!--<ul class="process">
+        <ul class="level" v-for="(item,index) in data" :class="status?'mui-hidden':'levels'" :key="index" :data-groupId="item.id">
+          <li>
+            <a class="title">{{item.name}}</a>
+          </li>
+          <li>
+            <a class="time">{{item.start_time?item.start_time:item.pivot.start_time}}/{{item.expire_time?item.expire_time:item.pivot.expire_time}}</a>
+            <a class="lable">{{item.mark?item.mark:'公民'}}</a>
+          </li>
+        </ul>
+				<!-- <ul class="process">
 					<li>
 						<a class="title">医疗行业大苏打的</a>
 					</li>
@@ -60,7 +58,7 @@
 						<a class="time">时间dsadsadasd</a>
 						<a class="lable">行业标签</a>
 					</li>
-				</ul>-->
+				</ul> -->
 			</div>
 		</div>
     </div>
@@ -69,6 +67,7 @@
 <script>
 import { Loading } from 'element-ui'
 import { Toast } from 'mint-ui'
+import BScroll from 'better-scroll'
 export default {
   data() {
     return {
@@ -103,6 +102,7 @@ export default {
     refresh()
   },
   mounted() {
+    
   },
   methods: {
     liClick(id) {
@@ -117,6 +117,7 @@ export default {
             _this.data = res.data.data
             _this.$nextTick(function() {
               _this.checkData()
+              // _this.loadScroll()
             })
           })
           .catch(error => {
@@ -132,6 +133,7 @@ export default {
             // console.log(_this.cateId)
             _this.$nextTick(function() {
               _this.checkData()
+              // _this.loadScroll()
             })
           })
           .catch(error => {
@@ -156,6 +158,7 @@ export default {
           _this.data = res.data.data
           _this.$nextTick(function() {
             _this.checkData()
+            // _this.loadScroll()
           })
         })
         .catch(error => {
@@ -219,6 +222,13 @@ export default {
           groupid: b
         }
       })
+    },
+    loadScroll() {
+      var scroll = new BScroll('.wrapper', {
+        scrollY: true,
+        click: true
+        // probeType: 2
+      })
     }
   }
 }
@@ -230,14 +240,18 @@ export default {
   .mui-scroll-wrapper {
     position: absolute;
     top: 94px;
-    bottom: 0;
+    bottom: 69px;
   }
   .mui-content.nav {
+    width: 100%;
+    position: fixed;
+    top: 44px;
     padding: 0!important;
     height: 50px;
   }
   .mui-scroll {
     height: 100%;
+    overflow: auto;
   }
   .mui-bar .mui-title {
     left: 80px;
