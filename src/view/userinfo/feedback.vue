@@ -186,10 +186,15 @@ export default {
   background-color: #fdfaff;
   transition: 0.5s all;
   position: relative;
+  padding-top: 44px;
 }
 
 header {
   z-index: 102;
+}
+
+.box {
+  padding-top: 44px;
 }
 
 .container {
@@ -220,6 +225,5 @@ div.sub {
 
 .feedback-content {
   height: 100% !important;
-  padding-top: 44px!important;
 }
 </style>

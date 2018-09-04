@@ -26,6 +26,7 @@ Vue.use(Router)
 
 const routes = [{
   path: '/',
+  base: '/dist/',
   component: homePage,
   children: [
     {
