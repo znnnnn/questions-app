@@ -65,7 +65,7 @@ export default {
     Request() {
       this.$api.forgotPassword.forgotPassword(this.code, this.phone, this.pwd)
         .then(res => {
-          console.log(res.data)
+          // console.log(res.data)
           if (res.data.message === '验证码未填写') {
             this.$message({
               message: '请填写验证码',
