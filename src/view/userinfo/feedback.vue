@@ -226,4 +226,8 @@ div.sub {
 .feedback-content {
   height: 100% !important;
 }
+
+.box {
+  margin-top: 50px;
+}
 </style>
