@@ -239,7 +239,7 @@ export default {
 <style scoped src="@css/index/index-common.css"></style>
 <style scoped>
   .mui-scroll-wrapper {
-    position: absolute;
+    position: fixed;
     top: 94px;
     bottom: 69px;
   }
