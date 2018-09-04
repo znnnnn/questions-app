@@ -194,7 +194,7 @@ header {
 }
 
 .box {
-  padding-top: 44px;
+  /* padding-top: 44px; */
 }
 
 .container {
@@ -228,6 +228,6 @@ div.sub {
 }
 
 .box {
-  margin-top: 50px;
+  /* margin-top: 50px; */
 }
 </style>
