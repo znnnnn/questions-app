@@ -41,8 +41,8 @@ export default {
     height: 69px;
   }
 
-  #app {
+  /* #app {
     min-height: 630px;
-  }
+  } */
 </style>
 

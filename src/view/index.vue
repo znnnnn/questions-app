@@ -90,7 +90,8 @@ header {
 
 #category {
   position: relative;
-  padding-top: 0;
+	padding-top: 0;
+	padding-bottom: 70px;
 }
 
 #mui-scroll {
@@ -98,11 +99,16 @@ header {
 }
 
 .mui-scroll {
-  position: relative;
+	position: relative;
 }
 
 .mui-content {
-	margin-bottom: 69px;
+	height: auto;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	overflow: auto;
+	/* margin-bottom: 69px; */
 	/* background-color: #ffffff; */
 	/* padding_bottom: 69px; */
 }

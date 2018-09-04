@@ -15,8 +15,8 @@
         <li v-for="(item,idx) in ques" v-bind:class="[index.pre==idx ? 'active' : '']" :key="idx" @click="linkQue(idx)">{{idx+1}}</li>
       </ul>
     </div>
-    <div id="answer-body" class="answer-body">
-      <div :id="fullpage?'fullpage':''">
+    <div id="answer-body" class="answer-body wrapper">
+      <div class="content" :id="fullpage?'fullpage':''">
         <!-- <full-page ref="fullpage" :options="options" id="fullpage"> -->
         <div class="section" v-for="(item,queId) in ques" :key="queId">
           <a class="answer-title"><span>{{queId+1}}.</span>{{item.question}}<span v-if="item.ismany==1">(多选)</span></a>
@@ -44,6 +44,7 @@ import { Loading } from 'element-ui'
 import { test } from '../../../js/iconfont.js'
 import { MessageBox } from 'mint-ui'
 import { Toast } from 'mint-ui'
+import BScroll from 'better-scroll'
 export default {
   data() {
     return {
@@ -69,7 +70,10 @@ export default {
         index: null,
         title: null
       },
-      fullpage: true
+      fullpage: true,
+      after: false,
+      scroll: null,
+      scrollY: 0
     }
   },
   created() {
@@ -92,17 +96,14 @@ export default {
           if (len === 0) {
             return
           }
+          _this.index.queLen = len
           _this.$nextTick(function() {
-            new fullpage('#fullpage', {
-              licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
-              onLeave: this.onLeave
-            })
-            _this.index.queLen = len
-            _this.statusSet()
-            _this.timeSet()
-            for (let i = 0; i < len; i++) {
-              _this.answers[i]= []
-            }
+            _this.loadScroll()
+            // new fullpage('#fullpage', {
+            //   licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
+            //   onLeave: this.onLeave
+            // })
+            
           })
         })
         .catch(error => {
@@ -116,7 +117,7 @@ export default {
     test() //加载icon js文件
   },
   beforeRouteLeave (to, from, next) {
-    if (this.index.queLen === 0) {
+    if (this.index.queLen === 0 || this.after) {
       next()
       return
     }
@@ -125,12 +126,41 @@ export default {
         showCancelButton: true
       }).then(action => {
         if( action =='confirm'){
-          fullpage_api.destroy()
+          // fullpage_api.destroy()
           next()
         }
       });
   },
   methods: {
+    loadScroll() {
+      var fullpage = document.querySelector('#fullpage')
+      this.scroll = new BScroll('.wrapper',{
+        scrollY: true,
+        click: true,
+        probeType: 2
+      })
+      // this.scroll.on('scroll',function(e){
+      //   this.scrollY = e.y
+      //   console.log(e.y)
+      // })
+      
+      var section = document.querySelectorAll('.section')
+      this.statusSet()
+      this.timeSet()
+      for (let i = 0; i < this.index.queLen; i++) {
+        this.answers[i]= []
+        section[i].setAttribute('data-top',section[i].offsetTop)
+        // console.log(section[i].getAttribute('data-top'))
+      }
+    },
+    linkQue(id) { //题目跳转
+      // fullpage_api.moveTo(id+1);
+      // this.scroll.scrollTo(0,-350,200)
+      // console.log(id)
+      var section = document.querySelectorAll('.section')
+      this.scroll.scrollTo(0,-(section[id].getAttribute('data-top'))+10,200)
+      this.index.pre = id
+    },
     onLeave(origin, destination, direction) {
       var leavingSection = this
       var last = origin.index
@@ -247,6 +277,7 @@ export default {
     },
     aftersubmit(data) {
       var score = data.get_score
+      this.after = true
       if (data.is_pass==1) {
         MessageBox({
           title: '最终成绩',
@@ -274,10 +305,6 @@ export default {
           }
         })
       }
-    },
-    linkQue(id) { //题目跳转
-      fullpage_api.moveTo(id+1);
-      this.index.pre = id
     },
     timeSet() {
       var timer = document.querySelector('#timer')
@@ -333,12 +360,14 @@ export default {
 <style scoped src="@css/index/answer.css"></style>
 <style scoped>
   .indexContainer {
-    padding-top: 44px;
-    position: absolute;
+    position: relative;
     z-index: 100;
     height: 100%;
     width: 100%;
     background-color: #fdfaff;
+  }
+  .content {
+	  padding: 20px 45px;
   }
   .icon {
     width: 1em; height: 1em;
@@ -351,6 +380,17 @@ export default {
     /* color: #0097a8; */
     color: #a6a6a6;
     font-size: 1.4em;
+  }
+  .active .icon {
+    color: #0097a8;
+  }
+  .header {
+    position: fixed;
+    width: 100%;
+    top: 44px;
+  }
+  .section {
+    margin-bottom: 30px;
   }
 </style>
 <style type="text/css">
