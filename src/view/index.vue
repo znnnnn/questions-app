@@ -103,6 +103,7 @@ header {
 }
 
 .mui-content {
+	width: 100%;
 	height: auto;
 	position: absolute;
 	top: 0;

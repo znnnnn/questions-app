@@ -19,7 +19,7 @@
       <div class="content" :id="fullpage?'fullpage':''">
         <!-- <full-page ref="fullpage" :options="options" id="fullpage"> -->
         <div class="section" v-for="(item,queId) in ques" :key="queId">
-          <a class="answer-title"><span>{{queId+1}}.</span>{{item.question}}<span v-if="item.ismany==1">(多选)</span></a>
+          <a class="answer-title">{{queId+1}}.{{item.question}}<span v-if="item.ismany==1">(多选)</span></a>
           <ul class="answer-list" data-presel="">
             <li v-for="(select,selId) in item.selects" :key="select" :data-queid="queId" :data-selid="selId">
               <svg v-if="selId==0" class="icon" aria-hidden="true"><use xlink:href="#icon-0"></use></svg>

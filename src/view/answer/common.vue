@@ -11,8 +11,8 @@
 				</ul>
 			</div>
 
-      <div class="mui-scroll-wrapper levels">
-        <div class="mui-scroll">
+      <div class="mui-scroll-wrapper levels wrapper">
+        <div class="mui-scroll content">
           <router-link v-for="(item,index) in levels" :key="index" :to="{
             path: item.able==1?'/answer/answer':'',
             query: {
@@ -71,6 +71,7 @@
 /* eslint-disable */
 import { test } from '../../../js/iconfont.js'
 import { Loading } from 'element-ui'
+import BScroll from 'better-scroll'
 export default {
   data() {
     return {
@@ -102,6 +103,9 @@ export default {
             .then(res => {
               loadinginstace.close()
               _this.levels = res.data.data
+              // _this.$nextTick(function() {
+              //   _this.loadScroll()
+              // })
             })
             .catch(error => {
               loadinginstace.close()
@@ -117,6 +121,7 @@ export default {
   },
   mounted() {
     test() //加载icon js文件
+    this.loadScroll()
   },
   methods: {
     navClick: function() {
@@ -152,6 +157,13 @@ export default {
         // `this` is bound to the current instance
         // console.log(1)
       })
+    },
+    loadScroll: function() {
+      var scroll = new BScroll('.wrapper',{
+        scrollY: true,
+        click: true
+        // probeType: 2
+      })
     }
   }
 }
@@ -161,23 +173,31 @@ export default {
 <style scoped src="@css/index/index-common.css"></style>
 <style scoped>
 .mui-scroll-wrapper {
-  top: 94px;
+  top: 50px;
 }
 .mui-content {
+  width: 100%;
+  position: fixed;
+  top: 44px;
+  bottom: 69px;
+  height: auto;
   padding-top: 0!important;
-}
-.indexContainer {
-  padding-top: 44px!important;
 }
 .levels {
   overflow: auto;
 }
+.list {
+  width: 100%;
+  position: absolute;
+  /* top: 44px; */
+}
 .indexContainer {
-  padding-top: 44px;
+  /* padding-top: 44px; */
   position: absolute;
   z-index: 99;
-  height: 100%;
   width: 100%;
+  top: 0;
+  bottom: 0;
   background-color: #fdfaff;
 }
 </style>
