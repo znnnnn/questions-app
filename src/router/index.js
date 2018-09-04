@@ -26,6 +26,7 @@ Vue.use(Router)
 
 const routes = [{
   path: '/',
+  base: '/dist/',
   component: homePage,
   children: [
     {
@@ -90,6 +91,6 @@ const routes = [{
 }]
 
 export default new Router({
-  routes,
-  mode: 'history'
+  routes
+  // mode: 'history'
 })

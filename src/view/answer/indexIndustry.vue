@@ -65,6 +65,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import { Loading } from 'element-ui'
 import { Toast } from 'mint-ui'
 import BScroll from 'better-scroll'
@@ -102,7 +103,7 @@ export default {
     refresh()
   },
   mounted() {
-    
+
   },
   methods: {
     liClick(id) {

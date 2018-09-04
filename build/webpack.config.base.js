@@ -10,7 +10,7 @@ const config = {
   output: {
     filename: 'bundle.[hash:8].js',
     path: path.resolve(__dirname, '../dist'),
-    publicPath: '/public/dist/'
+    publicPath: '/dist/'
   },
   resolve: {
     alias: {
