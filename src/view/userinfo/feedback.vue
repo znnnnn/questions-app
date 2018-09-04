@@ -220,6 +220,7 @@ div.sub {
 
 .feedback-content {
   height: 100% !important;
+  padding-top: 44px!important;
 }
 
 .box {

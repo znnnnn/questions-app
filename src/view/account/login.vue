@@ -94,7 +94,7 @@ export default {
       })
     },
     autoResize() {
-      console.log(this)
+      // console.log(this)
       const container = document.querySelector('.mui-content')
       container.style.height = document.documentElement.clientHeight + 'px'
       container.style.width = document.documentElement.clientWidth + 'px'

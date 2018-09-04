@@ -186,7 +186,7 @@ export default {
               // /////////////下一步  判断密码错误
             })
           } else {
-            console.log(2)
+            // console.log(2)
           }
         })
     }
