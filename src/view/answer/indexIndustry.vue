@@ -23,7 +23,7 @@
             <a v-for="(item,index) in selects" :class="index==pre?'active':''" :key="index" @click="changeId(index,item.id,$event)">{{item.name}}</a>
 					</div>
 				</div>
-        <ul class="level" v-for="(item,index) in data" :class="status?'mui-hidden':'levels'" :key="index" :data-groupId="item.id">
+        <ul class="level" v-for="(item,index) in data" @click="checkLimit($event)" :class="status?'mui-hidden':'levels'" :key="index" :data-cateId="item.cate_id?item.cate_id:item.pivot.category_id" :data-groupId="item.id">
           <li>
             <a class="title">{{item.name}}</a>
           </li>
@@ -103,7 +103,7 @@ export default {
     refresh()
   },
   mounted() {
-
+    
   },
   methods: {
     liClick(id) {
@@ -131,7 +131,7 @@ export default {
           .then(res => {
             loadinginstace.close()
             _this.data = res.data.data
-            // console.log(_this.cateId)
+            // console.log(_this.data)
             _this.$nextTick(function() {
               _this.checkData()
               // _this.loadScroll()
@@ -157,6 +157,7 @@ export default {
         .then(res => {
           loadinginstace.close()
           _this.data = res.data.data
+          // console.log(res.data)
           _this.$nextTick(function() {
             _this.checkData()
             // _this.loadScroll()
@@ -180,34 +181,39 @@ export default {
         var nsTime = new Date(sTime).getTime()
         var neTime = new Date(eTime).getTime()
         if (time < nsTime) {
-          Uls[i].classList.add('nostart')
-          Uls[i].addEventListener('click', function() {
-            Toast('答题未开始')
-          })
+          Uls[i].setAttribute('data-statu','0')
+          Uls[i].className = 'level levels nostart'
         } else if (time < neTime) {
-          Uls[i].classList.add('process')
-          Uls[i].addEventListener('click', function() {
-            var gId = this.getAttribute('data-groupId')
-            _this.checkLimit(gId)
-          })
+          Uls[i].className = 'level levels process'
+          Uls[i].setAttribute('data-statu','1')
         } else {
-          Uls[i].classList.add('lock')
-          Uls[i].addEventListener('click', function() {
-            Toast('答题已结束，请到个人中心查看最终成绩')
-          })
+          Uls[i].className = 'level levels lock'
+          Uls[i].setAttribute('data-statu','2')
         }
       }
     },
-    checkLimit(gId) {
-      // console.log(this.seccateId)
-      // console.log(gId)
-      this.$api.answer.getAnswer(this.seccateId, gId)
+    checkLimit(e) {
+      var obj = e.currentTarget
+      var cId = obj.getAttribute('data-cateId')
+      var gId = obj.getAttribute('data-groupId')
+      var statu = obj.getAttribute('data-statu')
+      if(statu == 0){
+        Toast('答题未开始')
+        return
+      }
+      if(statu == 2){
+        Toast('答题已结束，请到个人中心查看最终成绩')
+        return
+      }
+      this.$api.answer.getAnswer(cId, gId)
         .then(res => {
-          // console.log(res)
-          if (res.data.status === 21) {
+          // console.log(res) 
+          if (res.data.status === 21 || res.data.status === 22) {
             Toast('该身份不允许参加')
-          } else {
+          } else if (res.data.status === 0) {
             this.linkAnswer(this.seccateId, gId)
+          } else {
+            console.log('意外的错误')
           }
         })
         .catch(error => {
