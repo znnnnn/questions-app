@@ -113,4 +113,12 @@ export default {
 .mint-navbar .mint-tab-item.is-selected {
   color: #0097a8 !important;
 }
+
+.mint-tab-container {
+  width: 100%;
+  position: fixed;
+  top: 96px;
+  bottom: 69px;
+  overflow: auto;
+}
 </style>
