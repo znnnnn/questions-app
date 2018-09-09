@@ -47,7 +47,7 @@
         <div class="link-area">
           <a id="change" v-if="this.mode === 'primary'" @click="mode = 'code'">用短信验证码登录</a>
           <a id="change" v-else @click="mode = 'primary'">用密码登录登录</a>
-          <router-link to="/account/register" id='reg'>新用户注册</router-link>
+          <!-- <router-link to="/account/register" id='reg'>新用户注册</router-link> -->
           <router-link to="/account/forgotPassword" id='forgetPassword'>忘记密码</router-link>
         </div>
       </div>
@@ -76,7 +76,7 @@ export default {
       phone: '',
       password: '',
       code: '',
-      mode: 'primary'
+      mode: 'code' // 'primary'
     }
   },
   mounted() {
