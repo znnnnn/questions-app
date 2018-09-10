@@ -199,6 +199,6 @@ export default {
   width: 78%;
   height: 50px;
   color: #ffffff !important;
-  font-size: 50%;
+  font-size: 75%;
 }
 </style>

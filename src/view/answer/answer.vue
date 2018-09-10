@@ -376,7 +376,7 @@ export default {
     background-color: #fdfaff;
   }
   .content {
-	  padding: 20px 45px;
+	  padding: 20px 35px 20px 15px;
   }
   .icon {
     width: 1em; height: 1em;
@@ -401,6 +401,4 @@ export default {
   .section {
     margin-bottom: 30px;
   }
-</style>
-<style type="text/css">
 </style>

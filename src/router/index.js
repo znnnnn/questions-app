@@ -31,15 +31,24 @@ const routes = [{
   children: [
     {
       path: '/answer/common',
-      component: common
+      component: common,
+      meta: {
+        navShow: false
+      }
     },
     {
       path: '/answer/indexIndustry',
-      component: indexIndustry
+      component: indexIndustry,
+      meta: {
+        navShow: false
+      }
     },
     {
       path: '/answer/answer',
-      component: answer
+      component: answer,
+      meta: {
+        navShow: false
+      }
     }
   ]
 },

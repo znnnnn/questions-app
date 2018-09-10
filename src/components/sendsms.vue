@@ -62,6 +62,6 @@ export default {
   line-height: 0 !important;
   height: 50px;
   top: 15px;
-  font-size: 50%;
+  font-size: 75%;
 }
 </style>

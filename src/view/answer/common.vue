@@ -179,7 +179,7 @@ export default {
   width: 100%;
   position: fixed;
   top: 44px;
-  bottom: 69px;
+  bottom: 0;
   height: auto;
   padding-top: 0!important;
 }
