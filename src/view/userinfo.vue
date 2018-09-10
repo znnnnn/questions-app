@@ -45,11 +45,11 @@
             <a class="mui-navigate-right">
               <i class="iconfont icon-htmal5icon27"></i>问题反馈</a>
           </router-link>
-          <router-link to="/userinfo/newPwd"
+          <!-- <router-link to="/userinfo/newPwd"
                        class="mui-table-view-cell li-item">
             <a class="mui-navigate-right">
               <i class="iconfont icon-xing"></i>修改密码</a>
-          </router-link>
+          </router-link> -->
           <a class="mui-table-view-cell li-item"
              @click="this.confirmToLeave">
             <a class="mui-navigate-right">
