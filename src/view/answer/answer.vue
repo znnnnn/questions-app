@@ -12,14 +12,14 @@
     </div>
     <div class="nav">
       <ul>
-        <li v-for="(item,idx) in ques" v-bind:class="[index.pre==idx ? 'active' : '']" :key="idx" @click="linkQue(idx)">{{idx+1}}</li>
+        <li v-for="(item,idx) in ques" :key="idx" @click="linkQue(idx)">{{idx+1}}</li>
       </ul>
     </div>
     <div id="answer-body" class="answer-body wrapper">
       <div class="content" :id="fullpage?'fullpage':''">
         <!-- <full-page ref="fullpage" :options="options" id="fullpage"> -->
         <div class="section" v-for="(item,queId) in ques" :key="queId">
-          <a class="answer-title">{{queId+1}}.{{item.question}}<span v-if="item.ismany==1">(多选)</span></a>
+          <a class="answer-title">{{queId+1}}. {{item.question}}<span v-if="item.ismany==1">(多选)</span></a>
           <ul class="answer-list" data-presel="">
             <li v-for="(select,selId) in item.selects" :key="select" :data-queid="queId" :data-selid="selId">
               <svg v-if="selId==0" class="icon" aria-hidden="true"><use xlink:href="#icon-0"></use></svg>
@@ -97,7 +97,7 @@ export default {
             return
           }
           _this.index.queLen = len
-          _this.$nextTick(function() {
+          _this.$nextTick(function() { //dom更新后调用方法
             _this.loadScroll()
             // new fullpage('#fullpage', {
             //   licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
@@ -116,7 +116,7 @@ export default {
   mounted() {
     test() //加载icon js文件
   },
-  beforeRouteLeave (to, from, next) {
+  beforeRouteLeave (to, from, next) { //防止返回误触
     if (this.index.queLen === 0 || this.after) {
       next()
       return
@@ -139,10 +139,6 @@ export default {
         click: true,
         probeType: 2
       })
-      // this.scroll.on('scroll',function(e){
-      //   this.scrollY = e.y
-      //   console.log(e.y)
-      // })
       
       var section = document.querySelectorAll('.section')
       this.statusSet()
@@ -150,7 +146,6 @@ export default {
       for (let i = 0; i < this.index.queLen; i++) {
         this.answers[i]= []
         section[i].setAttribute('data-top',section[i].offsetTop)
-        // console.log(section[i].getAttribute('data-top'))
       }
     },
     linkQue(id) { //题目跳转
@@ -179,39 +174,53 @@ export default {
       // }
       
     },
-    statusSet() { //设置选择点击事件
-      var lis = document.querySelectorAll('#answer-body li')
+    statusSet() { //设置答案点击事件
+      var navs = document.querySelectorAll('.nav li') //题目索引列表
+      var lis = document.querySelectorAll('#answer-body li') //题目列表
       var len = lis.length
       var _this = this;
       for (let i = 0; i < len; i++) {
         lis[i].addEventListener('click',function() {
-          var queid = this.getAttribute('data-queid')
-          var selid = this.getAttribute('data-selid')
+          var queid = this.getAttribute('data-queid') //题目id
+          var selid = this.getAttribute('data-selid') //选项id
+          var objs = { //保留
+            queid: queid,
+            selid: selid,
+            obj: this,
+            ismany: _this.ques[queid].ismany,
+            navs: navs
+          }
           if (selid) {
-            _this.setAnswers(queid,selid,this,_this.ques[queid].ismany)
+            _this.setAnswers(queid,selid,this,_this.ques[queid].ismany,navs)
           }
         })
       }
     },
-    setAnswers(queid,selid,obj,ismany) { //设置答题记录
-      var presel = obj.parentNode.getAttribute('data-presel')
+    setAnswers(queid,selid,obj,ismany,navs) { //设置答题记录
+      var presel = obj.parentNode.getAttribute('data-presel') //单选题当前答案索引字段
       if (ismany==1) {
         // console.log('多选')
-        if (obj.classList[0] == 'active') {
+        if (obj.classList[0] == 'active') { //判断目标答案是否为选中状态
           obj.classList.remove('active')
-          this.answers[queid].splice( this.answers[queid].indexOf(parseInt(selid)+1,1))
+          this.answers[queid].splice( this.answers[queid].indexOf(parseInt(selid)+1,1)) //删除对应答题记录
+          // console.log(this.answers[queid].length)
+          if (this.answers[queid].length==0) { //判断多选题选中的答案个数
+            navs[queid].classList.remove('active')
+          }
           return
         }
-        this.answers[queid].push(parseInt(selid) + 1)
+        this.answers[queid].push(parseInt(selid) + 1) //添加对应答题记录
         obj.classList.add('active')
+        navs[queid].classList.add('active')
       }else if(ismany==0) {
         // console.log('单选')
         if (presel) {
           obj.parentNode.children[presel].classList.remove('active')
         }
-        obj.parentNode.setAttribute('data-presel',selid)
+        obj.parentNode.setAttribute('data-presel',selid) //修改字段值为对应答案索引
         obj.classList.add('active')
-        this.answers[queid] = [parseInt(selid) + 1]
+        navs[queid].classList.add('active')
+        this.answers[queid] = [parseInt(selid) + 1] //修改对应答题记录
       }
       // console.log(this.answers)
     },
