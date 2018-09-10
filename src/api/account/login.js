@@ -32,7 +32,7 @@ const login = {
   fastLogin(phone, code) {
     return axios.post(`${base.sq}/fastlogin`, qs.stringify(
       {
-        api_token: store.state.token,
+        // api_token: store.state.token,
         phone: phone,
         code: code
       }

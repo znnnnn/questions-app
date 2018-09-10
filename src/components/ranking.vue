@@ -15,10 +15,10 @@
     </div>
     <div class="top-ten">
       <ul>
-        <li v-for="(item, index) in items['rank']" v-if="index<=10"
+        <li v-for="(item, key, index) in items['rank']" v-if="index<=10"
             :key="index">
           <div class="rank-info">
-            <a>{{index}}</a>
+            <a>{{ index+1 }}</a>
             <a>{{item.phone ? item.phone : ''}}</a>
             <a>{{item.sum_score ? item.sum_score : '无'}}</a>
           </div>
@@ -34,6 +34,11 @@ export default {
     items: {
       type: Object,
       required: true
+    }
+  },
+  data() {
+    return {
+      idx: 1
     }
   },
   mounted() {
