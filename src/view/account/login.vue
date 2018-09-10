@@ -76,7 +76,7 @@ export default {
       phone: '',
       password: '',
       code: '',
-      mode: 'code' // 'primary'
+      mode: 'primary'
     }
   },
   mounted() {

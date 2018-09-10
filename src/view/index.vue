@@ -31,7 +31,7 @@
 								<a>{{item.name}}</a>
 								<a v-if="item.mark!=null">({{item.mark}})</a>
 							</li>
-							<li class="score"><a><span class="grade">{{item.pass_num}}</span>/<span class="sum">{{item.quesion_allnum}}</span></a></li>
+							<li class="score"><a><span class="grade">{{item.pass_num}}</span>/<span class="sum">{{item.group_allnum}}</span></a></li>
 						</ul>
 						<div class="lable">
 							<a :class="index==3?'mui-hidden':''" v-for="(tab,sindex) in item.sub" :key="sindex">{{tab.name}}</a>
