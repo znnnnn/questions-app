@@ -61,15 +61,24 @@ const routes = [{
   children: [
     {
       path: '/userinfo/newPwd',
-      component: newPwd
+      component: newPwd,
+      meta: {
+        navShow: false
+      }
     },
     {
       path: '/userinfo/industry',
-      component: industry
+      component: industry,
+      meta: {
+        navShow: false
+      }
     },
     {
       path: '/userinfo/feedback',
-      component: feedback
+      component: feedback,
+      meta: {
+        navShow: false
+      }
     }
   ]
 },
@@ -79,15 +88,24 @@ const routes = [{
 },
 {
   path: '/account/login',
-  component: login
+  component: login,
+  meta: {
+    navShow: false
+  }
 },
 {
   path: '/account/register',
-  component: register
+  component: register,
+  meta: {
+    navShow: false
+  }
 },
 {
   path: '/account/forgotPassword',
-  component: forgotPassword
+  component: forgotPassword,
+  meta: {
+    navShow: false
+  }
 }]
 
 export default new Router({
