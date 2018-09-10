@@ -57,10 +57,11 @@ export default {
 
 <style scoped>
 #getCode {
+  width: 80px;
   padding: 0 !important;
   line-height: 0 !important;
   height: 50px;
   top: 15px;
-  font-size: 16px;
+  font-size: 50%;
 }
 </style>

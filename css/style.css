@@ -65,10 +65,12 @@ header.mui-title {
 .mui-input-row label.phone {
 	background-image: url(../images/phone.png);
 	background-size: 30%;
+	background-position-y: center!important;
 }
 .mui-input-row label.pwd {
 	background-image: url(../images/pwd.png);
 	background-size: 35%;
+	background-position-y: center!important;
 }
 .mui-input-row label {
 	background-repeat: no-repeat;
