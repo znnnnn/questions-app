@@ -1,6 +1,6 @@
 <template>
 
-  <div :class="hidshow?'':'mui-hidden '">
+  <div>
     <mt-tabbar v-model="selected">
       <router-link to="/" class="mint-tab-item">
         <mt-tab-item id="首页">
@@ -49,15 +49,6 @@ export default {
         this.showHeight = document.body.clientHeight
       })()
     }
-  },
-  watch: {
-    showHeight: function() {
-      if (this.docmHeight > this.showHeight) {
-        this.hidshow = false
-      } else {
-        this.hidshow = true
-      }
-    }
   }
 }
 </script>
@@ -92,7 +83,7 @@ export default {
 }
 
 .mint-tabbar {
-  z-index: 99;
+  z-index: 100;
   position: fixed !important;
 }
 </style>

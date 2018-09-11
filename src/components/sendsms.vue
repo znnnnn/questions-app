@@ -43,6 +43,7 @@ export default {
                 _self.getCodeText = _self.time -= 1
               } else {
                 _self.getCodeText = '获取验证码'
+                _self.time = 60
                 btn.disabled = false
                 btn.style.cursor = 'pointer'
               }
