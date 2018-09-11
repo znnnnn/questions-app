@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <header class="header">
       <a>积分兑换</a>
     </header>
@@ -109,6 +109,11 @@ export default {
 </style>
 
 <style>
+.main {
+  width: 100%;
+  position: relative;
+  height: 100%;
+}
 #integralPhone {
   width: 200px;
   background-color: #fff;
@@ -141,7 +146,7 @@ export default {
 #rule {
   position: absolute;
   z-index: 100;
-  top: 0px;
+  top: 60px;
   right: 12px;
 }
 
