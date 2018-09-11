@@ -89,9 +89,12 @@ header {
 }
 
 #category {
-  position: relative;
+  position: absolute;
 	padding-top: 0;
-	padding-bottom: 70px;
+	top: 200px;
+	bottom: 70px;
+	/* padding-bottom: 70px; */
+	overflow: auto;
 }
 
 #mui-scroll {
