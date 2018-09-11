@@ -1,7 +1,7 @@
 <template>
   <div class="mui-content">
     <router-view></router-view>
-    <header>
+    <header v-if="$route.meta.navShow !== false">
       <a>个人中心</a>
     </header>
     <div class="userInfoBox">
