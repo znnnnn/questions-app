@@ -90,7 +90,8 @@ export default {
       Message({
         message: msg,
         type: 'error',
-        duration: 3000
+        duration: 3000,
+        center: true
       })
     },
     autoResize() {

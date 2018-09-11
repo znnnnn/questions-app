@@ -245,9 +245,9 @@ export default {
 <style scoped src="@css/index/index-common.css"></style>
 <style scoped>
   .mui-scroll-wrapper {
-    position: fixed;
+    position: absolute;
     top: 94px;
-    bottom: 69px;
+    bottom: 0;
   }
   .mui-content.nav {
     width: 100%;
@@ -284,7 +284,7 @@ export default {
     overflow: auto;
   }
   .indexContainer {
-    padding-top: 44px;
+    /* padding-top: 44px; */
     position: absolute;
     z-index: 99;
     height: 100%;

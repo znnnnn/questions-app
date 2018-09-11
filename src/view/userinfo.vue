@@ -1,10 +1,10 @@
 <template>
   <div class="mui-content">
     <router-view></router-view>
-    <header>
+    <div class="userInfoBox">
+      <header v-if="$route.meta.navShow !== false">
       <a>个人中心</a>
     </header>
-    <div class="userInfoBox">
       <div class="userInfo">
       <div>
         <ul class="mui-table-view">
@@ -224,6 +224,13 @@ export default {
   letter-spacing: 2px;
   font-weight: 700;
 }
+
+header {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  margin-left: -42px;
+}
 </style>
 
 <style>
@@ -261,4 +268,5 @@ export default {
   overflow: hidden;
   transition: 0.5s all;
 }
+
 </style>

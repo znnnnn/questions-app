@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="height:100%">
     <header class="header">
       <a>排行榜</a>
     </header>
@@ -116,9 +116,10 @@ export default {
 
 .mint-tab-container {
   width: 100%;
-  position: fixed;
+  /* position: fixed;
   top: 96px;
-  bottom: 69px;
+  bottom: 69px; */
   overflow: auto;
+  padding-top:3px;
 }
 </style>
