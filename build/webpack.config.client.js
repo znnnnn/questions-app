@@ -43,6 +43,7 @@ const devServer = {
   proxy: {
     '/api': {
       target: 'http://101.132.141.130:82/api/',
+      // target: 'http://aqzsjs.j2eeall.com/api/',
       pathRewrite: { '^/api': '' }
     }
   }

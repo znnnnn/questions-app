@@ -2,7 +2,7 @@
 	<div class="mui-content">
 		<router-view></router-view>
 		<header>
-			<img src="../assets/images/poster.png">
+			<img src="../assets/images/poster.png" id="banner" >
 		</header>
 		<div id="category"
 		     class="mui-scroll-wrapper"
@@ -59,20 +59,28 @@ export default {
     }
   },
   mounted() {
-    var _this = this
-    function refresh() {
+    // 初始化读取数据
+    this.refresh()
+  },
+  methods: {
+    refresh() {
+      var _this = this
       var loadinginstace = Loading.service({ fullscreen: true })
       _this.$api.homepage.getCategory()
         .then(res => {
           loadinginstace.close()
           _this.category = res.data.data
+          _this.$nextTick(function() { // dom更新后调用方法
+            const banner = document.querySelector('#banner')
+            const category = document.getElementById('category')
+            category.style.top = banner.offsetHeight + 'px'
+          })
         })
         .catch(error => {
           loadinginstace.close()
           console.log(error)
         })
     }
-    refresh()
   }
 }
 </script>
