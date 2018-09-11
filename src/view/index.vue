@@ -100,7 +100,7 @@ header {
   position: absolute;
 	padding-top: 0;
 	top: 200px;
-	bottom: 70px;
+	bottom: 50px;
 	/* padding-bottom: 70px; */
 	overflow: auto;
 }
