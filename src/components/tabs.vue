@@ -57,8 +57,8 @@ export default {
 <style scoped>
 .icon {
   display: block;
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   margin: auto;
   margin-bottom: 5px;
   fill: #5c5c5c;
@@ -85,5 +85,9 @@ export default {
 .mint-tabbar {
   z-index: 100;
   position: fixed !important;
+}
+
+.mint-tab-item {
+  padding: 5px 0!important;
 }
 </style>
