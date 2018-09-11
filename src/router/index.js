@@ -31,7 +31,10 @@ const routes = [{
   children: [
     {
       path: '/answer/common',
-      component: common
+      component: common,
+      meta: {
+        navShow: false
+      }
     },
     {
       path: '/answer/indexIndustry',
@@ -42,7 +45,10 @@ const routes = [{
     },
     {
       path: '/answer/answer',
-      component: answer
+      component: answer,
+      meta: {
+        navShow: false
+      }
     }
   ]
 },

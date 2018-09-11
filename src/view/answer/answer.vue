@@ -273,6 +273,7 @@ export default {
         .then(res => {
           loadinginstace.close()
           if(res.data.status==0){
+            clearInterval(this.index.timer)
             this.aftersubmit(res.data.data)
           }
           // this.$nextTick(function() {

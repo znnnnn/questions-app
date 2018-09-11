@@ -1,6 +1,6 @@
 <template>
 
-  <div :class="hidshow?'':'mui-hidden '">
+  <div v-show="$route.meta.navShow !== false">
     <mt-tabbar v-model="selected">
       <router-link to="/" class="mint-tab-item">
         <mt-tab-item id="首页">
