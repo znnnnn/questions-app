@@ -38,7 +38,7 @@ export default {
     height: 100%;
   }
   .mint-tabbar {
-    height: 69px;
+    height: 50px;
   }
 
   /* #app {
