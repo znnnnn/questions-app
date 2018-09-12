@@ -21,7 +21,12 @@ export default {
   },
   methods: {
     getCode() {
-      console.log(this.phone)
+      // console.log(this.phone)
+
+      const btn = document.getElementById('getCode')
+      btn.setAttribute('disabled', true)
+      btn.style.cursor = 'not-allowed'
+      this.getCodeText = this.time -= 1
       // 发送请求
       this.$api.sendsms.sendsms(this.phone)
         .then(res => {
@@ -33,11 +38,7 @@ export default {
             })
           } else {
             // 修改按钮样式
-            const btn = document.getElementById('getCode')
             const _self = this
-            btn.setAttribute('disabled', true)
-            btn.style.cursor = 'not-allowed'
-            _self.getCodeText = _self.time -= 1
             setInterval(() => {
               if (_self.time > 0) {
                 _self.getCodeText = _self.time -= 1
@@ -49,6 +50,12 @@ export default {
               }
             }, 1000)
           }
+        })
+        .catch((_self = this) => {
+          _self.getCodeText = '获取验证码'
+          _self.time = 60
+          btn.disabled = false
+          btn.style.cursor = 'pointer'
         })
     }
   }

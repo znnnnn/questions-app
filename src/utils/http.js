@@ -139,11 +139,12 @@ instance.interceptors.response.use(
       // 关于断网组件中的刷新重新获取数据，会在断网组件中说明
       // store.commit('changeNetwork', false)
       // console.log('断网了！')
-      Message({
-        message: '断网了',
-        type: 'error',
-        center: 'true'
-      })
+
+      // Message({
+      //   message: '断网了',
+      //   type: 'error',
+      //   center: 'true'
+      // })
     }
   })
 
