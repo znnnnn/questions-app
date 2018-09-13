@@ -64,6 +64,7 @@ export default {
     this.$api.ranking.getRankingList(1)
       .then(res => {
         //       // console.log(i)
+        console.log(res)
         loadinginstace.close()
         this.$set(this.items, 1, res.data.data)
       })
