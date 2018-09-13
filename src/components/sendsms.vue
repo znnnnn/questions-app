@@ -26,7 +26,7 @@ export default {
       const btn = document.getElementById('getCode')
       btn.setAttribute('disabled', true)
       btn.style.cursor = 'not-allowed'
-      this.getCodeText = this.time -= 1
+      this.getCodeText = this.time
       // 发送请求
       this.$api.sendsms.sendsms(this.phone)
         .then(res => {
@@ -36,27 +36,33 @@ export default {
               type: 'error',
               center: 'true'
             })
+            this.btnReset()
           } else {
             // 修改按钮样式
-            const _self = this
             setInterval(() => {
-              if (_self.time > 0) {
-                _self.getCodeText = _self.time -= 1
-              } else {
-                _self.getCodeText = '获取验证码'
-                _self.time = 60
-                btn.disabled = false
-                btn.style.cursor = 'pointer'
-              }
+              this.btnSet()
             }, 1000)
           }
         })
-        .catch((_self = this) => {
-          _self.getCodeText = '获取验证码'
-          _self.time = 60
-          btn.disabled = false
-          btn.style.cursor = 'pointer'
-        })
+    },
+    btnSet() {
+      const btn = document.getElementById('getCode')
+      if (this.time > 0) {
+        this.getCodeText = this.time -= 1
+      } else {
+        this.getCodeText = '获取验证码'
+        this.time = 60
+        btn.disabled = false
+        btn.style.cursor = 'pointer'
+        return
+      }
+    },
+    btnReset() {
+      const btn = document.getElementById('getCode')
+      this.getCodeText = '获取验证码'
+      this.time = 60
+      btn.disabled = false
+      btn.style.cursor = 'pointer'
     }
   }
 }
