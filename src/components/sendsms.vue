@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import { Loading } from 'element-ui'
+
 export default {
   props: {
     phone: {
@@ -26,10 +28,13 @@ export default {
       const btn = document.getElementById('getCode')
       btn.setAttribute('disabled', true)
       btn.style.cursor = 'not-allowed'
-      this.getCodeText = this.time
+      // loading层
+      var loadinginstace = Loading.service({ fullscreen: true })
+      // this.getCodeText = this.time
       // 发送请求
       this.$api.sendsms.sendsms(this.phone)
         .then(res => {
+          loadinginstace.close()
           if (!this.$reg.checkPhone(this.phone)) {
             this.$message({
               message: '手机号格式错误',

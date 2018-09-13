@@ -49,3 +49,9 @@ export default {
 
 <style scoped src="@css/ranking/index.css">
 </style>
+
+<style scoped>
+#rank {
+  padding-bottom: 50px !important;
+}
+</style>
