@@ -35,6 +35,7 @@
               </li>
             </ul>
           </router-link>
+          <div class="msg">{{message}}</div>
           <!-- <router-link to="/answer/answer">
             <ul>
               <li>
@@ -81,7 +82,8 @@ export default {
       cateId: null,
       secCateId: null,
       preNav: 0,
-      index: null
+      index: null,
+      message: null
     }
   },
   created() {
@@ -94,6 +96,10 @@ export default {
       _this.$api.levels.getNav(_this.cateId)
         .then(res => {
           loadinginstace.close()
+          if (res.data.data=='') {
+            _this.message = '暂无数据'
+            return
+          }
           _this.nav = res.data.data
           _this.secCateId = res.data.data[0].id
           _this.$nextTick(function() {
@@ -130,12 +136,12 @@ export default {
       var _this = this
       for (let i = 0; i < len; i++) {
         nav[i].addEventListener('click', function() {
+          var loadinginstace = Loading.service({ fullscreen: true })
           var id = this.getAttribute('data-id')
           _this.secCateId = id
           nav[_this.preNav].classList.remove('active')
           _this.preNav = this.getAttribute('data-index')
           this.classList.add('active')
-          var loadinginstace = Loading.service({ fullscreen: true })
           _this.$api.levels.getLevels(id)
             .then(res => {
               loadinginstace.close()
@@ -149,13 +155,7 @@ export default {
       }
     },
     example: function() {
-      // modify data
-      // console.log('changed')
-      // DOM is not updated yet
       this.$nextTick(function() {
-        // DOM is now updated
-        // `this` is bound to the current instance
-        // console.log(1)
       })
     },
     loadScroll: function() {
@@ -199,5 +199,10 @@ export default {
   top: 0;
   bottom: 0;
   background-color: #fdfaff;
+}
+.msg {
+  color: #cccccc;
+  font-size: 120%;
+  text-align: center;
 }
 </style>

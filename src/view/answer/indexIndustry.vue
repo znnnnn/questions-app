@@ -21,6 +21,7 @@
 				<div :class="status?'choose':'mui-hidden'">
 					<div class="choose-list">
             <a v-for="(item,index) in selects" :class="index==pre?'active':''" :key="index" @click="changeId(index,item.id,$event)">{{item.name}}</a>
+            <div class="msg">{{message}}</div>
 					</div>
 				</div>
         <ul class="level" v-for="(item,index) in data" @click="checkLimit($event)" :class="status?'mui-hidden':'levels'" :key="index" :data-cateId="item.cate_id?item.cate_id:item.pivot.category_id" :data-groupId="item.id">
@@ -80,7 +81,8 @@ export default {
       fName: '',
       status: true,
       seccateId: null,
-      active: true
+      active: true,
+      message: null
     }
   },
   created() {
@@ -91,6 +93,10 @@ export default {
       _this.$api.levels.getNav(_this.cateId)
         .then(res => {
           loadinginstace.close()
+          if (res.data.data=='') {
+            _this.message = '暂无数据'
+            return
+          }
           _this.selects = res.data.data
           _this.fName = res.data.data[0].name
           _this.seccateId = res.data.data[0].id
@@ -149,6 +155,9 @@ export default {
       this.seccateId = id
     },
     choose() {
+      if (this.seccateId==null) {
+        return
+      }
       this.active = true
       this.status = false
       var _this = this
@@ -290,5 +299,10 @@ export default {
     height: 100%;
     width: 100%;
     background-color: #fdfaff;
+  }
+  .msg {
+    color: #cccccc;
+    font-size: 120%;
+    text-align: center;
   }
 </style>

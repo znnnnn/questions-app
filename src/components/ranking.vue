@@ -15,7 +15,7 @@
     </div>
     <div class="top-ten">
       <ul>
-        <li v-for="(item, key, index) in items['rank'].slice(0, 10)"
+        <li v-for="(item, key, index) in items['rank'].slice(0, 20)"
             :key="index">
           <div class="rank-info">
             <a>{{key + 1}}</a>

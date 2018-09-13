@@ -88,6 +88,6 @@ export default {
 }
 
 .mint-tab-item {
-  padding: 5px 0!important;
+  padding: 3px 0!important;
 }
 </style>

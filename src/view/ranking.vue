@@ -80,11 +80,13 @@ export default {
     for (const tabItem of tabsBtnGroup) {
       tabItem.addEventListener('click', function() {
         // console.log(tabItem.getAttribute('type'))
+        var loadinginstace = Loading.service({ fullscreen: true })
         type = tabItem.getAttribute('type')
         _this.$api.ranking.getRankingList(type)
           .then(res => {
             // console.log(res)
             _this.$set(_this.items, type, res.data.data)
+            loadinginstace.close()
           })
       })
       // console.log(tabItem)
@@ -126,9 +128,9 @@ export default {
   top: 96px;
   bottom: 69px; */
   position: absolute;
-  top: 96px;
+  top: 99px;
   bottom: 50px;
   overflow: auto;
-  padding-top:3px;
+  /* padding-top:3px; */
 }
 </style>

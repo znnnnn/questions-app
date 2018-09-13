@@ -32,7 +32,6 @@ header a {
 }
 .mui-navigate-right:after, .mui-push-right:after {
 	right: 20px;
-	margin-top: -2px;
 }
 
 .mui-content {
