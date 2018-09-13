@@ -15,10 +15,10 @@
     </div>
     <div class="top-ten">
       <ul>
-        <li v-for="(item, key, index) in items['rank']" v-if="index<=10"
+        <li v-for="(item, key, index) in items['rank'].slice(0, 10)"
             :key="index">
           <div class="rank-info">
-            <a>{{ index+1 }}</a>
+            <a>{{key + 1}}</a>
             <a>{{item.phone ? item.phone : ''}}</a>
             <a>{{item.sum_score ? item.sum_score : '无'}}</a>
           </div>

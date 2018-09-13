@@ -64,6 +64,7 @@ export default {
     this.$api.ranking.getRankingList(1)
       .then(res => {
         //       // console.log(i)
+        // console.log(res)
         loadinginstace.close()
         this.$set(this.items, 1, res.data.data)
       })
@@ -82,6 +83,7 @@ export default {
         type = tabItem.getAttribute('type')
         _this.$api.ranking.getRankingList(type)
           .then(res => {
+            // console.log(res)
             _this.$set(_this.items, type, res.data.data)
           })
       })

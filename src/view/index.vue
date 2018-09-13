@@ -21,10 +21,10 @@
 						<ul>
 							<li class="icon">
 								<a>
-									<img v-if="index==0" src="../../images/index/knowledge.png"/>
-									<img v-else-if="index==1" src="../../images/index/profession.png"/>
-									<img v-else-if="index==2" src="../../images/index/competition.png"/>
-									<img v-else src="../../images/index/industry.png"/>
+									<img class="knowledge" v-if="index==0" src="../../images/index/knowledge.png"/>
+									<img class="profession" v-else-if="index==1" src="../../images/index/profession.png"/>
+									<img class="competition" v-else-if="index==2" src="../../images/index/competition.png"/>
+									<img class="industry" v-else src="../../images/index/industry.png"/>
 								</a>
 							</li>
 							<li class="category">
@@ -139,5 +139,18 @@ header {
 	max-width: auto; */
     width: 500px;
   }
+}
+
+img.knowledge {
+	height: 60%!important;
+}
+img.profession {
+	height: 55%!important;
+}
+img.competition {
+	height: 55%!important;
+}
+img.industry {
+	height: 60%!important;
 }
 </style>
