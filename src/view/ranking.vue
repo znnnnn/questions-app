@@ -1,5 +1,5 @@
 <template>
-  <div style="height:100%">
+  <div class="rank-main" style="height:100%">
     <header class="header">
       <a>排行榜</a>
     </header>
@@ -104,6 +104,10 @@ export default {
 </style>
 
 <style scoped>
+.rank-main {
+  position: relative;
+}
+
 .mint-tab-item {
   background-color: #efefef;
 }
@@ -121,6 +125,9 @@ export default {
   /* position: fixed;
   top: 96px;
   bottom: 69px; */
+  position: absolute;
+  top: 96px;
+  bottom: 50px;
   overflow: auto;
   padding-top:3px;
 }

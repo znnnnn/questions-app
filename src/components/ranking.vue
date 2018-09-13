@@ -52,6 +52,6 @@ export default {
 
 <style scoped>
 #rank {
-  padding-bottom: 50px !important;
+  /* padding-bottom: 50px !important; */
 }
 </style>
