@@ -1,0 +1,5 @@
+config：默认变量
+aliyun_accessKeyId
+aliyun_accessKeySecret
+aliyun_SignName
+aliyun_TemplateCode

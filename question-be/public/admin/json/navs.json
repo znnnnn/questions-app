@@ -1,0 +1,66 @@
+{
+  "user": [
+    {
+      "title": "用户",
+      "icon": "",
+      "href": "page/user/list.html",
+      "spread": false
+    }
+  ],
+  "career": [
+    {
+      "title": "行业",
+      "icon": "",
+      "href": "page/career/list.html",
+      "spread": false
+    }
+  ],
+  "category": [
+    {
+      "title": "分类-关卡-题目",
+      "icon": "",
+      "href": "page/category/CateList.html",
+      "spread": false
+    }
+  ],
+  "report": [
+    {
+      "title": "答题统计",
+      "icon": "",
+      "href": "page/reportsta/list.html",
+      "spread": false
+    },
+    {
+      "title": "所有答题",
+      "icon": "",
+      "href": "page/report/list.html",
+      "spread": false
+    }
+  ],
+  "feedback": [
+    {
+      "title": "反馈内容",
+      "icon": "",
+      "href": "page/feedback/list.html",
+      "spread": false
+    }
+  ],
+  "admin": [
+    {
+      "title": "管理员",
+      "icon": "",
+      "href": "",
+      "spread": false
+    }
+  ],
+  "config": [
+    {
+      "title": "配置",
+      "icon": "",
+      "href": "page/config/list.html",
+      "spread": false
+    }
+  ]
+}
+
+
