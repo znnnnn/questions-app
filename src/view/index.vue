@@ -2,7 +2,7 @@
 	<div class="mui-content">
 		<router-view></router-view>
 		<header>
-			<img src="~@img/index/poster.png">
+			<img src="../assets/images/poster.png" id="banner" >
 		</header>
 		<div id="category"
 		     class="mui-scroll-wrapper"
@@ -21,20 +21,20 @@
 						<ul>
 							<li class="icon">
 								<a>
-									<img v-if="index==0" src="../../images/index/knowledge.png"/>
-									<img v-else-if="index==1" src="../../images/index/profession.png"/>
-									<img v-else-if="index==2" src="../../images/index/competition.png"/>
-									<img v-else src="../../images/index/industry.png"/>
+									<img class="knowledge" v-if="index==0" src="../../images/index/knowledge.png"/>
+									<img class="profession" v-else-if="index==1" src="../../images/index/profession.png"/>
+									<img class="competition" v-else-if="index==2" src="../../images/index/competition.png"/>
+									<img class="industry" v-else src="../../images/index/industry.png"/>
 								</a>
 							</li>
 							<li class="category">
 								<a>{{item.name}}</a>
 								<a v-if="item.mark!=null">({{item.mark}})</a>
 							</li>
-							<li class="score"><a><span class="grade">{{item.pass_num}}</span>/<span class="sum">{{item.quesion_allnum}}</span></a></li>
+							<li class="score"><a><span class="grade">{{item.pass_num}}</span>/<span class="sum">{{item.group_allnum}}</span></a></li>
 						</ul>
 						<div class="lable">
-							<a :class="index==3?'mui-hidden':''" v-for="(tab,sindex) in item.sub">{{tab.name}}</a>
+							<a :class="index==3?'mui-hidden':''" v-for="(tab,sindex) in item.sub" :key="sindex">{{tab.name}}</a>
 						</div>
 					</div>
 				</router-link>
@@ -59,20 +59,28 @@ export default {
     }
   },
   mounted() {
-    var _this = this
-    function refresh() {
+    // 初始化读取数据
+    this.refresh()
+  },
+  methods: {
+    refresh() {
+      var _this = this
       var loadinginstace = Loading.service({ fullscreen: true })
       _this.$api.homepage.getCategory()
         .then(res => {
           loadinginstace.close()
           _this.category = res.data.data
+          _this.$nextTick(function() { // dom更新后调用方法
+            const banner = document.querySelector('#banner')
+            const category = document.getElementById('category')
+            category.style.top = banner.offsetHeight + 'px'
+          })
         })
         .catch(error => {
           loadinginstace.close()
           console.log(error)
         })
     }
-    refresh()
   }
 }
 </script>
@@ -89,8 +97,12 @@ header {
 }
 
 #category {
-  position: relative;
-  padding-top: 0;
+  position: absolute;
+	padding-top: 0;
+	top: 200px;
+	bottom: 50px;
+	/* padding-bottom: 70px; */
+	overflow: auto;
 }
 
 #mui-scroll {
@@ -98,11 +110,17 @@ header {
 }
 
 .mui-scroll {
-  position: relative;
+	position: relative;
 }
 
 .mui-content {
-	margin-bottom: 69px;
+	width: 100%;
+	height: auto;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	overflow: auto;
+	/* margin-bottom: 69px; */
 	/* background-color: #ffffff; */
 	/* padding_bottom: 69px; */
 }
@@ -121,5 +139,18 @@ header {
 	max-width: auto; */
     width: 500px;
   }
+}
+
+img.knowledge {
+	height: 60%!important;
+}
+img.profession {
+	height: 55%!important;
+}
+img.competition {
+	height: 55%!important;
+}
+img.industry {
+	height: 60%!important;
 }
 </style>

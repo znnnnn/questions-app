@@ -16,7 +16,7 @@
                  maxlength="11"
                  v-model="phone">
         </div>
-        <div class="mui-input-row"
+        <!-- <div class="mui-input-row"
           id="pwdBox"
           v-if="this.mode === 'primary'">
           <label class="pwd"></label>
@@ -26,10 +26,10 @@
                  placeholder="请输入6-14位密码"
                  maxlength="14"
                  v-model="password">
-        </div>
-        <div class="mui-input-row" v-else>
+        </div> -->
+        <div class="mui-input-row">
           <label class="pwd"></label>
-          <input id='code'
+          <input id='fastCode'
                  type="text"
                  class="mui-input-clear mui-input"
                  placeholder="请输入验证码"
@@ -45,10 +45,10 @@
                 @keyup.enter="login">立即登录</button>
 
         <div class="link-area">
-          <a id="change" v-if="this.mode === 'primary'" @click="mode = 'code'">用短信验证码登录</a>
-          <a id="change" v-else @click="mode = 'primary'">用密码登录登录</a>
-          <router-link to="/account/register" id='reg'>新用户注册</router-link>
-          <router-link to="/account/forgotPassword" id='forgetPassword'>忘记密码</router-link>
+          <!-- <a id="change" v-if="this.mode === 'primary'" @click="mode = 'code'">用短信验证码登录</a> -->
+          <!-- <a id="change" v-else @click="mode = 'primary'">用密码登录登录</a> -->
+          <!-- <router-link to="/account/register" id='reg'>新用户注册</router-link> -->
+          <!-- <router-link to="/account/forgotPassword" id='forgetPassword'>忘记密码</router-link> -->
         </div>
       </div>
 
@@ -90,7 +90,8 @@ export default {
       Message({
         message: msg,
         type: 'error',
-        duration: 3000
+        duration: 3000,
+        center: true
       })
     },
     // autoResize() {
@@ -100,25 +101,37 @@ export default {
     //   container.style.width = document.documentElement.clientWidth + 'px'
     // },
     login() {
-      if (this.mode === 'primary') {
-        if (!this.$reg.checkPhone(this.phone)) {
-          this.tips('手机号格式错误')
-        } else if (!this.$reg.checkPwd(this.password)) {
-          this.tips('密码格式错误')
-        } else {
-          this.loginRequest('primary')
-        }
-      } else if (this.mode === 'code') {
-        if (!this.$reg.checkPhone(this.phone)) {
-          this.tips('手机号格式错误')
-        } else {
-          this.loginRequest('code', this.code)
-        }
+      if (!this.$reg.checkPhone(this.phone)) {
+        this.tips('手机号格式错误')
+      } else {
+        this.loginRequest()
       }
     },
     // 登录请求
-    loginRequest(mode, code) {
-      this.$api.login.login(this.phone, this.password, mode, code)
+    // loginRequest(mode, code) {
+    //   this.$api.login.login(this.phone, this.password, mode, code)
+    //     .then(res => {
+    //       if (res.data.status === 0) {
+    //         this.$message({
+    //           message: '恭喜你，登录成功！',
+    //           type: 'success',
+    //           center: true
+    //         // /////////////下一步  判断密码错误
+    //         })
+    //         this.$store.commit('resetToken', res.data.data.api_token)
+    //         this.$router.push({ path: '/' })
+    //       } else if (res.data.message === '账号或密码不正确') {
+    //         this.tips('账号或密码不正确')
+    //       } else if (res.data.status === 3) {
+    //         this.tips('验证码错误')
+    //       }
+    //     }
+    //     )
+    // }
+
+    // 快速登录
+    loginRequest() {
+      this.$api.login.fastLogin(this.phone, this.code)
         .then(res => {
           if (res.data.status === 0) {
             this.$message({
@@ -170,5 +183,6 @@ export default {
   width: 78%;
   height: 50px;
   color: #ffffff !important;
+  font-size: 75%;
 }
 </style>

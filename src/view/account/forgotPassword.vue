@@ -65,7 +65,7 @@ export default {
     Request() {
       this.$api.forgotPassword.forgotPassword(this.code, this.phone, this.pwd)
         .then(res => {
-          console.log(res.data)
+          // console.log(res.data)
           if (res.data.message === '验证码未填写') {
             this.$message({
               message: '请填写验证码',
@@ -161,5 +161,18 @@ header {
 #getCode {
   top:15px;
 }
-
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #FFFFFF;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #FFFFFF;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #FFFFFF;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+   color:    #FFFFFF;
+}
 </style>

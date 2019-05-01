@@ -16,25 +16,24 @@
 				</ul>
 			</div>
 		</div>
-    <div class="mui-scroll-wrapper box">
-			<div class="mui-scroll">
+    <div class="mui-scroll-wrapper box wrapper">
+			<div class="mui-scroll content">
 				<div :class="status?'choose':'mui-hidden'">
 					<div class="choose-list">
-            <a v-for="(item,index) in selects" :class="index==pre?'active':''" :key="item" @click="changeId(index,item.id,$event)">{{item.name}}</a>
+            <a v-for="(item,index) in selects" :class="index==pre?'active':''" :key="index" @click="changeId(index,item.id,$event)">{{item.name}}</a>
+            <div class="msg">{{message}}</div>
 					</div>
 				</div>
-        <!-- <router-link to="/answer/answer"> -->
-          <ul class="level" v-for="(item,index) in data" :class="status?'mui-hidden':'levels'" :key="index" :data-groupId="item.id">
-            <li>
-              <a class="title">{{item.name}}</a>
-            </li>
-            <li>
-              <a class="time">{{item.start_time?item.start_time:item.pivot.start_time}}/{{item.expire_time?item.expire_time:item.pivot.expire_time}}</a>
-              <a class="lable">{{item.mark?item.mark:'公民'}}</a>
-            </li>
-          </ul>
-        <!-- </router-link> -->
-				<!--<ul class="process">
+        <ul class="level" v-for="(item,index) in data" @click="checkLimit($event)" :class="status?'mui-hidden':'levels'" :key="index" :data-cateId="item.cate_id?item.cate_id:item.pivot.category_id" :data-groupId="item.id">
+          <li>
+            <a class="title">{{item.name}}</a>
+          </li>
+          <li>
+            <a class="time">{{item.start_time?item.start_time:item.pivot.start_time}}/{{item.expire_time?item.expire_time:item.pivot.expire_time}}</a>
+            <a class="lable">{{item.mark?item.mark:'公民'}}</a>
+          </li>
+        </ul>
+				<!-- <ul class="process">
 					<li>
 						<a class="title">医疗行业大苏打的</a>
 					</li>
@@ -60,15 +59,17 @@
 						<a class="time">时间dsadsadasd</a>
 						<a class="lable">行业标签</a>
 					</li>
-				</ul>-->
+				</ul> -->
 			</div>
 		</div>
     </div>
 </template>
 
 <script>
+/* eslint-disable */
 import { Loading } from 'element-ui'
 import { Toast } from 'mint-ui'
+import BScroll from 'better-scroll'
 export default {
   data() {
     return {
@@ -80,7 +81,8 @@ export default {
       fName: '',
       status: true,
       seccateId: null,
-      active: true
+      active: true,
+      message: null
     }
   },
   created() {
@@ -91,6 +93,10 @@ export default {
       _this.$api.levels.getNav(_this.cateId)
         .then(res => {
           loadinginstace.close()
+          if (res.data.data=='') {
+            _this.message = '暂无数据'
+            return
+          }
           _this.selects = res.data.data
           _this.fName = res.data.data[0].name
           _this.seccateId = res.data.data[0].id
@@ -103,6 +109,7 @@ export default {
     refresh()
   },
   mounted() {
+    
   },
   methods: {
     liClick(id) {
@@ -117,6 +124,7 @@ export default {
             _this.data = res.data.data
             _this.$nextTick(function() {
               _this.checkData()
+              // _this.loadScroll()
             })
           })
           .catch(error => {
@@ -129,9 +137,10 @@ export default {
           .then(res => {
             loadinginstace.close()
             _this.data = res.data.data
-            // console.log(_this.cateId)
+            // console.log(_this.data)
             _this.$nextTick(function() {
               _this.checkData()
+              // _this.loadScroll()
             })
           })
           .catch(error => {
@@ -146,6 +155,9 @@ export default {
       this.seccateId = id
     },
     choose() {
+      if (this.seccateId==null) {
+        return
+      }
       this.active = true
       this.status = false
       var _this = this
@@ -154,8 +166,10 @@ export default {
         .then(res => {
           loadinginstace.close()
           _this.data = res.data.data
+          // console.log(res.data)
           _this.$nextTick(function() {
             _this.checkData()
+            // _this.loadScroll()
           })
         })
         .catch(error => {
@@ -176,34 +190,39 @@ export default {
         var nsTime = new Date(sTime).getTime()
         var neTime = new Date(eTime).getTime()
         if (time < nsTime) {
-          Uls[i].classList.add('nostart')
-          Uls[i].addEventListener('click', function() {
-            Toast('答题未开始')
-          })
+          Uls[i].setAttribute('data-statu','0')
+          Uls[i].className = 'level levels nostart'
         } else if (time < neTime) {
-          Uls[i].classList.add('process')
-          Uls[i].addEventListener('click', function() {
-            var gId = this.getAttribute('data-groupId')
-            _this.checkLimit(gId)
-          })
+          Uls[i].className = 'level levels process'
+          Uls[i].setAttribute('data-statu','1')
         } else {
-          Uls[i].classList.add('lock')
-          Uls[i].addEventListener('click', function() {
-            Toast('答题已结束，请到个人中心查看最终成绩')
-          })
+          Uls[i].className = 'level levels lock'
+          Uls[i].setAttribute('data-statu','2')
         }
       }
     },
-    checkLimit(gId) {
-      // console.log(this.seccateId)
-      // console.log(gId)
-      this.$api.answer.getAnswer(this.seccateId, gId)
+    checkLimit(e) {
+      var obj = e.currentTarget
+      var cId = obj.getAttribute('data-cateId')
+      var gId = obj.getAttribute('data-groupId')
+      var statu = obj.getAttribute('data-statu')
+      if(statu == 0){
+        Toast('答题未开始')
+        return
+      }
+      if(statu == 2){
+        Toast('答题已结束，请到个人中心查看最终成绩')
+        return
+      }
+      this.$api.answer.getAnswer(cId, gId)
         .then(res => {
-          // console.log(res)
-          if (res.data.status === 21) {
+          // console.log(res) 
+          if (res.data.status === 21 || res.data.status === 22) {
             Toast('该身份不允许参加')
-          } else {
+          } else if (res.data.status === 0) {
             this.linkAnswer(this.seccateId, gId)
+          } else {
+            console.log('意外的错误')
           }
         })
         .catch(error => {
@@ -219,6 +238,13 @@ export default {
           groupid: b
         }
       })
+    },
+    loadScroll() {
+      var scroll = new BScroll('.wrapper', {
+        scrollY: true,
+        click: true
+        // probeType: 2
+      })
     }
   }
 }
@@ -233,11 +259,15 @@ export default {
     bottom: 0;
   }
   .mui-content.nav {
+    width: 100%;
+    position: fixed;
+    top: 44px;
     padding: 0!important;
     height: 50px;
   }
   .mui-scroll {
     height: 100%;
+    overflow: auto;
   }
   .mui-bar .mui-title {
     left: 80px;
@@ -263,11 +293,16 @@ export default {
     overflow: auto;
   }
   .indexContainer {
-    padding-top: 44px;
+    /* padding-top: 44px; */
     position: absolute;
     z-index: 99;
     height: 100%;
     width: 100%;
     background-color: #fdfaff;
+  }
+  .msg {
+    color: #cccccc;
+    font-size: 120%;
+    text-align: center;
   }
 </style>

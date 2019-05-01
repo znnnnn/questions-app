@@ -15,10 +15,10 @@
     </div>
     <div class="top-ten">
       <ul>
-        <li v-for="(item, index) in items['rank']"
+        <li v-for="(item, key, index) in items['rank'].slice(0, 20)"
             :key="index">
           <div class="rank-info">
-            <a>{{item.rank ? item.rank : '无'}}</a>
+            <a>{{key + 1}}</a>
             <a>{{item.phone ? item.phone : ''}}</a>
             <a>{{item.sum_score ? item.sum_score : '无'}}</a>
           </div>
@@ -36,6 +36,11 @@ export default {
       required: true
     }
   },
+  data() {
+    return {
+      idx: 1
+    }
+  },
   mounted() {
     // console.log(this.items.rank[0].sum_score)
   }
@@ -43,4 +48,10 @@ export default {
 </script>
 
 <style scoped src="@css/ranking/index.css">
+</style>
+
+<style scoped>
+#rank {
+  /* padding-bottom: 50px !important; */
+}
 </style>

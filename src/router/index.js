@@ -33,17 +33,32 @@ const routes = [{
   children: [
     {
       path: '/answer/common',
-      component: common
+      component: common,
+      meta: {
+        navShow: false
+      }
     },
     {
       path: '/answer/indexIndustry',
-      component: indexIndustry
+      component: indexIndustry,
+      meta: {
+        navShow: false
+      }
     },
     {
       path: '/answer/answer',
-      component: answer
+      component: answer,
+      meta: {
+        navShow: false
+      }
     }
   ]
+},
+{
+  path: '/', component: homePage, alias: '/public/dist/index.html'
+},
+{
+  path: '/', component: homePage, alias: '/public/dist/'
 }, {
   path: '/integral',
   component: integral,
@@ -65,21 +80,24 @@ const routes = [{
       path: '/userinfo/newPwd',
       component: newPwd,
       meta: {
-        title: '修改密码'
+        title: '修改密码',
+        navShow: false
       }
     },
     {
       path: '/userinfo/industry',
       component: industry,
       meta: {
-        title: '参与的行业答题'
+        title: '参与的行业答题',
+        navShow: false
       }
     },
     {
       path: '/userinfo/feedback',
       component: feedback,
       meta: {
-        title: '问题反馈'
+        title: '问题反馈',
+        navShow: false
       }
     }
   ]
@@ -92,25 +110,28 @@ const routes = [{
   path: '/account/login',
   component: login,
   meta: {
-    title: '网络安全答题平台'
+    title: '网络安全答题平台',
+    navShow: false
   }
 },
 {
   path: '/account/register',
   component: register,
   meta: {
-    title: '注册'
+    title: '注册',
+    navShow: false
   }
 },
 {
   path: '/account/forgotPassword',
   component: forgotPassword,
   meta: {
-    title: '忘记密码'
+    title: '忘记密码',
+    navShow: false
   }
 }]
 
 export default new Router({
-  routes,
-  mode: 'history'
+  routes
+  // mode: 'history'
 })

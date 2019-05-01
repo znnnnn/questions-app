@@ -1,10 +1,10 @@
 <template>
   <div class="mui-content">
     <router-view></router-view>
-    <header>
+    <div class="userInfoBox">
+      <header v-if="$route.meta.navShow !== false">
       <a>个人中心</a>
     </header>
-    <div class="userInfoBox">
       <div class="userInfo">
       <div>
         <ul class="mui-table-view">
@@ -45,11 +45,11 @@
             <a class="mui-navigate-right">
               <i class="iconfont icon-htmal5icon27"></i>问题反馈</a>
           </router-link>
-          <router-link to="/userinfo/newPwd"
+          <!-- <router-link to="/userinfo/newPwd"
                        class="mui-table-view-cell li-item">
             <a class="mui-navigate-right">
               <i class="iconfont icon-xing"></i>修改密码</a>
-          </router-link>
+          </router-link> -->
           <a class="mui-table-view-cell li-item"
              @click="this.confirmToLeave">
             <a class="mui-navigate-right">
@@ -186,7 +186,7 @@ export default {
               // /////////////下一步  判断密码错误
             })
           } else {
-            console.log(2)
+            // console.log(2)
           }
         })
     }
@@ -223,6 +223,13 @@ export default {
   /* font-weight: bold; */
   letter-spacing: 2px;
   font-weight: 700;
+}
+
+header {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  margin-left: -42px;
 }
 </style>
 
@@ -261,4 +268,5 @@ export default {
   overflow: hidden;
   transition: 0.5s all;
 }
+
 </style>

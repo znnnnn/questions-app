@@ -12,14 +12,14 @@
     </div>
     <div class="nav">
       <ul>
-        <li v-for="(item,idx) in ques" v-bind:class="[index.pre==idx ? 'active' : '']" :key="idx" @click="linkQue(idx)">{{idx+1}}</li>
+        <li v-for="(item,idx) in ques" :key="idx" @click="linkQue(idx)">{{idx+1}}</li>
       </ul>
     </div>
-    <div id="answer-body" class="answer-body">
-      <div :id="fullpage?'fullpage':''">
+    <div id="answer-body" class="answer-body wrapper">
+      <div class="content" :id="fullpage?'fullpage':''">
         <!-- <full-page ref="fullpage" :options="options" id="fullpage"> -->
         <div class="section" v-for="(item,queId) in ques" :key="queId">
-          <a class="answer-title"><span>{{queId+1}}.</span>{{item.question}}<span v-if="item.ismany==1">(多选)</span></a>
+          <a class="answer-title">{{queId+1}}. {{item.question}}<span v-if="item.ismany==1">(多选)</span></a>
           <ul class="answer-list" data-presel="">
             <li v-for="(select,selId) in item.selects" :key="select" :data-queid="queId" :data-selid="selId">
               <svg v-if="selId==0" class="icon" aria-hidden="true"><use xlink:href="#icon-0"></use></svg>
@@ -44,6 +44,7 @@ import { Loading } from 'element-ui'
 import { test } from '../../../js/iconfont.js'
 import { MessageBox } from 'mint-ui'
 import { Toast } from 'mint-ui'
+import BScroll from 'better-scroll'
 export default {
   data() {
     return {
@@ -69,7 +70,10 @@ export default {
         index: null,
         title: null
       },
-      fullpage: true
+      fullpage: true,
+      after: false,
+      scroll: null,
+      scrollY: 0
     }
   },
   created() {
@@ -92,17 +96,14 @@ export default {
           if (len === 0) {
             return
           }
-          _this.$nextTick(function() {
-            new fullpage('#fullpage', {
-              licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
-              onLeave: this.onLeave
-            })
-            _this.index.queLen = len
-            _this.statusSet()
-            _this.timeSet()
-            for (let i = 0; i < len; i++) {
-              _this.answers[i]= []
-            }
+          _this.index.queLen = len
+          _this.$nextTick(function() { //dom更新后调用方法
+            _this.loadScroll()
+            // new fullpage('#fullpage', {
+            //   licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
+            //   onLeave: this.onLeave
+            // })
+            
           })
         })
         .catch(error => {
@@ -115,8 +116,8 @@ export default {
   mounted() {
     test() //加载icon js文件
   },
-  beforeRouteLeave (to, from, next) {
-    if (this.index.queLen === 0) {
+  beforeRouteLeave (to, from, next) { //防止返回误触
+    if (this.index.queLen === 0 || this.after) {
       next()
       return
     }
@@ -125,12 +126,36 @@ export default {
         showCancelButton: true
       }).then(action => {
         if( action =='confirm'){
-          fullpage_api.destroy()
+          // fullpage_api.destroy()
           next()
         }
       });
   },
   methods: {
+    loadScroll() {
+      var fullpage = document.querySelector('#fullpage')
+      this.scroll = new BScroll('.wrapper',{
+        scrollY: true,
+        click: true,
+        probeType: 2
+      })
+      
+      var section = document.querySelectorAll('.section')
+      this.statusSet()
+      this.timeSet()
+      for (let i = 0; i < this.index.queLen; i++) {
+        this.answers[i]= []
+        section[i].setAttribute('data-top',section[i].offsetTop)
+      }
+    },
+    linkQue(id) { //题目跳转
+      // fullpage_api.moveTo(id+1);
+      // this.scroll.scrollTo(0,-350,200)
+      // console.log(id)
+      var section = document.querySelectorAll('.section')
+      this.scroll.scrollTo(0,-(section[id].getAttribute('data-top'))+10,200)
+      this.index.pre = id
+    },
     onLeave(origin, destination, direction) {
       var leavingSection = this
       var last = origin.index
@@ -149,39 +174,53 @@ export default {
       // }
       
     },
-    statusSet() { //设置选择点击事件
-      var lis = document.querySelectorAll('#answer-body li')
+    statusSet() { //设置答案点击事件
+      var navs = document.querySelectorAll('.nav li') //题目索引列表
+      var lis = document.querySelectorAll('#answer-body li') //题目列表
       var len = lis.length
       var _this = this;
       for (let i = 0; i < len; i++) {
         lis[i].addEventListener('click',function() {
-          var queid = this.getAttribute('data-queid')
-          var selid = this.getAttribute('data-selid')
+          var queid = this.getAttribute('data-queid') //题目id
+          var selid = this.getAttribute('data-selid') //选项id
+          var objs = { //保留
+            queid: queid,
+            selid: selid,
+            obj: this,
+            ismany: _this.ques[queid].ismany,
+            navs: navs
+          }
           if (selid) {
-            _this.setAnswers(queid,selid,this,_this.ques[queid].ismany)
+            _this.setAnswers(queid,selid,this,_this.ques[queid].ismany,navs)
           }
         })
       }
     },
-    setAnswers(queid,selid,obj,ismany) { //设置答题记录
-      var presel = obj.parentNode.getAttribute('data-presel')
+    setAnswers(queid,selid,obj,ismany,navs) { //设置答题记录
+      var presel = obj.parentNode.getAttribute('data-presel') //单选题当前答案索引字段
       if (ismany==1) {
         // console.log('多选')
-        if (obj.classList[0] == 'active') {
+        if (obj.classList[0] == 'active') { //判断目标答案是否为选中状态
           obj.classList.remove('active')
-          this.answers[queid].splice( this.answers[queid].indexOf(parseInt(selid)+1,1))
+          this.answers[queid].splice( this.answers[queid].indexOf(parseInt(selid)+1,1)) //删除对应答题记录
+          // console.log(this.answers[queid].length)
+          if (this.answers[queid].length==0) { //判断多选题选中的答案个数
+            navs[queid].classList.remove('active')
+          }
           return
         }
-        this.answers[queid].push(parseInt(selid) + 1)
+        this.answers[queid].push(parseInt(selid) + 1) //添加对应答题记录
         obj.classList.add('active')
+        navs[queid].classList.add('active')
       }else if(ismany==0) {
         // console.log('单选')
         if (presel) {
           obj.parentNode.children[presel].classList.remove('active')
         }
-        obj.parentNode.setAttribute('data-presel',selid)
+        obj.parentNode.setAttribute('data-presel',selid) //修改字段值为对应答案索引
         obj.classList.add('active')
-        this.answers[queid] = [parseInt(selid) + 1]
+        navs[queid].classList.add('active')
+        this.answers[queid] = [parseInt(selid) + 1] //修改对应答题记录
       }
       // console.log(this.answers)
     },
@@ -234,6 +273,7 @@ export default {
         .then(res => {
           loadinginstace.close()
           if(res.data.status==0){
+            clearInterval(this.index.timer)
             this.aftersubmit(res.data.data)
           }
           // this.$nextTick(function() {
@@ -247,6 +287,7 @@ export default {
     },
     aftersubmit(data) {
       var score = data.get_score
+      this.after = true
       if (data.is_pass==1) {
         MessageBox({
           title: '最终成绩',
@@ -274,10 +315,6 @@ export default {
           }
         })
       }
-    },
-    linkQue(id) { //题目跳转
-      fullpage_api.moveTo(id+1);
-      this.index.pre = id
     },
     timeSet() {
       var timer = document.querySelector('#timer')
@@ -333,12 +370,14 @@ export default {
 <style scoped src="@css/index/answer.css"></style>
 <style scoped>
   .indexContainer {
-    padding-top: 44px;
-    position: absolute;
+    position: relative;
     z-index: 100;
     height: 100%;
     width: 100%;
     background-color: #fdfaff;
+  }
+  .content {
+	  padding: 20px 35px 20px 15px;
   }
   .icon {
     width: 1em; height: 1em;
@@ -352,6 +391,15 @@ export default {
     color: #a6a6a6;
     font-size: 1.4em;
   }
-</style>
-<style type="text/css">
+  .active .icon {
+    color: #0097a8;
+  }
+  .header {
+    position: fixed;
+    width: 100%;
+    top: 44px;
+  }
+  .section {
+    margin-bottom: 30px;
+  }
 </style>

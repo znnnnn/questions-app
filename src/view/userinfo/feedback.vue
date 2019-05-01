@@ -8,7 +8,7 @@
     <div class="mui-content feedback-content">
       <div class="box">
         <div class="mui-content-padded">
-          <div class="mui-inline">问题和意见</div>
+          <div class="mui-inline" style="font-size: 14px;color: #8f8f94;">问题和意见</div>
         </div>
         <div class="row mui-input-row">
           <textarea id='question'
@@ -34,7 +34,7 @@
                :src="dialogImageUrl"
                alt="">
         </el-dialog>
-        <p>QQ/邮箱</p>
+        <p style="margin-top:15px;">QQ/邮箱</p>
         <div class="mui-input-row">
           <input id='contact'
                  type="text"
@@ -186,10 +186,15 @@ export default {
   background-color: #fdfaff;
   transition: 0.5s all;
   position: relative;
+  padding-top: 44px;
 }
 
 header {
   z-index: 102;
+}
+
+.box {
+  /* padding-top: 44px; */
 }
 
 .container {
@@ -220,5 +225,9 @@ div.sub {
 
 .feedback-content {
   height: 100% !important;
+}
+
+.box {
+  /* margin-top: 50px; */
 }
 </style>

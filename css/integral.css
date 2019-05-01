@@ -12,14 +12,16 @@
 
 .container {
   background-color: #efefef;
-  position: relative;
   /* display: table-cell; */
   vertical-align: middle;
   text-align: center;
   /* width: 100vh; */
-  height: calc(100vh - 119px);
-  min-height: 380px !important;
+  /* height: calc(100vh - 119px); */
+  /* min-height: 380px !important; */
   position: absolute;
+  top: 0;
+  bottom: 0;
+  padding-top: 50px;
   line-height: 1
 }
 
@@ -30,13 +32,15 @@
   /* margin-top: 5%; */
   font-size: 1.2rem;
   display: inline-block;
-  position: absolute;
+  /* position: absolute;
   top: 50%;
-  left: 50%;
+  left: 50%; */
   text-align: center;
-  transform: translate(-50%, -50%);
+  /* transform: translate(-50%, -50%); */
   line-height: 1;
   max-width: 1200px;
+  height: 100%;
+  padding-top: 50px;
 }
 
 .oCircle {

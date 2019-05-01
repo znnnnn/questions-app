@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="rank-main" style="height:100%">
     <header class="header">
       <a>排行榜</a>
     </header>
@@ -64,6 +64,7 @@ export default {
     this.$api.ranking.getRankingList(1)
       .then(res => {
         //       // console.log(i)
+        // console.log(res)
         loadinginstace.close()
         this.$set(this.items, 1, res.data.data)
       })
@@ -79,10 +80,13 @@ export default {
     for (const tabItem of tabsBtnGroup) {
       tabItem.addEventListener('click', function() {
         // console.log(tabItem.getAttribute('type'))
+        var loadinginstace = Loading.service({ fullscreen: true })
         type = tabItem.getAttribute('type')
         _this.$api.ranking.getRankingList(type)
           .then(res => {
+            // console.log(res)
             _this.$set(_this.items, type, res.data.data)
+            loadinginstace.close()
           })
       })
       // console.log(tabItem)
@@ -102,6 +106,10 @@ export default {
 </style>
 
 <style scoped>
+.rank-main {
+  position: relative;
+}
+
 .mint-tab-item {
   background-color: #efefef;
 }
@@ -112,5 +120,17 @@ export default {
 
 .mint-navbar .mint-tab-item.is-selected {
   color: #0097a8 !important;
+}
+
+.mint-tab-container {
+  width: 100%;
+  /* position: fixed;
+  top: 96px;
+  bottom: 69px; */
+  position: absolute;
+  top: 99px;
+  bottom: 50px;
+  overflow: auto;
+  /* padding-top:3px; */
 }
 </style>

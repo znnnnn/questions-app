@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import { Loading } from 'element-ui'
+
 export default {
   props: {
     phone: {
@@ -21,34 +23,51 @@ export default {
   },
   methods: {
     getCode() {
-      console.log(this.phone)
+      // console.log(this.phone)
+
+      const btn = document.getElementById('getCode')
+      btn.setAttribute('disabled', true)
+      btn.style.cursor = 'not-allowed'
+      // loading层
+      var loadinginstace = Loading.service({ fullscreen: true })
+      // this.getCodeText = this.time
       // 发送请求
       this.$api.sendsms.sendsms(this.phone)
         .then(res => {
+          loadinginstace.close()
           if (!this.$reg.checkPhone(this.phone)) {
             this.$message({
               message: '手机号格式错误',
               type: 'error',
               center: 'true'
             })
+            this.btnReset()
           } else {
             // 修改按钮样式
-            const btn = document.getElementById('getCode')
-            const _self = this
-            btn.setAttribute('disabled', true)
-            btn.style.cursor = 'not-allowed'
-            _self.getCodeText = _self.time -= 1
             setInterval(() => {
-              if (_self.time > 0) {
-                _self.getCodeText = _self.time -= 1
-              } else {
-                _self.getCodeText = '获取验证码'
-                btn.disabled = false
-                btn.style.cursor = 'pointer'
-              }
+              this.btnSet()
             }, 1000)
           }
         })
+    },
+    btnSet() {
+      const btn = document.getElementById('getCode')
+      if (this.time > 0) {
+        this.getCodeText = this.time -= 1
+      } else {
+        this.getCodeText = '获取验证码'
+        this.time = 60
+        btn.disabled = false
+        btn.style.cursor = 'pointer'
+        return
+      }
+    },
+    btnReset() {
+      const btn = document.getElementById('getCode')
+      this.getCodeText = '获取验证码'
+      this.time = 60
+      btn.disabled = false
+      btn.style.cursor = 'pointer'
     }
   }
 }
@@ -57,10 +76,11 @@ export default {
 
 <style scoped>
 #getCode {
+  width: 80px;
   padding: 0 !important;
   line-height: 0 !important;
   height: 50px;
   top: 15px;
-  font-size: 16px;
+  font-size: 75%;
 }
 </style>

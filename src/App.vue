@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view></router-view>
-    <Tabs></Tabs>
+    <Tabs v-if="$route.meta.navShow !== false"></Tabs>
   </div>
 </template>
 
@@ -26,23 +26,23 @@ export default {
     }
   },
   mounted() {
-    var app = document.querySelector('#app')
-    app.style.height = this.screenHeight + 'px'
+    // var app = document.querySelector('#app')
+    // app.style.height = this.screenHeight + 'px'
   },
   methods: {
   }
 }
 </script>
  <style lang="css">
-  /* #app {
+  #app {
     height: 100%;
-  } */
+  }
   .mint-tabbar {
-    height: 69px;
+    height: 50px;
   }
 
-  #app {
+  /* #app {
     min-height: 630px;
-  }
+  } */
 </style>
 

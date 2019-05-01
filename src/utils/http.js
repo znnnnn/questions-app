@@ -17,7 +17,8 @@ const tip = msg => {
   Message({
     message: msg,
     type: 'error',
-    duration: 3000
+    duration: 3000,
+    center: true
   })
 }
 
@@ -43,7 +44,7 @@ const errorHandle = (status, other) => {
   switch (status) {
     // 401: 未登录状态，跳转登录页
     case 401:
-      tip('登录状态过期，请重新登录，自动跳转登录页')
+      tip('登录状态过期，请重新登录')
       setTimeout(() => {
         toLogin()
       }, 0)
@@ -139,11 +140,12 @@ instance.interceptors.response.use(
       // 关于断网组件中的刷新重新获取数据，会在断网组件中说明
       // store.commit('changeNetwork', false)
       // console.log('断网了！')
-      Message({
-        message: '断网了',
-        type: 'error',
-        center: 'true'
-      })
+
+      // Message({
+      //   message: '断网了',
+      //   type: 'error',
+      //   center: 'true'
+      // })
     }
   })
 
