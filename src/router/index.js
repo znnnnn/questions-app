@@ -29,6 +29,7 @@ const routes = [{
   meta: {
     title: '首页'
   },
+  base: '/dist/',
   component: homePage,
   children: [
     {
