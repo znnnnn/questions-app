@@ -80,7 +80,7 @@ export default {
     }
   },
   mounted() {
-    this.autoResize()
+    // this.autoResize()
     // window.onresize = () => {
     //   this.autoResize()
     // }
@@ -93,12 +93,12 @@ export default {
         duration: 3000
       })
     },
-    autoResize() {
-      console.log(this)
-      const container = document.querySelector('.mui-content')
-      container.style.height = document.documentElement.clientHeight + 'px'
-      container.style.width = document.documentElement.clientWidth + 'px'
-    },
+    // autoResize() {
+    //   console.log(this)
+    //   const container = document.querySelector('.mui-content')
+    //   container.style.height = document.documentElement.clientHeight + 'px'
+    //   container.style.width = document.documentElement.clientWidth + 'px'
+    // },
     login() {
       if (this.mode === 'primary') {
         if (!this.$reg.checkPhone(this.phone)) {

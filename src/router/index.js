@@ -26,6 +26,9 @@ Vue.use(Router)
 
 const routes = [{
   path: '/',
+  meta: {
+    title: '首页'
+  },
   component: homePage,
   children: [
     {
@@ -43,10 +46,16 @@ const routes = [{
   ]
 }, {
   path: '/integral',
-  component: integral
+  component: integral,
+  meta: {
+    title: '积分兑换'
+  }
 }, {
   path: '/ranking',
-  component: ranking
+  component: ranking,
+  meta: {
+    title: '排行榜'
+  }
 },
 {
   path: '/userinfo',
@@ -54,15 +63,24 @@ const routes = [{
   children: [
     {
       path: '/userinfo/newPwd',
-      component: newPwd
+      component: newPwd,
+      meta: {
+        title: '修改密码'
+      }
     },
     {
       path: '/userinfo/industry',
-      component: industry
+      component: industry,
+      meta: {
+        title: '参与的行业答题'
+      }
     },
     {
       path: '/userinfo/feedback',
-      component: feedback
+      component: feedback,
+      meta: {
+        title: '问题反馈'
+      }
     }
   ]
 },
@@ -72,15 +90,24 @@ const routes = [{
 },
 {
   path: '/account/login',
-  component: login
+  component: login,
+  meta: {
+    title: '网络安全答题平台'
+  }
 },
 {
   path: '/account/register',
-  component: register
+  component: register,
+  meta: {
+    title: '注册'
+  }
 },
 {
   path: '/account/forgotPassword',
-  component: forgotPassword
+  component: forgotPassword,
+  meta: {
+    title: '忘记密码'
+  }
 }]
 
 export default new Router({
