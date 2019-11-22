@@ -62,7 +62,7 @@
     "style-loader": "^0.22.1",
     "transform-runtime": "0.0.0",
     "url-loader": "^1.0.1",
-    "vant": "^1.2.1",
+    "vant": "^2.1.8",
     "vue-fullpage.js": "0.0.5",
     "vue-hot-reload-api": "^2.3.0",
     "vue-loader": "^15.3.0",
